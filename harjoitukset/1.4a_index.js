@@ -13,7 +13,6 @@ const Sisalto = (props) => {
 
 
 return (
-  return (
     <div>
     <p>{props.osat[0].nimi}</p>
     <p>{props.osat[0].tehtavia}</p>
