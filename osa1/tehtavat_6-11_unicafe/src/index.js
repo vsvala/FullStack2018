@@ -7,7 +7,7 @@ class App extends React.Component {
     this.state = {
       hyva: 0,
       neutraali:0,
-      huono:0
+      huono:0,
     }
   }
   klikHyva = () => {
@@ -31,28 +31,32 @@ klikHuono = () => {
     const teksti = {
       otsikko1: 'Anna Palautetta',
       otsikko2: 'Statistiikka',
-      stat1: 'hyvä',
-      stat2: 'neutraali',
-      stat3: 'huono'
+    }
+
+    const ka = {
+      kpl: this.state.hyva+this.state.neutraali+this.state.huono,
+      yht:  this.state.hyva-this.state.huono,
     }
 
     return (
       <div>
 
-         <h1>{teksti.otsikko1}</h1>
+       <h1>{teksti.otsikko1}</h1>
          <div>
-              <button onClick={this.klikHyva}>hyva</button>
-               <button onClick={this.klikNeutraali}>neutraali</button>
-               <button onClick={this.klikHuono}>huono</button>
-             </div>
+            <button onClick={this.klikHyva}>hyva</button>
+            <button onClick={this.klikNeutraali}>neutraali</button>
+            <button onClick={this.klikHuono}>huono</button>
+         </div>
 
 
-         <h1>{teksti.otsikko2}</h1>
-         <div>
-         <p>{teksti.stat1} {this.state.hyva}</p>
-         <p>{teksti.stat2} {this.state.neutraali}</p>
-         <p>{teksti.stat3} {this.state.huono}</p>
-            </div>
+       <h1>{teksti.otsikko2}</h1>
+        <div>
+         <p>hyvä {this.state.hyva}</p>
+         <p>neutraali {this.state.neutraali}</p>
+         <p>huono {this.state.huono}</p>
+         <p>keskiarvo {Math.round(ka.yht/ka.kpl*100)/100}</p>
+         <p>positiivisia {Math.round(this.state.hyva/ka.kpl*100)/100} %</p>
+        </div>
      </div>
     )
   }
@@ -62,3 +66,4 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 )
+
