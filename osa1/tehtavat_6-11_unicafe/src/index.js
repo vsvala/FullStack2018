@@ -77,16 +77,33 @@ const Stat = () => {
           )
         } 
             return(
-                <div>
-                <h1>Statistiikka</h1>
-                             
-                  <p>{Statistics.stat[0].nimi} {Statistics.stat[0].hyva}</p>
-                  <p>{Statistics.stat[1].nimi} {Statistics.stat[1].neutraali}</p>
-                  <p>{Statistics.stat[2].nimi} {Statistics.stat[2].huono}</p>
-         
-                  <p>keskiarvo {Statistic.ka}</p>
-                  <p>positiivisia {Statistic.pos}%</p>
-                  </div>
+            <div>
+            <h1>Statistiikka</h1>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>{Statistics.stat[0].nimi}</td>
+                            <td>{Statistics.stat[0].hyva}</td>
+                        </tr>
+                         <tr>
+                            <td>{Statistics.stat[1].nimi}</td>
+                            <td> {Statistics.stat[1].neutraali}</td>
+                        </tr>
+                        <tr>
+                            <td>{Statistics.stat[2].nimi}</td>
+                            <td> {Statistics.stat[2].huono}</td>
+                        </tr>
+                        <tr>
+                            <td>keskiarvo</td>
+                            <td>{Statistic.ka}</td>
+                        </tr>
+                        <tr>
+                            <td> positiivisia</td>
+                            <td>{Statistic.pos}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             )   
             }
 
