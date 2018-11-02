@@ -8,54 +8,93 @@ class App extends React.Component {
       hyva: 0,
       neutraali:0,
       huono:0,
+      kaikki:[]
     }
   }
-  klikHyva = () => {
-  this.setState({
-    hyva: this.state.hyva + 1
-  })
-}
-klikNeutraali = () => {
-  this.setState({
-    neutraali: this.state.neutraali + 1
-  })
-}
-klikHuono = () => {
-  this.setState({
-    huono: this.state.huono + 1
-  })
-}
+
+  asetaArvoon = (arvo, nimi) => {
+    return () => {
+        if (nimi === "hyva") {
+            this.setState({ hyva: arvo,
+            kaikki:this.state.kaikki.concat('h')
+            })
+
+        } else if (nimi === "neutraali") {
+            this.setState({ neutraali: arvo,
+            kaikki:this.state.kaikki.concat('n')
+            })
+        } else if (nimi === "huono") {
+            this.setState({ huono: arvo,
+            kaikki:this.state.kaikki.concat('m')
+            })
+        }
+    }
+  }
 
   render(){
+    const Historia=() => this.state.kaikki.join('')
 
-    const teksti = {
-      otsikko1: 'Anna Palautetta',
-      otsikko2: 'Statistiikka',
-    }
+   // Button vastaa yksittäistä palautteenantonappia
+    const Button = ({ handleClick, text }) => (
+        <button onClick={handleClick}>
+            {text}
+        </button>
+    )
 
-    const ka = {
-      kpl: this.state.hyva+this.state.neutraali+this.state.huono,
-      yht:  this.state.hyva-this.state.huono,
+    // Statistics huolehtii tilastojen näyttämisestä
+    const Statistics = {
+    stat: [
+      {
+        nimi: 'hyvä',
+        hyva: this.state.hyva
+      },
+      {
+        nimi: 'neutraali',
+        neutraali: this.state.neutraali
+      },
+      {
+        nimi: 'huono',
+        huono: this.state.huono
+      }
+    ]
+  }
+  // Statistic huolehtii yksittäisen tilastorivin, esim. keskiarvon näyttämisestä
+    const Statistic = {
+
+       // ka: Math.round((this.state.hyva-this.state.huono)/(this.state.hyva+this.state.neutraali+this.state.huono)*100)/100,
+       // pos:Math.round(this.state.hyva/(this.state.hyva+this.state.neutraali+this.state.huono)*100)/100
+      ka:Math.round((this.state.hyva-this.state.huono)/Historia().length*100)/100,
+      pos:Math.round(this.state.hyva/Historia().length*100)/100
     }
 
     return (
       <div>
 
-       <h1>{teksti.otsikko1}</h1>
+       <h1>Anna palautetta</h1>
          <div>
-            <button onClick={this.klikHyva}>hyva</button>
-            <button onClick={this.klikNeutraali}>neutraali</button>
-            <button onClick={this.klikHuono}>huono</button>
-         </div>
+         <Button
+            handleClick={this.asetaArvoon(this.state.hyva + 1, "hyva")}  // arvo, nimi
+            text="hyva"
+            />
+            <Button
+             handleClick={this.asetaArvoon(this.state.neutraali + 1, "neutraali")}
+            text="neutraali"
+            />
+            <Button
+            handleClick={this.asetaArvoon(this.state.huono + 1, "huono")}
+            text="huono"
+            />
+            </div>
 
 
-       <h1>{teksti.otsikko2}</h1>
+       <h1>Statistiikka</h1>
         <div>
-         <p>hyvä {this.state.hyva}</p>
-         <p>neutraali {this.state.neutraali}</p>
-         <p>huono {this.state.huono}</p>
-         <p>keskiarvo {Math.round(ka.yht/ka.kpl*100)/100}</p>
-         <p>positiivisia {Math.round(this.state.hyva/ka.kpl*100)/100}%</p>
+         <p>{Statistics.stat[0].nimi} {Statistics.stat[0].hyva}</p>
+         <p>{Statistics.stat[1].nimi} {Statistics.stat[1].neutraali}</p>
+         <p>{Statistics.stat[2].nimi} {Statistics.stat[2].huono}</p>
+
+         <p>keskiarvo {Statistic.ka}</p>
+         <p>positiivisia {Statistic.pos}%</p>
         </div>
      </div>
     )
