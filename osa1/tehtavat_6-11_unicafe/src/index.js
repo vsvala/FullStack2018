@@ -55,7 +55,7 @@ klikHuono = () => {
          <p>neutraali {this.state.neutraali}</p>
          <p>huono {this.state.huono}</p>
          <p>keskiarvo {Math.round(ka.yht/ka.kpl*100)/100}</p>
-         <p>positiivisia {Math.round(this.state.hyva/ka.kpl*100)/100} %</p>
+         <p>positiivisia {Math.round(this.state.hyva/ka.kpl*100)/100}%</p>
         </div>
      </div>
     )
@@ -66,4 +66,3 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 )
-
