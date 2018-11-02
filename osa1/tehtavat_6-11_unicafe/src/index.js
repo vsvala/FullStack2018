@@ -125,14 +125,7 @@ const Stat = () => {
                    />
             
                    <Stat/>
-                   {/* <div>{this.historia()}</div>
-                   
-                     <p>{Statistics.stat[0].nimi} {Statistics.stat[0].hyva}</p>
-                     <p>{Statistics.stat[1].nimi} {Statistics.stat[1].neutraali}</p>
-                     <p>{Statistics.stat[2].nimi} {Statistics.stat[2].huono}</p>
             
-                     <p>keskiarvo {Statistic.ka}</p>
-                     <p>positiivisia {Statistic.pos}%</p> */}
                 </div>
             )
         }
