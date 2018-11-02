@@ -1,50 +1,59 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Kurssi from './components/Kurssi'
-import App from './App'
 
 
-     const kurssit = [
-       {
-         nimi: 'Half Stack -sovelluskehitys',
-         id: 1,
-         osat: [
-           {
-             nimi: 'Reactin perusteet',
-             tehtavia: 10,
-             id: 1
-           },
-           {
-             nimi: 'Tiedonvälitys propseilla',
-             tehtavia: 7,
-             id: 2
-           },
-           {
-             nimi: 'Komponenttien tila',
-             tehtavia: 14,
-             id: 3
-           }
-         ]
-       },
-       {
-         nimi: 'Node.js',
-         id: 2,
-         osat: [
-           {
-             nimi: 'Routing',
-             tehtavia: 3,
-             id: 1
-           },
-           {
-             nimi: 'Middlewaret',
-             tehtavia: 7,
-             id: 2
-           }
-         ]
-       }
-     ]
+const Otsikko = (props) => {
+  return (
+    <div>
+    <h1>{props.kurssi}</h1>
+    </div>
+  )
+}
+
+
+const Sisalto = (props) => {
+  return (
+    <div>
+      <p>{props.osa1}</p>
+      <p>{props.tehtavia1}</p>
+      <p>{props.osa2}</p>
+      <p>{props.tehtavia2}</p>
+      <p>{props.osa3}</p>
+      <p>{props.tehtavia3}</p>
+    </div>
+  )
+}
+
+const Yhteensa = (props) => {
+  return (
+    <div>
+    <p>yhteensä {props.tehtavia1 + props.tehtavia2 + props.tehtavia3} tehtävää</p>
+    </div>
+  )
+}
+
+
+  const App = () => {
+    // const-määrittelyt
+
+    const kurssi = 'Half Stack -sovelluskehitys'
+    const osa1 = 'Reactin perusteet'
+    const tehtavia1 = 10
+    const osa2 = 'Tiedonvälitys propseilla'
+    const tehtavia2 = 7
+    const osa3 = 'Komponenttien tila'
+    const tehtavia3 = 14
+
+    return (
+      <div>
+        <Otsikko kurssi={kurssi} />
+        <Sisalto osa1={osa1} tehtavia1={tehtavia1} osa2={osa2} tehtavia2={tehtavia2} osa3={osa3} tehtavia3={tehtavia3} />
+        <Yhteensa tehtavia1={tehtavia1} tehtavia2={tehtavia2} tehtavia3={tehtavia3}/>
+      </div >
+    )
+  }
 
 ReactDOM.render(
-  <App kurssit={kurssit}  />,
+  <App />,
   document.getElementById('root')
 )
