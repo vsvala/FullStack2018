@@ -1,81 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+const App = () => {
+  const kurssi = 'Half Stack -sovelluskehitys'
 
-const Otsikko = (props) => {
-  return (
-    <div>
-    <h1>{props.kurssi}</h1>
-    </div>
-  )
-}
+  const osa1 = {
+    nimi: 'Reactin perusteet',
+    tehtavia: 10
+  }
+  const osa2 = {
+    nimi: 'Tiedonvälitys propseilla',
+    tehtavia: 7
+  }
+  const osa3 = {
+    nimi: 'Komponenttien tila',
+    tehtavia: 14
+  }
 
-const Sisalto = (props) => {
-  return (
-    <div>
-    <Osa1 osa1={props.osa1} tehtavia1={props.tehtavia1}/>
-    <Osa2 osa2={props.osa2} tehtavia2={props.tehtavia2}/>
-    <Osa3 osa3={props.osa3} tehtavia3={props.tehtavia3}/>
-    </div>
-  )
-}
-
-const Osa1 = (props) => {
-
-  return (
-    <div>
-      <p>{props.osa1}</p>
-      <p>{props.tehtavia1}</p>
-    </div>
-  )
-}
-const Osa2 = (props) => {
-
-  return (
-    <div>
-      <p>{props.osa2}</p>
-      <p>{props.tehtavia2}</p>
-    </div>
-  )
-}
-
-const Osa3 = (props) => {
-
-  return (
-    <div>
-      <p>{props.osa3}</p>
-      <p>{props.tehtavia3}</p>
-    </div>
-  )
-}
-
-
-
-const Yhteensa = (props) => {
-  return (
-    <div>
-    <p>yhteensä {props.tehtavia1 + props.tehtavia2 + props.tehtavia3} tehtävää</p>
-    </div>
-  )
-}
-
-
-  const App = () => {
-    // const-määrittelyt
-    const kurssi = 'Half Stack -sovelluskehitys'
-    const osa1 = 'Reactin perusteet'
-    const tehtavia1 = 10
-    const osa2 = 'Tiedonvälitys propseilla'
-    const tehtavia2 = 7
-    const osa3 = 'Komponenttien tila'
-    const tehtavia3 = 14
 
     return (
       <div>
-        <Otsikko kurssi={kurssi} />
-        <Sisalto osa1={osa1} tehtavia1={tehtavia1} osa2={osa2} tehtavia2={tehtavia2}  osa3={osa3} tehtavia3={tehtavia3} />
-        <Yhteensa tehtavia1={tehtavia1} tehtavia2={tehtavia2} tehtavia3={tehtavia3}/>
-      </div >
+        <h1>{kurssi}</h1>
+        <p>{osa1.nimi}</p>
+        <p>{osa1.tehtavia}</p>
+        <p>{osa2.nimi}</p>
+        <p>{osa2.tehtavia}</p>
+        <p>{osa3.nimi}</p>
+        <p>{osa3.tehtavia}</p>
+        <p>yhteensä {osa1.tehtavia+osa2.tehtavia+osa3.tehtavia} tehtävää</p>
+        </div >
     )
   }
 
