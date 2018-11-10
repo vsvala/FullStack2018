@@ -13,11 +13,11 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 ### NPM: Node Package Manager
 NPM: Node Package Manager on pakettien hallinta työkalu, joka mahdollistaa moduulien julkaisun muiden käyttöön.
 
-### Express-sovelluskehystä
-Node.js:n [Express-sovelluskehystä](https://expressjs.com/)
+### Express-sovelluskehys
+Node.js:n [Express-sovelluskehys](https://expressjs.com/)
 
  ### JSON = JavaScript Object Notation
- JSON-muotoinen “raakadata”. tiedostoformaatti
+ JSON-muotoinen “raakadata”, tiedostoformaatti
 
  ### DOM = Document Object Model 
  Document Object Model eli DOM on ohjelmointirajapinta eli API, joka mahdollistaa selaimessa esitettävien web-sivuja vastaavien elementtipuiden muokkaamisen ohjelmallisesti.
@@ -26,7 +26,6 @@ Node.js:n [Express-sovelluskehystä](https://expressjs.com/)
 
  ### CSS = Cascading Style Sheets 
  CSS on kieli, jonka avulla web-sovellusten ulkoasu määritellään
-
 
 ### SPA = Single-page application
 Viimeisten vuosien aikana on noussut esiin tyyli tehdä web-sovellukset käyttäen Single-page application (SPA) -tyyliä, missä sovelluksille ei enää tehdä erillisiä, palvelimen sille lähettämiä sivuja, vaan sovellus koostuu ainoastaan yhdestä palvelimen lähettämästä HTML-sivusta, jonka sisältöä manipuloidaan selaimessa suoritettavalla Javascriptillä.
