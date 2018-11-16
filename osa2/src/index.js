@@ -11,6 +11,8 @@ const Kurssi=({kurssi})=> {
 }
 
 const App = () => { 
+  const tehtavat = () => kurssi.osat.map(osa =>osa.tehtavia)
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
   const kurssi = {
     nimi: 'Half Stack -sovelluskehitys',
     osat: [
@@ -42,7 +44,7 @@ const App = () => {
        
       <h1>{kurssi.nimi}</h1>
       <Kurssi kurssi = {kurssi}/>
-      <p>yhteensa {kurssi.osat[0].tehtavia+kurssi.osat[1].tehtavia+kurssi.osat[2].tehtavia+kurssi.osat[3].tehtavia} tehtavaa</p> 
+      <p>yhteensa  {tehtavat().reduce(reducer)} tehtavaa</p> 
       </div>
       )
     }
