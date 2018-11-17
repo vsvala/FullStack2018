@@ -1,7 +1,7 @@
 import React from 'react';
 import Person from './components/Person'
 import Filter from './components/Filter'
-import axios from 'axios'
+import personService from './services/persons'
 
 
 class App extends React.Component {
@@ -17,12 +17,12 @@ class App extends React.Component {
     }  
     
     componentDidMount() {
-      axios
-        .get('http://localhost:3001/persons')
+      personService  //importattu personservice hakee tiedot palvelimelta
+        .getAll()
         .then(response => {
           this.setState({ persons: response.data })
-          const pers= response.data
-          console.log(pers)
+          // const pers= response.data
+          // console.log(pers)
         })
       }
 
@@ -39,8 +39,8 @@ class App extends React.Component {
         important: Math.random() > 0.5, 
       }
      // Lähetetään olio palvelimelle käyttämällä axiosin metodia post.
-      axios
-      .post('http://localhost:3001/persons', personObject)
+      personService
+      .create(personObject)
       .then(response => {
         this.setState({
           persons: this.state.persons.concat(response.data),
