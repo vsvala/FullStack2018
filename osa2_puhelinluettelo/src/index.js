@@ -12,20 +12,30 @@ class App extends React.Component {
     super(props)
     this.state = {
       persons: [
-        { name: 'Arto Hellas',
-          num: 111-12344556  
-    }
+        { name: 'Arto Hellas', num: '040-123456' },
+        { name: 'Martti Tienari', num: '040-123456' },
+        { name: 'Arto Järvinen', num: '040-123456' },
+        { name: 'Lea Kutvonen', num: '040-123456' }
       ],
       newName: '',
-      newNum: ''
+      newNum: '',
+      filter: '',
+      showOne:true
     }
   }
+  toggleVisible = () => {
+    this.setState({showOne: !this.state.showOne})
+  }
+
 
   addPerson = (event) => {
     event.preventDefault()
+
     const personObject = {
       name: this.state.newName, 
-      num: this.state.newNum, 
+      num: this.state.newNum,
+      important: Math.random() > 0.5,
+      id: this.state.persons.length + 1 
     }
     let found = this.state.persons.find(person => person.name === this.state.newName)
     if (!found) {
@@ -51,13 +61,29 @@ class App extends React.Component {
     console.log(event.target.value)
     this.setState({ newNum: event.target.value })
   }
-  render() {
+  handleFilterChange = (event) => {
+    console.log(event.target.value)
+    this.setState({ filter: event.target.value })
+  }
 
-    return (
+  render() {
+    const personsToShow =
+    this.state.showOne ?
+    this.state.persons.filter(person => person.name.toUpperCase().startsWith( this.state.filter.toUpperCase())) :
+    this.state.persons.filter(person => person.name.toUpperCase().startsWith(this.state.filter.toUpperCase()))
+
+      return (
       <div>
         <h2>Puhelinluettelo</h2>
+        <div>
+            rajaa näytettäviä:
+            <input value={this.state.filter}
+            onChange={this.handleFilterChange}/>
+        </div>
+
         <form onSubmit={this.addPerson}>
           <div>
+          <h2>Lisää uusi</h2>
             nimi: <input 
             value ={this.state.newName}
             onChange={this.handlePersonChange}/>
@@ -72,9 +98,11 @@ class App extends React.Component {
           </div>
         </form>
         <h2>Numerot</h2>
-        <ul>
-          {this.state.persons.map(person => <Person key={person.id} person={person} />)}
-        </ul>
+        
+       <ul>
+       {personsToShow.map(person => <Person key={person.name} person={person} />)}
+       </ul>
+
 
       </div>
     )
