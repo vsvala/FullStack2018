@@ -22,18 +22,20 @@ class App extends React.Component {
     event.preventDefault()
     const personObject = {
       name: this.state.newName, 
-      id: this.state.persons.length + 1
     }
-
+    let found = this.state.persons.find(person => person.name === this.state.newName)
+    if (!found) {
+     const persons = this.state.persons.concat(personObject)
     // luo uuden taulukon, joka sisältää myös lisättävän alkion
-    const persons = this.state.persons.concat(personObject)
+    
     // komponentin tila päivitetään uusilla nimillä ja tyhjentämällä syötekomponentin arvoa kontrolloiva kenttä:
     this.setState({
     persons,
     newName: ''
     })
     }
-
+    else {alert("samanniminen henkilö on jo puhelinluettelossa!!");}
+    }
     // Tapahtumankäsittelijää kutsutaan aina kun syötekomponentissa tapahtuu jotain. 
   handlePersonChange = (event) => {
     console.log(event.target.value)
