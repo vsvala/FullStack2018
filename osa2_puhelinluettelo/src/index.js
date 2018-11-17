@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
   const Person = ({ person }) => {
     return (
-      <li>{person.name}</li>
+      <li>{person.name} {person.num}</li>
     )
   }
   
@@ -12,9 +12,12 @@ class App extends React.Component {
     super(props)
     this.state = {
       persons: [
-        { name: 'Arto Hellas' }
+        { name: 'Arto Hellas',
+          num: 111-12344556  
+    }
       ],
-      newName: ''
+      newName: '',
+      newNum: ''
     }
   }
 
@@ -22,6 +25,7 @@ class App extends React.Component {
     event.preventDefault()
     const personObject = {
       name: this.state.newName, 
+      num: this.state.newNum, 
     }
     let found = this.state.persons.find(person => person.name === this.state.newName)
     if (!found) {
@@ -31,7 +35,8 @@ class App extends React.Component {
     // komponentin tila päivitetään uusilla nimillä ja tyhjentämällä syötekomponentin arvoa kontrolloiva kenttä:
     this.setState({
     persons,
-    newName: ''
+    newName: '',
+    newNum: ''
     })
     }
     else {alert("samanniminen henkilö on jo puhelinluettelossa!!");}
@@ -42,6 +47,10 @@ class App extends React.Component {
     this.setState({ newName: event.target.value })
   }
 
+  handleNumberChange = (event) => {
+    console.log(event.target.value)
+    this.setState({ newNum: event.target.value })
+  }
   render() {
 
     return (
@@ -52,6 +61,11 @@ class App extends React.Component {
             nimi: <input 
             value ={this.state.newName}
             onChange={this.handlePersonChange}/>
+          </div>
+          <div>
+            numero: <input 
+            value ={this.state.newNum}
+            onChange={this.handleNumberChange}/>
           </div>
           <div>
             <button type="submit">lisää</button>
@@ -67,10 +81,6 @@ class App extends React.Component {
   }
 }
 
-// ReactDOM.render(
-//     <App persons={persons} />,
-//     document.getElementById('root')
-//   )
   ReactDOM.render(
     <App />,
     document.getElementById('root')
