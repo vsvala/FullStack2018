@@ -1,0 +1,38 @@
+{
+  "persons": [
+    {
+      "name": "Arto Hellas",
+      "num": "040-123456",
+      "id": 1
+    },
+    {
+      "name": "Martti Tienari",
+      "num": "040-123456",
+      "id": 2
+    },
+    {
+      "name": "Arto Järvinen",
+      "num": "040-123456",
+      "id": 3,
+      "important": true
+    },
+    {
+      "name": "Lea Kutvonen",
+      "num": "300",
+      "important": true,
+      "id": 4
+    },
+    {
+      "name": "Uusi nimi..22",
+      "num": "Uusi numero..",
+      "important": true,
+      "id": 6
+    },
+    {
+      "name": "",
+      "num": "sxas",
+      "important": true,
+      "id": 7
+    }
+  ]
+}

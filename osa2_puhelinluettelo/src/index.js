@@ -2,23 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Person from './components/Person'
 import Filter from './components/Filter'
+import axios from 'axios'
+
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      persons: [
-        { name: 'Arto Hellas', num: '040-123456' },
-        { name: 'Martti Tienari', num: '040-123456' },
-        { name: 'Arto Järvinen', num: '040-123456' },
-        { name: 'Lea Kutvonen', num: '040-123456' }
-      ],
+      persons: [],
       newName: '',
       newNum: '',
       filter: '',
       showOne:true
     }
   }
+  componentDidMount() {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        this.setState({ persons: response.data })
+      })
+    }
+  
   toggleVisible = () => {
     this.setState({showOne: !this.state.showOne})
   }
@@ -74,7 +79,7 @@ class App extends React.Component {
           filter={this.state.filter} 
           handleFilterChange={this.handleFilterChange}
           />
-          
+
         <form onSubmit={this.addPerson}>
           <div>
           <h2>Lisää uusi</h2>
