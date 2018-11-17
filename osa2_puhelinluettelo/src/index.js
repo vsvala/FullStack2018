@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Person from './components/Person'
+import Filter from './components/Filter'
 
-  const Person = ({ person }) => {
-    return (
-      <li>{person.name} {person.num}</li>
-    )
-  }
-  
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -26,7 +22,6 @@ class App extends React.Component {
   toggleVisible = () => {
     this.setState({showOne: !this.state.showOne})
   }
-
 
   addPerson = (event) => {
     event.preventDefault()
@@ -75,12 +70,11 @@ class App extends React.Component {
       return (
       <div>
         <h2>Puhelinluettelo</h2>
-        <div>
-            rajaa näytettäviä:
-            <input value={this.state.filter}
-            onChange={this.handleFilterChange}/>
-        </div>
-
+        <Filter 
+          filter={this.state.filter} 
+          handleFilterChange={this.handleFilterChange}
+          />
+          
         <form onSubmit={this.addPerson}>
           <div>
           <h2>Lisää uusi</h2>
