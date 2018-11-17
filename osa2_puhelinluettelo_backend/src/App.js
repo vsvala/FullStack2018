@@ -20,7 +20,7 @@ class App extends React.Component {
       personService  //importattu personservice hakee tiedot palvelimelta
         .getAll()
         .then(response => {
-          this.setState({ persons: response.data })
+          this.setState({persons:response})
           // const pers= response.data
           // console.log(pers)
         })
@@ -50,6 +50,28 @@ class App extends React.Component {
       })
     }
       
+    deletePerson = (id) => {
+      return () => {
+          const person = this.state.persons.find(n => n.id === id)
+    
+      if(window.confirm("Poistetaanko " +person.name+ "?")) {
+        personService
+          .deleteOne(id)
+          .then(changedPerson => {
+              const persons= this.state.persons.filter(n => n.id !== id)
+              this.setState({
+                persons: persons
+                })
+          })
+          .catch(error => {          
+                    alert(`henkilö '${person.name}' on jo  poistettu palvelimelta`)
+                      this.setState({persons: this.state.persons.filter(n => n.id !== id) })
+                      })
+      }
+    }
+   
+  }
+
       // Tapahtumankäsittelijää kutsutaan aina kun syötekomponentissa tapahtuu jotain. 
     handlePersonChange = (event) => {
       console.log(event.target.value)
@@ -66,18 +88,13 @@ class App extends React.Component {
     }
   
     render() {
-      const personsToShow =
+      const personsToDelete =
       this.state.showOne ?
-      this.state.persons.filter(person => person.name.toUpperCase().startsWith( this.state.filter.toUpperCase())) :
-      this.state.persons.filter(person => person.name.toUpperCase().startsWith(this.state.filter.toUpperCase()))
-  
+      this.state.persons:
+      this.state.persons.filter(person => person.important === true)  
         return (
         <div>
           <h2>Puhelinluettelo</h2>
-          <Filter 
-            filter={this.state.filter} 
-            handleFilterChange={this.handleFilterChange}
-            />
   
           <form onSubmit={this.addPerson}>
             <div>
@@ -100,11 +117,13 @@ class App extends React.Component {
 
           <h2>Numerot</h2>
           
-        <p>haettu nimi:</p>
-         <ul>
-         {personsToShow.map(person => <Person key={person.name} person={person} />)}
-         </ul>
-
+          {personsToDelete.map(person =>
+          <Person
+          key={person.id}
+          person={person}
+          deletePerson={this.deletePerson(person.id)}
+          />         
+        )}   
         </div>
       )
     }

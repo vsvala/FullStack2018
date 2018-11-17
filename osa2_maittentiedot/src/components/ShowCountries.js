@@ -21,7 +21,8 @@ const ShowCountries= ({countries, filter}) => {
             return (
                 filteredCountries.map(country => 
                     <div > 
-                         {/* onClick= {() => selectCountry(country.name)}> */}
+                        {/* onClick= {"clickFunction(country)"} */}
+                        {/* onClick={() => this.setState({ counter: this.state.counter + 1 })} */}
                     <p>{country.name}</p>
                     </div>
             

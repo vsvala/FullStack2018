@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Person = ({ person }) => {
-    return (
-      <li>{person.name} {person.num}</li>
-    )
-  }
-  
-  export default Person
+const Person = ({ person, deletePerson }) => {
+    const label = 'poista'
+  return (
+    <li className="person">{person.name} {person.num}<button onClick={deletePerson}>{label}</button> </li>
+  )
+}
+
+export default Person
+
