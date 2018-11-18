@@ -40,5 +40,6 @@ Tehtävissä on käytössä [MongoDB:tä](https://www.mongodb.com/) joka on ns. 
 
 ### Mongoose kirjasto
 Mongoosea voisi luonnehtia: object document mapper (ODM), ja sen avulla Javascript-olioiden tallettaminen mongon dokumenteiksi on suoraviivaista.
+asennus: npm install mongoose --save
 
 
