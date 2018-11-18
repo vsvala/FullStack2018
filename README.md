@@ -6,8 +6,11 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 # Käytetyt työkalut ja termit
 
+### REST = Representational State Transfer
+on HTTP-protokollaan perustuva arkkitehtuurimalli ohjelmointirajapintojen toteuttamiseen. Se määrittelee, millaisilla operaatioilla palvelinten dataa pyydetään, lisätään ja käsitellään.Restin tärkeä määrittävä tekijä on tilattomuus.Toinen tärkeä osa on palvelin–asiakas-malli.Rest pohjaa vahvasti http-protokollan ominaisuuksiin. Http:n metodeja (get, post, put ja delete) sekä eri uri:ta käytetään kuvaamaan pyynnön luonnetta, jolloin itse pyynnön dataan ei tarvitse sisällyttää metatietoja.  
+
 ### Node.js 
- Node.js on avoimen lähdekoodin alustariippumaton JavaScript runtime-ympäristö JavaScript-koodin suorittamiseen palvelimella. ... Node.js mahdollistaa koodin suorittamisen suoraan palvelimella, jonka jälkeen verkkosivu lähetetään käyttäjälle. Node.jspohjautuu Googlen Chrome V8 JavaScript-moottoriin.
+ [Node.js](https://nodejs.org/en/) on avoimen lähdekoodin alustariippumaton JavaScript runtime-ympäristö JavaScript-koodin suorittamiseen palvelimella. Node.js mahdollistaa koodin suorittamisen suoraan palvelimella, jonka jälkeen verkkosivu lähetetään käyttäjälle. Node.jspohjautuu Googlen Chrome V8 JavaScript-moottoriin.
 
 
 ### NPM: Node Package Manager
@@ -15,6 +18,7 @@ NPM: Node Package Manager on pakettien hallinta työkalu, joka mahdollistaa modu
 
 ### Express-sovelluskehys
 Node.js:n [Express-sovelluskehys](https://expressjs.com/)
+Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmointirajapinnan tarjoama kirjasto.
 
  ### JSON = JavaScript Object Notation
  JSON-muotoinen “raakadata”, tiedostoformaatti
