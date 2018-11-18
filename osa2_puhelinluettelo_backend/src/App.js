@@ -12,7 +12,9 @@ class App extends React.Component {
         newName: '',
         newNum: '',
         filter: '',
-        showOne:true
+        showOne:true,
+        error: null,
+        notification:null
       }
     }  
     
@@ -36,8 +38,37 @@ class App extends React.Component {
       const personObject = {
         name: this.state.newName, 
         num: this.state.newNum,
-        important: Math.random() > 0.5, 
+ 
       }
+      if (this.includesPerson()){
+        const person = this.findPerson();
+     
+         if(window.confirm(person.name +" on jo luettelossa, korvataanko vanha numero uudellaa?")) {
+           personService
+           .update(person.id, personObject)
+           .then(response => {
+               this.setState({
+                   persons: this.state.persons.map(p => p.id !== person.id ? p : personObject),
+                   newName: '',
+                   newNum: '',
+                   notification: `Henkilön '${personObject.name}' uudennumeron:  '${personObject.num}' päivitys onnistui!`
+})
+setTimeout(() => {
+  this.setState({notification: null})
+}, 5000)
+})
+.catch(error => {
+  this.setState({
+              error: `henkilö '${personObject.name}' on jo valitettavasti poistettu palvelimelta`,
+              persons: this.state.persons.filter(n => n.id !==person.id)
+            })
+            setTimeout(() => {
+              this.setState({error: null})
+            }, 5000)
+          })
+}
+}
+else{
      // Lähetetään olio palvelimelle käyttämällä axiosin metodia post.
       personService
       .create(personObject)
@@ -45,11 +76,35 @@ class App extends React.Component {
         this.setState({
           persons: this.state.persons.concat(response.data),
           newName: '',
-          newNum: '' //tyhjätään lomakkeen kentät
+          newNum: '', //tyhjätään lomakkeen kentät
+          notification: `lisättiin '${personObject.name}'`
         })
+        setTimeout(() => {
+          this.setState({notification: null})
+        }, 5000)
       })
     }
-      
+  }
+  includesPerson = () => {
+
+    const personel = this.state.persons.map(person => person.name.toLowerCase());
+
+    if (personel.includes(this.state.newName.toLowerCase())) {
+        return true;
+    } else {
+        return false;
+    }
+}  
+
+findPerson = () => {
+  let p = this.state.persons.find(person => person.name.toLowerCase() === this.state.newName.toLowerCase())
+
+  if (p) {
+      return p;
+  } else {
+      return false;
+  }
+}
     deletePerson = (id) => {
       return () => {
           const person = this.state.persons.find(n => n.id === id)
@@ -60,13 +115,22 @@ class App extends React.Component {
           .then(changedPerson => {
               const persons= this.state.persons.filter(n => n.id !== id)
               this.setState({
-                persons: persons
+                persons: persons,
+                notification: `henkilön '${person.name}' poisto palvelimelta onnistui`
                 })
+                setTimeout(() => {
+                  this.setState({notification: null})
+                }, 5000)
           })
           .catch(error => {          
-                    alert(`henkilö '${person.name}' on jo  poistettu palvelimelta`)
-                      this.setState({persons: this.state.persons.filter(n => n.id !== id) })
+            this.setState({
+              error: `henkilö '${person.name}' on jo  poistettu palvelimelta`,
+              persons: this.state.persons.filter(n => n.id !== id)
                       })
+                      setTimeout(() => {
+                        this.setState({error: null})
+                      }, 5000)
+                    })
       }
     }
    
@@ -116,7 +180,7 @@ class App extends React.Component {
           </form>
 
           <h2>Numerot</h2>
-          
+      
           {personsToDelete.map(person =>
           <Person
           key={person.id}
