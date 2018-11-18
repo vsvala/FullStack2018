@@ -2,6 +2,9 @@ import React from 'react';
 import Person from './components/Person'
 import Filter from './components/Filter'
 import personService from './services/persons'
+import './index.css'
+import Notification from './components/Notification'
+import Notification2 from './components/Notification2'
 
 
 class App extends React.Component {
@@ -60,7 +63,8 @@ setTimeout(() => {
 .catch(error => {
   this.setState({
               error: `henkilö '${personObject.name}' on jo valitettavasti poistettu palvelimelta`,
-              persons: this.state.persons.filter(n => n.id !==person.id)
+              persons: this.state.persons.filter(n => n.id !==person.id) 
+              // poistetaan olematon muistiinpano
             })
             setTimeout(() => {
               this.setState({error: null})
@@ -180,7 +184,9 @@ findPerson = () => {
           </form>
 
           <h2>Numerot</h2>
-      
+          <Notification message={this.state.error}/>
+          <Notification2 message={this.state.notification}/>
+
           {personsToDelete.map(person =>
           <Person
           key={person.id}
