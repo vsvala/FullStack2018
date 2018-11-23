@@ -102,3 +102,6 @@ Nyt dotenvissä olevat ympäristömuuttujat otetaan käyttöön ainoastaan sillo
 ### Lint koodin tyylintarkastus
 Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
 Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
+
+# Testaus
+ jest
