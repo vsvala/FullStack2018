@@ -74,4 +74,21 @@ Määritellään käynnistykselle npm-skripti tiedostoon package.json
 ´npm start`           sovelluksen käynnistäminen
 ´npm run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
  ```
+##### ympäristömuutujat
+ Asennetaan  dotenv-kirjasto ympäristömuuttujien määrittelyyn
+  `npm install dotenv --save`
+ Sovelluksen juurihakemistoon tehdään sitten tiedosto nimeltään .env
+` MONGODB_URI=mongodb://fullstack:sekred@ds111078.mlab.com:11078/fullstact-notes-dev`
+Tiedosto .env **tulee heti gitignorata**
+Otetaan dotenv käyttöön seuraavasti:
+  `const mongoose = require('mongoose')
+
+if ( process.env.NODE_ENV !== 'production' ) {
+  require('dotenv').config()
+}
+const url = process.env.MONGODB_URI
+// ...
+module.exports = Note  `
+Nyt dotenvissä olevat ympäristömuuttujat otetaan käyttöön ainoastaan silloin kun sovellus ei ole production- eli tuotantomoodissa (kuten esim. Herokussa).
+ 
 ### sovellus herokuun
