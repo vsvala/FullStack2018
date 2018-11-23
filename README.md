@@ -63,7 +63,9 @@ sovelluskehitystyökalu jota käytetään sovelluksen automaattiseen uudelleenk�
 middleware HTTP POST pyyntöjen käsittelyn apuri, Body-parserin toimintaperiaatteena on, että se ottaa pyynnön mukana olevan JSON-muotoisen datan, muuttaa sen Javascript-olioksi.
 
 
-# Käyttö
+# Käyttöohje
+
+Projektin normaalit riippuvuudet määritellään package.json tiedostoon "dependencies" alle. Kehitysaikaiset rippuvuudet määritellään "devDependencies" alle. Käynnistys scriptit määritellään "script":in alle.
 
 Määritellään käynnistykselle npm-skripti tiedostoon package.json
 
