@@ -4,6 +4,12 @@ Kurssilla tutustutaan Javascriptilla tapahtuvaan moderniin websovelluskehityksee
 
 Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suoritusympäristöjen hallintaa sekä NoSQL-tietokantoja.
 
+**[osa3 Puhelinmuistio](https://github.com/vsvala/Fullstack_phonebook_osa3)**
+
+**[osa3 Puhelinmuistio heroku](https://limitless-island-73610.herokuapp.com)** Linkki sovelluksen nettiversioon Herokussa 
+
+**[osa4 Blogi](https://github.com/vsvala/fullstack_osa4)**
+
 # Käytetyt työkalut ja termit
 
 ### REST = Representational State Transfer
