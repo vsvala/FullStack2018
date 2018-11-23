@@ -62,5 +62,5 @@ Määritellään käynnistykselle npm-skripti tiedostoon package.json
   // ..
   ´´´ 
  
-´npn run`           sovelluksen käynnistäminen
-´npn run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
+´npm start`           sovelluksen käynnistäminen
+´npm run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
