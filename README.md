@@ -42,4 +42,25 @@ Tehtävissä on käytössä [MongoDB:tä](https://www.mongodb.com/) joka on ns. 
 Mongoosea voisi luonnehtia: object document mapper (ODM), ja sen avulla Javascript-olioiden tallettaminen mongon dokumenteiksi on suoraviivaista.
 asennus: npm install mongoose --save
 
+# Aputyökaluja
 
+### [nodemon](https://github.com/remy/nodemon) sovelluskehitystyökalu jota käytetään sovelluksen automaattiseen uudelleenkäynnistykseen. 
+
+
+
+# Käyttö
+
+Määritellään käynnistykselle npm-skripti tiedostoon package.json
+
+ ``` 
+  // ..
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  // ..
+  ´´´ 
+ 
+´npn run`           sovelluksen käynnistäminen
+´npn run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
