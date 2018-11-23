@@ -33,8 +33,11 @@ Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmoin
 ### SPA = Single-page application
 Viimeisten vuosien aikana on noussut esiin tyyli tehdä web-sovellukset käyttäen Single-page application (SPA) -tyyliä, missä sovelluksille ei enää tehdä erillisiä, palvelimen sille lähettämiä sivuja, vaan sovellus koostuu ainoastaan yhdestä palvelimen lähettämästä HTML-sivusta, jonka sisältöä manipuloidaan selaimessa suoritettavalla Javascriptillä.
 
-### Middleware
+### Middlewaret
+Middlewaret ovat funktioita, joiden avulla voidaan käsitellä request- ja response-olioita.
 
+### same origin policy ja CORS 
+Yleismaailmallisia periaatteita Web-sovellusten toiminnasta: websovelluksen selaimessa suoritettava Javascript-koodi saa oletusarvoisesti kommunikoida vain samassa originissa olevan palvelimen kanssa. Muista origineista tulevat pyynnöt voidaan salli käyttämällä Noden [cors-middlewarea](https://github.com/expressjs/cors).
 
 # Tietokanta
 
@@ -70,3 +73,5 @@ Määritellään käynnistykselle npm-skripti tiedostoon package.json
  
 ´npm start`           sovelluksen käynnistäminen
 ´npm run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
+ ```
+### sovellus herokuun
