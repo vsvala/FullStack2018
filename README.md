@@ -33,6 +33,9 @@ Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmoin
 ### SPA = Single-page application
 Viimeisten vuosien aikana on noussut esiin tyyli tehdä web-sovellukset käyttäen Single-page application (SPA) -tyyliä, missä sovelluksille ei enää tehdä erillisiä, palvelimen sille lähettämiä sivuja, vaan sovellus koostuu ainoastaan yhdestä palvelimen lähettämästä HTML-sivusta, jonka sisältöä manipuloidaan selaimessa suoritettavalla Javascriptillä.
 
+### Middleware
+
+
 # Tietokanta
 
 ### Mongo ja mlab
@@ -44,8 +47,11 @@ asennus: npm install mongoose --save
 
 # Aputyökaluja
 
-### [nodemon](https://github.com/remy/nodemon) sovelluskehitystyökalu jota käytetään sovelluksen automaattiseen uudelleenkäynnistykseen. 
+### [nodemon](https://github.com/remy/nodemon) 
+sovelluskehitystyökalu jota käytetään sovelluksen automaattiseen uudelleenkäynnistykseen. 
 
+### [body-parser kirjasto](https://github.com/expressjs/body-parser)
+middleware HTTP POST pyyntöjen käsittelyn apuri
 
 
 # Käyttö
