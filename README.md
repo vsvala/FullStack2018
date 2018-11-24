@@ -129,8 +129,10 @@ Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, el
  jest
  
  ### API:n backendin testaus
+Käytetään API:n testaamiseen Jestin apuna supertest-kirjastoa.
  Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä testejä
  (“valekomponentilla” eli mockilla.mongo-mock.)
+ 
  
 
 `
