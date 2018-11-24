@@ -83,6 +83,7 @@ Määritellään käynnistykselle npm-skripti tiedostoon package.json
 ´npm run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
  ```
 ##### ympäristömuutujat
+Noden konventiona on määritellä projektin suoritusmoodi ympäristömuuttujan NODE_ENV avulla. 
  Asennetaan  dotenv-kirjasto ympäristömuuttujien määrittelyyn
   `npm install dotenv --save`
  Sovelluksen juurihakemistoon tehdään sitten tiedosto nimeltään .env
@@ -99,6 +100,24 @@ const url = process.env.MONGODB_URI
 module.exports = Note  `
 Nyt dotenvissä olevat ympäristömuuttujat otetaan käyttöön ainoastaan silloin kun sovellus ei ole production- eli tuotantomoodissa (kuten esim. Herokussa).
  
+  Yleinen käytäntö on määritellä sovelluksille omat moodinsa myös sovelluskehitykseen ja testaukseen.
+
+Määritellään nyt tiedostossa package.json, että testejä suorittaessa sovelluksen NODE_ENV saa arvokseen test:
+`
+{
+  // ...
+  "scripts": {
+    "start": "NODE_ENV=production node index.js",
+    "watch": "NODE_ENV=development nodemon index.js",
+    "test": "NODE_ENV=test jest --verbose",
+    "lint": "eslint ."
+  },
+  // ...
+}
+`
+Samalla määriteltiin, että suoritettaessa sovellusta komennolla npm run watch eli nodemonin avulla, on sovelluksen moodi development. Jos sovellusta suoritetaan normaalisti Nodella, on moodiksi määritelty production.
+Eristetään sovelluksen ympäristökohtainen konfigurointi omaan tiedostoon utils/config.js sijoitettavaan moduuliin.
+ 
 ### sovellus herokuun
 
 ### Lint koodin tyylintarkastus
@@ -106,4 +125,12 @@ Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, el
 Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
 
 # Testaus
+ ### Yksikkötestaus
  jest
+ 
+ ### API:n backendin testaus
+ Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä testejä
+ (“valekomponentilla” eli mockilla.mongo-mock.)
+ 
+
+`
