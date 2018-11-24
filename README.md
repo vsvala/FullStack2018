@@ -124,6 +124,11 @@ Eristetään sovelluksen ympäristökohtainen konfigurointi omaan tiedostoon uti
 Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
 Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
 
+# Hyödyllisiä toimintoja
+## palvelinta suorittava prosessin "tappaminen"
+ Portin 3002 varaavan prosessin -id eli PID (esim. 8318) löytyy OSX:lla ja Linuxilla esim. komennolla lsof -i :3002.
+ Prosessin saa tapettua komennolla KILL 8318 olettaen että PID on 8318 niin kuin kuvassa. Joskus prosessi on sitkeä eikä kuole ennen kuin se tapetaan komennolla KILL -9 8318.
+ 
 # Testaus
  ### Yksikkötestaus
  jest
