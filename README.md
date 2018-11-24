@@ -8,7 +8,7 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa3 Puhelinmuistio heroku](https://limitless-island-73610.herokuapp.com)** Linkki sovelluksen nettiversioon Herokussa 
 
-**[osa4 Blogi](https://github.com/vsvala/fullstack_osa4)**
+**[osa4 Blogi](https://github.com/vsvala/Fullstack_osa4_blogi/tree/master/osa4_backend-)**
 
 # Käytetyt työkalut ja termit
 
