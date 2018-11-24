@@ -82,7 +82,12 @@ Määritellään käynnistykselle npm-skripti tiedostoon package.json
 ´npm start`           sovelluksen käynnistäminen
 ´npm run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
  ```
-##### ympäristömuutujat
+### Kirjautuminen
+
+salasanan kryptaus
+Käytetään jsonwebtoken-kirjastoa, jonka avulla koodimme pystyy generoimaan JSON web token -muotoisia tokeneja.
+ 
+### ympäristömuutujat
 Noden konventiona on määritellä projektin suoritusmoodi ympäristömuuttujan NODE_ENV avulla. 
  Asennetaan  dotenv-kirjasto ympäristömuuttujien määrittelyyn
   `npm install dotenv --save`
