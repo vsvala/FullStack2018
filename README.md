@@ -79,6 +79,11 @@ cd "nimeämäsikansio"
 npm start
 ````
 
+asennetaan siihen redux komennolla
+```
+npm install redux --save
+```
+
 Projektin normaalit riippuvuudet määritellään package.json tiedostoon "dependencies" alle. Kehitysaikaiset rippuvuudet määritellään "devDependencies" alle. Käynnistys scriptit määritellään "script":in alle.
 
 Määritellään käynnistykselle npm-skripti tiedostoon package.json
