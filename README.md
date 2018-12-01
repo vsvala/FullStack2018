@@ -141,10 +141,10 @@ Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, el
  ### Yksikkötestaus
  jest
  
- ### API:n backendin testaus
-Käytetään API:n testaamiseen Jestin apuna supertest-kirjastoa.
- Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä testejä
- (“valekomponentilla” eli mockilla.mongo-mock.)
+ ### API:n testaus
+API:n testaamisen käytetään Facebookin [Jest](https://jestjs.io/) supertest-kirjastoa. Frontin testauksessa käytetään PUN lisäksi AirBnB:n kehittämää [enzyme-kirjastoa](https://github.com/airbnb/enzyme).
+
+Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä testejä. (“valekomponentilla” eli mockilla.mongo-mock.)
  
  
 
