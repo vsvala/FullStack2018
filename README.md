@@ -71,6 +71,14 @@ middleware HTTP POST pyyntöjen käsittelyn apuri, Body-parserin toimintaperiaat
 
 # Käyttöohje
 
+## Sovelluksen luonti ja käynnistys
+
+```
+npx create-react-app osa1
+cd osa1
+npm start
+````
+
 Projektin normaalit riippuvuudet määritellään package.json tiedostoon "dependencies" alle. Kehitysaikaiset rippuvuudet määritellään "devDependencies" alle. Käynnistys scriptit määritellään "script":in alle.
 
 Määritellään käynnistykselle npm-skripti tiedostoon package.json
