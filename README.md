@@ -143,9 +143,12 @@ Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, el
  
  ### API:n testaus
 API:n testaamisen käytetään Facebookin [Jest](https://jestjs.io/) supertest-kirjastoa. Frontin testauksessa käytetään PUN lisäksi AirBnB:n kehittämää [enzyme-kirjastoa](https://github.com/airbnb/enzyme).
-
+t
 Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä testejä. (“valekomponentilla” eli mockilla.mongo-mock.)
  
- 
+ estien ajaminen konsolista
+ ```
+ CI=true npm tes
+ ```
 
 `
