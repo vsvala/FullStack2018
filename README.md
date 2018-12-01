@@ -146,9 +146,11 @@ API:n testaamisen käytetään Facebookin [Jest](https://jestjs.io/) supertest-k
 t
 Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä testejä. (“valekomponentilla” eli mockilla.mongo-mock.)
  
- estien ajaminen konsolista
+ Testien ajaminen konsolista
  ```
  CI=true npm tes
  ```
-
-`
+Testauskattavuus saadaan selville suorittamalla testit komennolla
+```
+CI=true npm test -- --coverage
+```
