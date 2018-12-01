@@ -154,3 +154,4 @@ Testauskattavuus saadaan selville suorittamalla testit komennolla
 ```
 CI=true npm test -- --coverage
 ```
+Melko primitiivinen HTML-muotoinen raportti generoituu hakemistoon coverage/lcov-report
