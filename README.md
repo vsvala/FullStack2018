@@ -25,6 +25,9 @@ NPM: Node Package Manager on pakettien hallinta työkalu, joka mahdollistaa modu
 Node.js:n [Express-sovelluskehys](https://expressjs.com/)
 Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmointirajapinnan tarjoama kirjasto.
 
+### Redux kirjasto
+Tarjoaa standardin tavan sille miten ja missä sovelluksen tila pidetään sekä tavalle tehdä tilaan muutoksia. Sovelluksen tilan hallinta erotetaan kokonaan Reactin komponenttien ulkopuolisiin varastoihin eli storeihin. Storessa olevaa tilaa ei muuteta suoraan, vaan tapahtumien eli actionien avulla.
+
  ### JSON = JavaScript Object Notation
  JSON-muotoinen “raakadata”, tiedostoformaatti
 
