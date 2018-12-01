@@ -74,8 +74,8 @@ middleware HTTP POST pyyntöjen käsittelyn apuri, Body-parserin toimintaperiaat
 ## Sovelluksen luonti ja käynnistys
 
 ```
-npx create-react-app osa1
-cd osa1
+npx create-react-app "nimeämäsikansio"
+cd "nimeämäsikansio"
 npm start
 ````
 
