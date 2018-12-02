@@ -4,6 +4,12 @@ Kurssilla tutustutaan Javascriptilla tapahtuvaan moderniin websovelluskehityksee
 
 Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suoritusympäristöjen hallintaa sekä NoSQL-tietokantoja.
 
+**[osa3 Puhelinmuistio](https://github.com/vsvala/Fullstack_phonebook_osa3)**
+
+**[osa3 Puhelinmuistio heroku](https://limitless-island-73610.herokuapp.com)** Linkki sovelluksen nettiversioon Herokussa 
+
+**[osa4 Blogi](https://github.com/vsvala/Fullstack_osa4_blogi/tree/master/osa4_backend-)**
+
 # Käytetyt työkalut ja termit
 
 ### REST = Representational State Transfer
@@ -19,6 +25,9 @@ NPM: Node Package Manager on pakettien hallinta työkalu, joka mahdollistaa modu
 Node.js:n [Express-sovelluskehys](https://expressjs.com/)
 Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmointirajapinnan tarjoama kirjasto.
 
+### Redux kirjasto
+Tarjoaa standardin tavan sille miten ja missä sovelluksen tila pidetään sekä tavalle tehdä tilaan muutoksia. Sovelluksen tilan hallinta erotetaan kokonaan Reactin komponenttien ulkopuolisiin varastoihin eli storeihin. Storessa olevaa tilaa ei muuteta suoraan, vaan tapahtumien eli actionien avulla.
+
  ### JSON = JavaScript Object Notation
  JSON-muotoinen “raakadata”, tiedostoformaatti
 
@@ -33,6 +42,15 @@ Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmoin
 ### SPA = Single-page application
 Viimeisten vuosien aikana on noussut esiin tyyli tehdä web-sovellukset käyttäen Single-page application (SPA) -tyyliä, missä sovelluksille ei enää tehdä erillisiä, palvelimen sille lähettämiä sivuja, vaan sovellus koostuu ainoastaan yhdestä palvelimen lähettämästä HTML-sivusta, jonka sisältöä manipuloidaan selaimessa suoritettavalla Javascriptillä.
 
+### Middlewaret
+Middlewaret ovat funktioita, joiden avulla voidaan käsitellä request- ja response-olioita.
+
+### same origin policy ja CORS 
+Yleismaailmallisia periaatteita Web-sovellusten toiminnasta: websovelluksen selaimessa suoritettava Javascript-koodi saa oletusarvoisesti kommunikoida vain samassa originissa olevan palvelimen kanssa. Muista origineista tulevat pyynnöt voidaan salli käyttämällä Noden [cors-middlewarea](https://github.com/expressjs/cors).
+
+### Komponenttien lifecycle-metodit
+Reactin luokkien avulla määritellyillä komponenteilla voidaan määritellä joukko lifecycle-metodeita, eli metodeita, joita React kutsuu tietyssä komponentin “elinkaaren” vaiheessa. Yleinen tapa datan palvelimelta tapahtuvaan hakemiseen on suorittaa se metodissa **componentDidMount**. React kutsuu metodia sen jälkeen kun konstruktori on suoritettu ja render-metodi on suoritettu ensimmäistä kertaa.
+
 # Tietokanta
 
 ### Mongo ja mlab
@@ -40,5 +58,116 @@ Tehtävissä on käytössä [MongoDB:tä](https://www.mongodb.com/) joka on ns. 
 
 ### Mongoose kirjasto
 Mongoosea voisi luonnehtia: object document mapper (ODM), ja sen avulla Javascript-olioiden tallettaminen mongon dokumenteiksi on suoraviivaista.
+asennus: npm install mongoose --save
+
+# Aputyökaluja
+
+### [nodemon](https://github.com/remy/nodemon) 
+sovelluskehitystyökalu jota käytetään sovelluksen automaattiseen uudelleenkäynnistykseen. 
+
+### [body-parser kirjasto](https://github.com/expressjs/body-parser)
+middleware HTTP POST pyyntöjen käsittelyn apuri, Body-parserin toimintaperiaatteena on, että se ottaa pyynnön mukana olevan JSON-muotoisen datan, muuttaa sen Javascript-olioksi.
 
 
+# Käyttöohje
+
+## Sovelluksen luonti ja käynnistys
+
+```
+npx create-react-app "nimeämäsikansio"
+cd "nimeämäsikansio"
+npm start
+````
+
+asennetaan siihen redux komennolla
+```
+npm install redux --save
+```
+
+Projektin normaalit riippuvuudet määritellään package.json tiedostoon "dependencies" alle. Kehitysaikaiset rippuvuudet määritellään "devDependencies" alle. Käynnistys scriptit määritellään "script":in alle.
+
+Määritellään käynnistykselle npm-skripti tiedostoon package.json
+
+ ``` 
+  // ..
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  // ..
+  ´´´ 
+ 
+´npm start`           sovelluksen käynnistäminen
+´npm run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
+ ```
+### Kirjautuminen
+
+salasanan kryptaus
+Käytetään jsonwebtoken-kirjastoa, jonka avulla koodimme pystyy generoimaan JSON web token -muotoisia tokeneja.
+ 
+### ympäristömuutujat
+Noden konventiona on määritellä projektin suoritusmoodi ympäristömuuttujan NODE_ENV avulla. 
+ Asennetaan  dotenv-kirjasto ympäristömuuttujien määrittelyyn
+  `npm install dotenv --save`
+ Sovelluksen juurihakemistoon tehdään sitten tiedosto nimeltään .env
+` MONGODB_URI=mongodb://fullstack:sekred@ds111078.mlab.com:11078/fullstact-notes-dev`
+Tiedosto .env **tulee heti gitignorata**
+Otetaan dotenv käyttöön seuraavasti:
+  `const mongoose = require('mongoose')
+
+if ( process.env.NODE_ENV !== 'production' ) {
+  require('dotenv').config()
+}
+const url = process.env.MONGODB_URI
+// ...
+module.exports = Note  `
+Nyt dotenvissä olevat ympäristömuuttujat otetaan käyttöön ainoastaan silloin kun sovellus ei ole production- eli tuotantomoodissa (kuten esim. Herokussa).
+ 
+  Yleinen käytäntö on määritellä sovelluksille omat moodinsa myös sovelluskehitykseen ja testaukseen.
+
+Määritellään nyt tiedostossa package.json, että testejä suorittaessa sovelluksen NODE_ENV saa arvokseen test:
+`
+{
+  // ...
+  "scripts": {
+    "start": "NODE_ENV=production node index.js",
+    "watch": "NODE_ENV=development nodemon index.js",
+    "test": "NODE_ENV=test jest --verbose",
+    "lint": "eslint ."
+  },
+  // ...
+}
+`
+Samalla määriteltiin, että suoritettaessa sovellusta komennolla npm run watch eli nodemonin avulla, on sovelluksen moodi development. Jos sovellusta suoritetaan normaalisti Nodella, on moodiksi määritelty production.
+Eristetään sovelluksen ympäristökohtainen konfigurointi omaan tiedostoon utils/config.js sijoitettavaan moduuliin.
+ 
+### sovellus herokuun
+
+### Lint koodin tyylintarkastus
+Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
+Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
+
+# Hyödyllisiä toimintoja
+## palvelinta suorittava prosessin "tappaminen"
+ Portin 3002 varaavan prosessin -id eli PID (esim. 8318) löytyy OSX:lla ja Linuxilla esim. komennolla lsof -i :3002.
+ Prosessin saa tapettua komennolla KILL 8318 olettaen että PID on 8318 niin kuin kuvassa. Joskus prosessi on sitkeä eikä kuole ennen kuin se tapetaan komennolla KILL -9 8318.
+ 
+# Testaus
+ ### Yksikkötestaus
+ jest
+ 
+ ### API:n testaus
+API:n testaamisen käytetään Facebookin [Jest](https://jestjs.io/) supertest-kirjastoa. Frontin testauksessa käytetään PUN lisäksi AirBnB:n kehittämää [enzyme-kirjastoa](https://github.com/airbnb/enzyme).
+t
+Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä testejä. (“valekomponentilla” eli mockilla.mongo-mock.)
+ 
+ Testien ajaminen konsolista
+ ```
+ CI=true npm tes
+ ```
+Testauskattavuus saadaan selville suorittamalla testit komennolla
+```
+CI=true npm test -- --coverage
+```
+Melko primitiivinen HTML-muotoinen raportti generoituu hakemistoon coverage/lcov-report
