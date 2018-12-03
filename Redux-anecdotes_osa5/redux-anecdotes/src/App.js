@@ -21,15 +21,11 @@ class App extends React.Component {
 
   render() {
     const anecdotes = this.props.store.getState()  
-    //määritetään eniten ääniä saaneen anekdootin indeksi 
-    //var max= Math.max(...(anecdotes.votes))  
-    //console.log(max.content)
-    //anecdotes=max.sort()
     return (
       <div>
         <h2>Anecdotes</h2>
   
-        {anecdotes.map(anecdote=>
+        {anecdotes.sort((a,b)=>b.votes-a.votes).map(anecdote=>
           <div key={anecdote.id}>
             <div>
               {anecdote.content} 
