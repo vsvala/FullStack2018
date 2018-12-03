@@ -39,36 +39,9 @@ const reducer = (state = initialState, action) => {
     return state
 
      case 'NEW_NOTE':
-     const newObject = (anecdote) => {
-      return {
-        content: anecdote,
-        id: getId(),
-        votes: 0
-      }
-  //  state={
-  //   content: anecdote,
-  //   id: getId(),
-  //   votes: 0 
-  //   return [...state, action.data]
-  //   if (action.type === 'NEW_NOTE') {
-  //  return state.concat(action.data)
+    // return state.concat(action.data)
+     return [...state, action.data]
   }
-   }
-  }
-      //default:
-    //return state
-  
-//  case 'NEW_NOTE':
-//  return [...state, action.data]
-//    //state={
-//   //   content: anecdote,
-//   //   id: getId(),
-//   //   votes: 0 
-//  // }
-//   }
-
-// //   return state
-// //}
-
+}
 
 export default reducer
