@@ -28,6 +28,9 @@ Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmoin
 ### Redux kirjasto
 Tarjoaa standardin tavan sille miten ja missä sovelluksen tila pidetään sekä tavalle tehdä tilaan muutoksia. Sovelluksen tilan hallinta erotetaan kokonaan Reactin komponenttien ulkopuolisiin varastoihin eli storeihin. Storessa olevaa tilaa ei muuteta suoraan, vaan tapahtumien eli actionien avulla.
 
+Koko sovelluksen tila talletetaan yhteen storen tallettamaan Javascript-objektiin.Storen tilaa muutetaan actionien avulla. Actionit ovat olioita, joilla on vähintään actionin tyypin määrittelevä kenttä type.Actionien vaikutus sovelluksen tilaan määritellään reducerin avulla. Käytännössä reducer on funktio, joka saa parametrikseen olemassaolevan staten tilan sekä actionin ja palauttaa staten uuden tilan. Store käyttää reduceria käsitelläkseen actioneja, jotka dispatchataan eli “lähetetään” storelle sen dispatch-metodilla.
+
+
  ### JSON = JavaScript Object Notation
  JSON-muotoinen “raakadata”, tiedostoformaatti
 
