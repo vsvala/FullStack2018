@@ -28,6 +28,9 @@ Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmoin
 ### Redux kirjasto
 Tarjoaa standardin tavan sille miten ja missä sovelluksen tila pidetään sekä tavalle tehdä tilaan muutoksia. Sovelluksen tilan hallinta erotetaan kokonaan Reactin komponenttien ulkopuolisiin varastoihin eli storeihin. Storessa olevaa tilaa ei muuteta suoraan, vaan tapahtumien eli actionien avulla.
 
+Koko sovelluksen tila talletetaan yhteen storen tallettamaan Javascript-objektiin.Storen tilaa muutetaan actionien avulla. Actionit ovat olioita, joilla on vähintään actionin tyypin määrittelevä kenttä type.Actionien vaikutus sovelluksen tilaan määritellään reducerin avulla. Käytännössä reducer on funktio, joka saa parametrikseen olemassaolevan staten tilan sekä actionin ja palauttaa staten uuden tilan. Store käyttää reduceria käsitelläkseen actioneja, jotka dispatchataan eli “lähetetään” storelle sen dispatch-metodilla.
+
+
  ### JSON = JavaScript Object Notation
  JSON-muotoinen “raakadata”, tiedostoformaatti
 
@@ -68,6 +71,32 @@ sovelluskehitystyökalu jota käytetään sovelluksen automaattiseen uudelleenk�
 ### [body-parser kirjasto](https://github.com/expressjs/body-parser)
 middleware HTTP POST pyyntöjen käsittelyn apuri, Body-parserin toimintaperiaatteena on, että se ottaa pyynnön mukana olevan JSON-muotoisen datan, muuttaa sen Javascript-olioksi.
 
+###  ESlint
+Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on [ESlint](https://eslint.org/)
+**Asennetaan ESlint backendiin kehitysaikaiseksi riippuvuudeksi komennolla**
+```
+npm install eslint --save-dev
+```
+Tämän jälkeen voidaan muodostaa alustava ESlint-konfiguraatio komennolla. Vastaillaan kysymyksiin
+```
+node_modules/.bin/eslint --init
+```
+Konfiguraatiot tallentuvat tiedostoon .eslintrc.js:
+
+**ESlint käyttöön frontendissa**
+
+Tiedoston voi generoida komennolla
+```
+npx eslint --init
+```
+ja vastailemalla sopivasti kysymyksiin:
+Jotta pääsemme eroon testeissä olevista turhista huomautuksista asennetaan eslint-jest-plugin
+
+npm add --save-dev eslint-plugin-jest
+Joudumme asentamaan myös babel-eslint-pluginin, jotta ESlint osaisi tulkita koodissa käyttämäämme class property -syntaksia. Pluginin asennus tapahtuu komennolla
+
+npm install babel-eslint --save-dev
+ja se tulee muistaa ottaa käyttöön konfiguraatiossa.
 
 # Käyttöohje
 
