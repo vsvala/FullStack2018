@@ -1,16 +1,15 @@
 import React from 'react'
 import { doteCreation } from '../reducers/anecdoteReducer'
 import { notiCreation } from '../reducers/notificationReducer'
-
+import { connect } from 'react-redux'
 
 class AnecdoteForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const content = event.target.dote.value
     //dispatchataan  eli lähetetään actioni storelle
-    this.props.store.dispatch(
-      doteCreation(content), notiCreation()
-    )
+    //this.props.store.dispatch(
+    this.props.doteCreation(content) && notiCreation()
 
     event.target.dote.value = ''
   }
@@ -29,4 +28,9 @@ class AnecdoteForm extends React.Component {
   }
 }
 
-export default AnecdoteForm
+export default connect(
+  null,
+  { doteCreation }
+)(AnecdoteForm)
+
+//export default AnecdoteForm

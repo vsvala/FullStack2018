@@ -1,8 +1,26 @@
 import React from 'react'
 import OneCountry from './Onecountry'
 
+const show = (country) => () => {
+    this.setState({ filter: country.name })
 
+}
 
+const s = ({country}) => {
+    return(
+        <div>
+            <h2>{country}test</h2>
+            {/* <p>Capital: {country.capital}</p>
+            <p>Populatio: {country.population}</p>
+            <img 
+                src={country.flag} 
+                alt="flag"
+                width="33%"
+                height='auto'
+            /> */}
+        </div>
+    )
+}
 const ShowCountries= ({countries, filter}) => {
     const filterByName = (country) => {
         return country.name.toUpperCase().includes(filter.toUpperCase())
@@ -20,22 +38,19 @@ const ShowCountries= ({countries, filter}) => {
         else {
             return (
                 filteredCountries.map(country => 
-                    <div > 
-                        {/* onClick= {"clickFunction(country)"} */}
-                        {/* onClick={() => this.setState({ counter: this.state.counter + 1 })} */}
+        
+                    // <div key={country.name} onClick = {show(country)}>
+                    // <div key={country.name} onClick = {()=>this.setState({filter: country.name })}>
+                    <div>
                     <p>{country.name}</p>
                     </div>
-            
-                
+
                 )
             )
+       
         }
     }
-    // const selectCountry= (countryName) => {
-    //     const filteredCountries = countries.filter(filterByName(countryName))  
-    //     return <OneCountry country={filteredCountries[0]} />
-    //     }
- 
+
 
     return (
 

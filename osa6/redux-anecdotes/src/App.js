@@ -5,14 +5,15 @@ import Notification from './components/Notification'
 
 class App extends React.Component {
   render() {
-    const anecdotes = this.props.store.getState().anecdotes
+    //const anecdotes = this.props.store.getState().anecdotes
     return (
       //tuodaan moduulit
       <div>
-        <Notification store={this.props.store} />
-        <AnecdoteList store={this.props.store} /> 
-        <AnecdoteForm store={this.props.store} />
-      </div>
+        <Notification />
+        <AnecdoteList/>
+        <AnecdoteForm />
+
+      </div>//store={this.props.store}
     )
   }
 }
