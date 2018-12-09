@@ -13,6 +13,12 @@ const notificationReducer = (state = initialState, action) => {
     //return state.filter(n=>n.id===1)//
     return[...state, action.data.content] //content
 
+  case 'TOGGLE_IMPORTANCE': {
+    const id = action.data.id
+    const noteToChange = state.find(n => n.id === id)
+    const changedNote = { ...noteToChange, important: !noteToChange.important }
+    return state.map(note => note.id !== id ? note : changedNote)
+  }
   case action.type === 'NOTIFICATION_CREATE':
     // const id = action.data.id
     // const noteToChange = state.find(n => n.id === id)
@@ -47,6 +53,11 @@ export const notiLikes=() => {
 
   }
 }
-
+export const importanceToggling = (id) => {
+  return {
+    type: 'TOGGLE_IMPORTANCE',
+    data: { id }
+  }
+}
 
 export default notificationReducer

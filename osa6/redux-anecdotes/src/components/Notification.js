@@ -1,81 +1,62 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { importanceToggling } from './../reducers/notificationReducer'
 
-class Notification extends React.Component {
+// const noti = this.props.store.getState().notification
 
-  render() {
-   // const noti = this.props.store.getState().notification
+const style = {
+  border: 'solid',
+  padding: 10,
+  borderWidth: 1
+}
 
-    const style = {
-      border: 'solid',
-      padding: 10,
-      borderWidth: 1
-    }
-
-    const notiToShow = () => {
-      const { notification, filter } = this.props
-      if (filter === 'ALL') {
-        return notification
-      }
-
-      return filter === 'IMPORTANT'
-        ? notification.filter(noti => noti.important)
-        : notification.filter(noti => !noti.important)
-    }
-
-    // storen tilan kentät on otettu tuttuun tapaan destrukturoimalla apumuuttujiin
-    // const notiToShow = () => {
-    //   const { notification, filter } =this.props.store.getState()
-    //   if (filter === 'ALL') {
-    //     return notification
-    //   }
-
-    //   return filter === 'IMPORTANT'
-    //     ? notification.filter(note => note.important)
-    //     : notification.filter(note => !note.important)
-    // }
-
-
-    return (
-
-    //   <ul>
-    //     {notiToShow().map(noti =>
-    //         key={noti.id}
-    //         content={content}
-    //         handleClick={() => this.props.importanceToggling(noti.id)}
-    //       />
-    //     )}
-
-    //   </ul>
-
-      <div style={style}>
-        {/*    {console.log(this.props.store.getState().notifications[0].content)}
+const Notification = (props) => (
+  <div style={style}>
+    {/*    {console.log(this.props.store.getState().notifications[0].content)}
         {this.props.store.getState().notifications[1].content}
         {/* {this.props.store.getState().notifications} */}
-        {this.props.notifications.map(n =>
-          <div key={n.id}>
-            <div>
-              {n.content}
-              {/* {this.toggleImportance(n.id)} */}
-            </div>
-          </div>
-        )}
+    {this.props.visibleNotification.map(n =>
+      <div key={n.id}>
+        <div>
+          {n.content}
+          handleClick={() => props.importanceToggling(n.id)}
 
+          {/* {this.toggleImportance(n.id)} */}
+        </div>
       </div>
-    )
+    )}
+  </div>
+)
+
+
+const notificationToShow = (notifications, filter) => {
+  if (filter === 'ALL') {
+    return notifications
   }
+
+  return filter === 'IMPORTANT'
+    ? notifications.filter(notification => notification.important)
+    : notifications.filter(notification => !notification.important)
 }
+
 
 const mapStateToProps = (state) => {
   return {
-    anecdotes: state.anecdotes,
-    notifications: state.notifications
+    visibleNotification: notificationToShow(state.notifications, state.filter)
+    // anecdotes: state.anecdotes,
+    // notifications: state.notifications
   }
 }
 
-const ConnectedNotificationList = connect(
-  mapStateToProps
+export default connect(
+  mapStateToProps,
+  { importanceToggling }
 )(Notification)
 
-export default ConnectedNotificationList
+
+// const ConnectedNotificationList = connect(
+//   mapStateToProps
+// )(Notification)
+
+// export default ConnectedNotificationList
 //export default Notification

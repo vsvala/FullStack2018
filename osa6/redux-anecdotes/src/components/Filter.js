@@ -1,33 +1,54 @@
+import React from 'react'
+import { filterChange } from '../reducers/filterReducer'
 import { connect } from 'react-redux'
 
-class Filter extends React.Component {
-    handleChange = (event) => {
-      event.preventDefault()
-      const select = event.target.filter.value
-      //dispatchataan  eli lähetetään actioni storelle
-      //this.props.store.dispatch(
-      this.props.showFiltered(select)
 
-      event.target.filter.value = ''
+class Filter extends React.Component {
+    filterClicked  = (value) => {
+      this.props.filterChange(value)      //dispatchataan  eli lähetetään actioni storelle
+      //this.props.store.dispatch(
+      //this.props.showFiltered(select)
     }
+    checked = (label) => {
+      return label === this.props.filter
+    }
+    // event.target.filter.value = ''  }
     // input-kentän arvo muuttujassa event.target.value
 
     render() {
-      const style = {
-        marginBottom: 10
-      }
-        
-      return (   
-        <div style={style}>
+
+      return (
+        <div>
+        kaikki
+          <input
+            type='radio'
+            name='filter'
+            onChange={this.filterClicked('ALL')}
+            checked={this.checked('ALL')}
+          />
+        tärkeät
+          <input
+            type='radio'
+            name='filter'
+            onChange={this.filterClicked('IMPORTANT')}
+            checked={this.checked('IMPORTANT')}
+          />
+        eitärkeät
+          <input
+            type='radio'
+            name='filter'
+            onChange={this.filterClicked('NONIMPORTANT')}
+            checked={this.checked('NONIMPORTANT')}
+          />
         filter <input onChange={this.handleChange}/>
-      </div>
+        </div>
       )
     }
-}     
+}
 
 export default connect(
-  null,
-  { showFiltered }
+  (state) => ({ filter: state.filter }),
+  { filterChange }
 )(Filter)
 
 //export default AnecdoteForm
