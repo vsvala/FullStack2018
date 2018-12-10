@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { Alert } from 'react-bootstrap'
 
 const notificationStyle = {
   color: 'green',
@@ -15,9 +16,11 @@ const Notification = ({ message }) => {
     return null
   }
   return (
+    <Alert color="success">
     <div className="notification"  style ={notificationStyle}>
       {message}
     </div>
+    </Alert>
   )
 }
 

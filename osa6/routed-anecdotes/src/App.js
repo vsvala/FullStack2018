@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 import Notification from './components/Notification'
 import { NavLink } from 'react-router-dom'
-import { Table, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap'
+import { Table, FormGroup, FormControl, ControlLabel, Button, Grid, Row, Col, Nav, Navbar, NavItem } from 'react-bootstrap'
 
 
 const menuStyle = {
@@ -22,11 +22,16 @@ const navLinkStyle = {
 }
 
 const Menu = () => (
+
   <div style ={menuStyle}>
+    <NavItem href="#"> 
     <NavLink style={navLinkStyle} activeStyle={{textDecoration: 'none', color: 'pink'}} exact to="/" >
-    anecdotes</NavLink> &nbsp;
+    anecdotes</NavLink> &nbsp;    
+
     <NavLink style={navLinkStyle}  activeStyle={{textDecoration: 'none', color: 'pink'}} exact to="/about">about</NavLink> &nbsp;
+ 
     <NavLink style={navLinkStyle}  activeStyle={{textDecoration: 'none', color: 'pink'}} exact to="/new">create new</NavLink>
+    </NavItem>
   </div>
 )
 
@@ -59,7 +64,10 @@ const Anecdote = ({ anecdote: { content, votes, info, author } }) =>
 
 const About = () => (
   <div>
+    <Grid>
+    <Row className="show-grid">
     <h2>About anecdote app</h2>
+    <Col xs={12} md={8}>
     <p>According to Wikipedia:</p>
     
     <em>An anecdote is a brief, revealing account of an individual person or an incident. 
@@ -68,7 +76,18 @@ const About = () => (
       An anecdote is "a story with a point."</em>
 
     <p>Software engineering is full of excellent anecdotes, at this app you can find the best and add more.</p>
-  </div>
+</Col>
+<Col xs={6} md={4}>
+<div >
+<img 
+  src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Linus_Torvalds_%28cropped%29.jpg">
+</img>
+</div>
+</Col>
+
+</Row>
+</Grid>
+</div>
 )
 
 const Footer = () => (
@@ -195,16 +214,33 @@ class App extends React.Component {
         <Notification message={this.state.notification}/>
         <Router>
         <div>
-           <Menu />
+      
             
+   <Navbar inverse collapseOnSelect>
+  <Navbar.Header>
+    <Navbar.Brand>
+      Anecdote app
+    </Navbar.Brand>
+    <Navbar.Toggle />
+  </Navbar.Header> 
+  <Navbar.Collapse>
+    <Nav>    
+ <Menu />
+ 
+    </Nav>
+ </Navbar.Collapse>
+</Navbar> 
+
            <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes}/>}/> 
            <Route path="/about" render={() => <About />} />
            <Route path="/new" render={({history}) => <CreateNew  history={history} addNew={this.addNew}/>} />
            <Route exact path="/anecdotes/:id" render={({match}) =>
            <Anecdote anecdote={this.anecdoteById(match.params.id)} />}
-           />     
+           />    
+
       </div> 
-      </Router>
+      </Router>  
+
       <br></br>
       <Footer />
 
