@@ -1,24 +1,50 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
+import Notification from './components/Notification'
+import { NavLink } from 'react-router-dom'
+import { Table, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap'
 
+
+const menuStyle = {
+  FontColor: 'green',
+  fontStyle: 'italic',
+  fontSize: 16,
+
+  background: 'black',
+  padding: 20
+}
+const navLinkStyle = {
+  color: 'white',
+  fontStyle: 'italic',
+  fontSize: 18,
+  padding: 10,
+  textDecoration: 'none',
+}
 
 const Menu = () => (
-  <div>
-    <Link to="/">anecdotes</Link> &nbsp;
-    <Link to="/about">about</Link> &nbsp;
-    <Link to="/new">create new</Link>
+  <div style ={menuStyle}>
+    <NavLink style={navLinkStyle} activeStyle={{textDecoration: 'none', color: 'pink'}} exact to="/" >
+    anecdotes</NavLink> &nbsp;
+    <NavLink style={navLinkStyle}  activeStyle={{textDecoration: 'none', color: 'pink'}} exact to="/about">about</NavLink> &nbsp;
+    <NavLink style={navLinkStyle}  activeStyle={{textDecoration: 'none', color: 'pink'}} exact to="/new">create new</NavLink>
   </div>
 )
 
 const AnecdoteList = ({ anecdotes }) => (
   <div>
-    <h2>Anecdotes</h2>
-    <ul>
+    <h2>Anecdotes</h2>  
+  
+    <Table striped>
+     <tbody>
       {anecdotes.map(anecdote => 
-      <li key={anecdote.id} >
+     <tr key={anecdote.id} >
+     <td>
       <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link>
-      </li>)}
-    </ul>  
+      </td>
+      </tr>
+      )}  </tbody>
+    </Table> 
+  
   </div>
 )
 
@@ -46,7 +72,7 @@ const About = () => (
 )
 
 const Footer = () => (
-  <div>
+<div>
     Anecdote app for <a href='https://courses.helsinki.fi/fi/TKT21009/121540749'>Full Stack -sovelluskehitys</a>.
 
     See <a href='https://github.com/mluukkai/routed-anecdotes'>https://github.com/mluukkai/routed-anecdotes</a> for the source code. 
@@ -76,6 +102,7 @@ class CreateNew extends React.Component {
       info: this.state.info,
       votes: 0
     })
+ 
   }
 
   render() {
@@ -83,26 +110,27 @@ class CreateNew extends React.Component {
       <div>
         <h2>create a new anecdote</h2>
         <form onSubmit={this.handleSubmit}>
+         <FormGroup>
           <div>
-            content 
-            <input name='content' value={this.state.content} onChange={this.handleChange} />
+          <ControlLabel> content </ControlLabel>
+          <FormControl input name='content' value={this.state.content} onChange={this.handleChange} />
           </div>
           <div>
-            author
-            <input name='author' value={this.state.author} onChange={this.handleChange} />
+          <ControlLabel> author</ControlLabel>
+          <FormControl input name='author' value={this.state.author} onChange={this.handleChange} />
           </div>
           <div>
-            url for more info
-            <input name='info' value={this.state.info} onChange={this.handleChange} />
+          <ControlLabel>  url for more info</ControlLabel>
+          <FormControl input name='info' value={this.state.info} onChange={this.handleChange} />
           </div> 
-          <button>create</button>
+          <Button bsStyle="success" type="submit">create</Button>
+          </FormGroup>
         </form>
       </div>  
     )
 
   }
 }
-
 
 
 class App extends React.Component {
@@ -126,13 +154,20 @@ class App extends React.Component {
           id: '2'
         }
       ],
-      notification: ''
+      notification: null
     } 
   }
 
   addNew = (anecdote) => {
     anecdote.id = (Math.random() * 10000).toFixed(0)
-    this.setState({ anecdotes: this.state.anecdotes.concat(anecdote) })
+    this.setState({ anecdotes: this.state.anecdotes.concat(anecdote),
+    notification: `a new anecdote '${anecdote.content}'created`})
+    
+      setTimeout(() => {
+        this.setState({notification: null})
+      }, 10000)
+
+    //history.push('/')
   }
 
  anecdoteById = (id) =>
@@ -154,16 +189,17 @@ class App extends React.Component {
   render() {
 
     return (
-      <div>
+    
+        <div className="container">
         <h1>Software anecdotes</h1>
-  
+        <Notification message={this.state.notification}/>
         <Router>
         <div>
            <Menu />
             
            <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes}/>}/> 
            <Route path="/about" render={() => <About />} />
-           <Route path="/new" render={() => <CreateNew />} />
+           <Route path="/new" render={({history}) => <CreateNew  history={history} addNew={this.addNew}/>} />
            <Route exact path="/anecdotes/:id" render={({match}) =>
            <Anecdote anecdote={this.anecdoteById(match.params.id)} />}
            />     
