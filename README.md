@@ -10,6 +10,14 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa4 Blogi](https://github.com/vsvala/Fullstack_osa4_blogi/tree/master/osa4_backend-)**
 
+**[osa5 Blogi](https://github.com/vsvala/Fullstack_osa5)**
+
+**[osa5 Redux_Unicafe](https://github.com/vsvala/FullStack2018/tree/master/Redux-Unicafe_osa5)**
+
+**[osa5 Redux_Anecdotes](https://github.com/vsvala/FullStack2018/tree/master/Redux-anecdotes_osa5/redux-anecdotes)**
+
+**[osa6 Anecdotes](https://github.com/vsvala/FullStack2018/tree/master/osa6)**
+
 # Käytetyt työkalut ja termit
 
 ### REST = Representational State Transfer
