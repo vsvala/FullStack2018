@@ -217,3 +217,5 @@ class App extends React.Component {
 Tärkeä mielessä pidettävä seikka on myös se, että React kutsuu funktiota setState asynkroonisesti, eli jos meillä on seuraava koodi
 
 ### REAKT matskua
+
+## React-sovellusten debuggaus
