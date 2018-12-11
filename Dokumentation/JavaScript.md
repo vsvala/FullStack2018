@@ -123,3 +123,11 @@ const keskiarvo = function(a, b) {
 const vastaus = keskiarvo(2, 5)
 ```
 Nuolifunktiot ja avainsanan function avulla määritellyt funktiot kuitenkin poikkeavat radikaalisti siitä miten ne käyttäytyvät avainsanan this suhteen.
+
+## Luokat
+Kuten aiemmin mainittiin, Javascriptissä ei ole olemassa olio-ohjelmointikielten luokkamekanismia. Periytyminen hoituu prototyyppiperinnän kautta.ES6:n myötä Javascriptiin on tullut luokkasyntaksi, joka helpottaa oleellisesti luokkien (tai luokan kaltaisten asioiden) määrittelyä Javascriptissa. Syntaksin osalta luokat ja niistä luodut oliot muistuttavat erittäin paljon esim. Javan olioita. Käyttäytymiseltäänkin ne ovat aika lähellä Javan olioita. Perimmiltään kyseessä on kuitenkin edelleen Javascriptin prototyyppiperintään perustuvista olioista.
+[Mozillan javascript -matskua](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[A re-introduction to JavaScript (JS tutorial)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
+[kirjasarja You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS)
+[egghead.io:lla on tarjolla runsaasti laadukkaita screencasteja](https://egghead.io/)
+
