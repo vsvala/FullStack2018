@@ -2,7 +2,7 @@
 
 Kurssilla tutustutaan Javascriptilla tapahtuvaan moderniin websovelluskehitykseen. Pääpaino on React-kirjaston avulla toteutettavissa single page -sovelluksissa, ja niitä tukevissa Node.js:llä toteutetuissa REST-rajapinnoissa.
 
-Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suoritusympäristöjen hallintaa sekä NoSQL-tietokantoja.
+Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suoritusympäristöjen hallintaa sekä NoSQL-tietokantoja(Mongodb).
 
 **[osa3 Puhelinmuistio](https://github.com/vsvala/Fullstack_phonebook_osa3)**
 
@@ -10,9 +10,28 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa4 Blogi](https://github.com/vsvala/Fullstack_osa4_blogi/tree/master/osa4_backend-)**
 
+**[osa5 Blogi](https://github.com/vsvala/Fullstack_osa5)**
+
+**[osa5 Redux_Unicafe](https://github.com/vsvala/FullStack2018/tree/master/Redux-Unicafe_osa5)**
+
+**[osa5 Redux_Anecdotes](https://github.com/vsvala/FullStack2018/tree/master/Redux-anecdotes_osa5/redux-anecdotes)**
+
+**[osa6 Anecdotes](https://github.com/vsvala/FullStack2018/tree/master/osa6)**
+
 # Käytetyt työkalut ja termit
 
-### REST = Representational State Transfer
+### SPA = Single-page application
+Viimeisten vuosien aikana on noussut esiin tyyli tehdä web-sovellukset käyttäen Single-page application (SPA) -tyyliä, missä sovelluksille ei enää tehdä erillisiä, palvelimen sille lähettämiä sivuja, vaan sovellus koostuu ainoastaan yhdestä palvelimen lähettämästä HTML-sivusta, jonka sisältöä manipuloidaan selaimessa suoritettavalla Javascriptillä.
+
+### REACT = JavaScript kirjasto
+Komponentti pohjainen JavaScript-kirjasto web-käyttöliittymien tekoon. React päivittää/renderöi käyttöliittymän automaattisesti kun data muuttuu. React osaa päivittää käyttöliittymästä vain ne osat jotka liittyvät muuttuneeseen dataan
+Reactilla toteutettu käyttöliittymä muodostuu koostetuista komponenteista. React ei käytä templateja vaan Javascriptia ja JSX:ää.
+
+### JSX
+JSX on hieman XML-kieleltä näyttävää Javascriptia
+JSX:n avulla voi kirjoittaa XML-tyylistä koodia jossa on sekaisin html-elementtejä ja React-komponentteja Html-elementit kirjoitetaan pienillä kirjaimilla. React-komponenttien nimet aloitetaan kapiteeleilla. JSX transformoidaan tavalliseksi Javascript-koodiksi. Elementin attribuuteissa sijaitseva Javascript-koodi sijoitetaan JSX-syntaksissa {}-merkkien sisään.
+
+### REST = Representational State Transfer -arkkitehtuurimalli
 on HTTP-protokollaan perustuva arkkitehtuurimalli ohjelmointirajapintojen toteuttamiseen. Se määrittelee, millaisilla operaatioilla palvelinten dataa pyydetään, lisätään ja käsitellään.Restin tärkeä määrittävä tekijä on tilattomuus.Toinen tärkeä osa on palvelin–asiakas-malli.Rest pohjaa vahvasti http-protokollan ominaisuuksiin. Http:n metodeja (get, post, put ja delete) sekä eri uri:ta käytetään kuvaamaan pyynnön luonnetta, jolloin itse pyynnön dataan ei tarvitse sisällyttää metatietoja.  
 
 ### Node.js 
@@ -30,20 +49,11 @@ Tarjoaa standardin tavan sille miten ja missä sovelluksen tila pidetään sekä
 
 Koko sovelluksen tila talletetaan yhteen storen tallettamaan Javascript-objektiin.Storen tilaa muutetaan actionien avulla. Actionit ovat olioita, joilla on vähintään actionin tyypin määrittelevä kenttä type.Actionien vaikutus sovelluksen tilaan määritellään reducerin avulla. Käytännössä reducer on funktio, joka saa parametrikseen olemassaolevan staten tilan sekä actionin ja palauttaa staten uuden tilan. Store käyttää reduceria käsitelläkseen actioneja, jotka dispatchataan eli “lähetetään” storelle sen dispatch-metodilla.
 
-
  ### JSON = JavaScript Object Notation
  JSON-muotoinen “raakadata”, tiedostoformaatti
 
  ### DOM = Document Object Model 
  Document Object Model eli DOM on ohjelmointirajapinta eli API, joka mahdollistaa selaimessa esitettävien web-sivuja vastaavien elementtipuiden muokkaamisen ohjelmallisesti.
-
- ### HTML
-
- ### CSS = Cascading Style Sheets 
- CSS on kieli, jonka avulla web-sovellusten ulkoasu määritellään
-
-### SPA = Single-page application
-Viimeisten vuosien aikana on noussut esiin tyyli tehdä web-sovellukset käyttäen Single-page application (SPA) -tyyliä, missä sovelluksille ei enää tehdä erillisiä, palvelimen sille lähettämiä sivuja, vaan sovellus koostuu ainoastaan yhdestä palvelimen lähettämästä HTML-sivusta, jonka sisältöä manipuloidaan selaimessa suoritettavalla Javascriptillä.
 
 ### Middlewaret
 Middlewaret ovat funktioita, joiden avulla voidaan käsitellä request- ja response-olioita.
@@ -53,6 +63,12 @@ Yleismaailmallisia periaatteita Web-sovellusten toiminnasta: websovelluksen sela
 
 ### Komponenttien lifecycle-metodit
 Reactin luokkien avulla määritellyillä komponenteilla voidaan määritellä joukko lifecycle-metodeita, eli metodeita, joita React kutsuu tietyssä komponentin “elinkaaren” vaiheessa. Yleinen tapa datan palvelimelta tapahtuvaan hakemiseen on suorittaa se metodissa **componentDidMount**. React kutsuu metodia sen jälkeen kun konstruktori on suoritettu ja render-metodi on suoritettu ensimmäistä kertaa.
+
+ ### HTML  Hypertext Markup Language
+ Html n avulla esitetään sivun rakenne ja sisältö = teksti ja kuvat. Htmlon kieli, jonka avulla WWW-selaimelle kerrotaan sivun millaisia osia WWW-dokumentti sisältää.
+
+ ### CSS = Cascading Style Sheets 
+ CSS on kieli, jonka avulla web-sovellusten ulkoasu määritellään
 
 # Tietokanta
 
