@@ -134,20 +134,12 @@ ReactDOM.render(
 ### Tapahtumankäsittely
  Tapahtumankäsittelijät, eli funktiot, jotka on rekisteröity kutsuttavaksi tiettyjen tapahtumien eli eventien yhteydessä. Esim. käyttäjän interaktio sivun elementtien kanssa aiheuttaa joukon erinäisiä tapahtumia.
  
- Reactissa funktion rekisteröiminen tapahtumankäsittelijäksi tapahtumalle click tapahtuu seuraavasti-Eli laitetaan button:in onClick-attribuutin arvoksi aaltosulkeissa oleva viite koodissa määriteltyyn funktioon.
+ Reactissa funktion rekisteröiminen tapahtumankäsittelijäksi tapahtumalle click tapahtuu seuraavasti-Eli laitetaan button:in onClick-attribuutin arvoksi aaltosulkeissa oleva viite koodissa määriteltyyn funktioon.tai Tapahtumankäsittelijäfunktio voidaan määritellä suoraan onClick-määrittelyn yhteydessä:
 ```
-const funktio = () => { /* koodi */ }
-//...
-<button onClick={funktio}>
-  plus
-</button>
-
-tai Tapahtumankäsittelijäfunktio voidaan määritellä suoraan onClick-määrittelyn yhteydessä:
+<button onClick={funktio}> plus</button>
 
 <button onClick={() => console.log('clicked')}>
-button onClick={() => this.setState({ counter: this.state.counter + 1 })}>
-  plus
-</button>
+<button onClick={() => this.setState({ counter: this.state.counter + 1 })}>plus</button>
 ```
 Mutta paremoi tapa määritellä ne omiin metodeihinsa. Viittaus: this.metodi 
 
@@ -157,12 +149,12 @@ class App extends React.Component {
     super()
     this.state = {
       counter: 1
-    }}
-  kasvataYhdella() {
+    }} 
+   kasvataYhdella = () => {
     this.setState({ counter: this.state.counter + 1 })
   }
-  nollaa() {
-    this.setState({ counter: 0 })
+  nollaa = () => {
+   this.setState({ counter: 0 })
   }
   render() {
     return (
@@ -173,7 +165,10 @@ class App extends React.Component {
         </div>
       </div>
     )}}
+    
    ```
-   
+   Ehkä paras ratkaisu this-ongelman estämiseen on käyttää tulevaan Javascript-standardiin ehdotettua **class properties -ominaisuutta. Jolloin jokainen App-komponentti saa kentät kasvataYhdella ja nollaa jotka ovat funktioita,** joiden this on sidottu komponenttiin riippumatta siitä miten ja kenen toimesta metodia kutsutaan.
+  
+Tärkeä mielessä pidettävä seikka on myös se, että React kutsuu funktiota setState asynkroonisesti, eli jos meillä on seuraava koodi
 
 ### REAKT matskua
