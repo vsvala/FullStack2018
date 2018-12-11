@@ -3,6 +3,11 @@
 Kurssilla tutustutaan Javascriptilla tapahtuvaan moderniin websovelluskehitykseen. Pääpaino on React-kirjaston avulla toteutettavissa single page -sovelluksissa, ja niitä tukevissa Node.js:llä toteutetuissa REST-rajapinnoissa.
 
 Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suoritusympäristöjen hallintaa sekä NoSQL-tietokantoja(Mongodb).
+**[osa0 sekvenssikaavioiden piirtäminen](https://github.com/vsvala/FullStack2018/tree/master/osa0)**
+
+**[osa1 reactin alkeita](https://github.com/vsvala/Fullstack_phonebook_osa3)**
+
+**[osa2 tehtäviä](https://github.com/vsvala/FullStack2018)**
 
 **[osa3 Puhelinmuistio](https://github.com/vsvala/Fullstack_phonebook_osa3)**
 
