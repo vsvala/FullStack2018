@@ -131,6 +131,51 @@ ReactDOM.render(
 
 ### Tilan vieminen alikomponenttiin propsien avulla
 
+Reactissa parhaana käytänteenä on sijoittaa tila mahdollisimman ylös komponenttihierarkiassa, mielellään sovelluksen juurikomponenttiin.
+
+Jätetään sovelluksen tila, eli laskimen arvo komponenttiin App ja välitetään tila props:ien avulla komponentille Display. alla sama Destrukturoimalla ja vielä tiiviisti ilmaisuna
+```const Display = (props) => {
+  return (
+    <div>{props.counter}</div>
+  )}
+  
+  const Display = ({ counter }) => {
+  return (
+    <div>{counter}</div>
+  )
+  
+  const Display = ({ counter }) => <div>{counter}</div>
+ 
+ 
+ Komponentin käytö:
+  
+  class App extends React.Component {
+  // ...
+  render() {
+    return (
+      <div>
+        <Display counter={this.state.counter}/>
+        
+        <div> <button onClick={this.asetaArvoon(this.state.counter+1)}>Plus</button>
+          <button onClick={this.asetaArvoon(0)}>Zero</button>
+        </div>
+     </div>)}
+```
+Tehdään seuraavaksi napeille tarkoitettu komponentti Button. Napille on välitettävä propsien avulla tapahtumankäsittelijä sekä napin teksti. hyödynnetään taas destrukturointia ottamaan props:in tarpeelliset kentät suoraan:
+
+```const Button = ({ handleClick, text }) => (
+  <button onClick={handleClick}> {text}
+  </button>
+)
+
+...
+render() {
+  return (
+    <div>
+      <Display counter={this.state.counter}/>
+      <div> <Button handleClick={this.asetaArvoon(this.state.counter + 1)}text="Plus"/>
+```
+
 ### Tapahtumankäsittely
  Tapahtumankäsittelijät, eli funktiot, jotka on rekisteröity kutsuttavaksi tiettyjen tapahtumien eli eventien yhteydessä. Esim. käyttäjän interaktio sivun elementtien kanssa aiheuttaa joukon erinäisiä tapahtumia.
  
