@@ -34,8 +34,8 @@ Komponentti pohjainen JavaScript-kirjasto web-käyttöliittymien tekoon. React p
 Reactilla toteutettu käyttöliittymä muodostuu koostetuista komponenteista. React ei käytä templateja vaan Javascriptia ja JSX:ää.
 
 ### JSX
-JSX on hieman XML-kieleltä näyttävää Javascriptia
-JSX:n avulla voi kirjoittaa XML-tyylistä koodia jossa on sekaisin html-elementtejä ja React-komponentteja Html-elementit kirjoitetaan pienillä kirjaimilla. React-komponenttien nimet aloitetaan kapiteeleilla. JSX transformoidaan tavalliseksi Javascript-koodiksi. Elementin attribuuteissa sijaitseva Javascript-koodi sijoitetaan JSX-syntaksissa {}-merkkien sisään.
+JSX on hieman XML-kieleltä näyttävää Javascriptia, jossa jokainen tagi tulee sulkea. 
+JSX:n avulla voi kirjoittaa HTML/XML-tyylistä koodia jossa on sekaisin html-elementtejä ja React-komponentteja. Html-elementit kirjoitetaan pienillä kirjaimilla. React-komponenttien nimet aloitetaan kapiteeleilla. JSX transformoidaan tavalliseksi Javascript-koodiksi. Käännöksen hoitaa automaattisesti Babel. Elementin attribuuteissa sijaitseva Javascript-koodi sijoitetaan JSX-syntaksissa {}-merkkien sisään.
 
 ### REST = Representational State Transfer -arkkitehtuurimalli
 on HTTP-protokollaan perustuva arkkitehtuurimalli ohjelmointirajapintojen toteuttamiseen. Se määrittelee, millaisilla operaatioilla palvelinten dataa pyydetään, lisätään ja käsitellään.Restin tärkeä määrittävä tekijä on tilattomuus.Toinen tärkeä osa on palvelin–asiakas-malli.Rest pohjaa vahvasti http-protokollan ominaisuuksiin. Http:n metodeja (get, post, put ja delete) sekä eri uri:ta käytetään kuvaamaan pyynnön luonnetta, jolloin itse pyynnön dataan ei tarvitse sisällyttää metatietoja.  
