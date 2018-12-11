@@ -31,7 +31,7 @@ Viimeisten vuosien aikana on noussut esiin tyyli tehdä web-sovellukset käyttä
 
 ### REACT = JavaScript kirjasto
 Komponentti pohjainen JavaScript-kirjasto web-käyttöliittymien tekoon. React päivittää/renderöi käyttöliittymän automaattisesti kun data muuttuu. React osaa päivittää käyttöliittymästä vain ne osat jotka liittyvät muuttuneeseen dataan
-Reactilla toteutettu käyttöliittymä muodostuu koostetuista komponenteista. React ei käytä templateja vaan Javascriptia ja JSX:ää.
+Reactilla toteutettu käyttöliittymä muodostuu koostetuista komponenteista.  Reactissa filosofiana onkin koostaa sovellus useista, pieneen asiaan keskittyvistä uudelleenkäytettävistä komponenteista.React ei käytä html- templateja vaan Javascriptia ja JSX:ää.
 
 ### JSX
 JSX on hieman XML-kieleltä näyttävää Javascriptia, jossa jokainen tagi tulee sulkea. 
