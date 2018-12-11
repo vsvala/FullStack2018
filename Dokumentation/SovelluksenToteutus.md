@@ -89,7 +89,7 @@ Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, el
  Portin 3002 varaavan prosessin -id eli PID (esim. 8318) löytyy OSX:lla ja Linuxilla esim. komennolla lsof -i :3002.
  Prosessin saa tapettua komennolla KILL 8318 olettaen että PID on 8318 niin kuin kuvassa. Joskus prosessi on sitkeä eikä kuole ennen kuin se tapetaan komennolla KILL -9 8318.
  
- # React sovelluksen toimintaperiaate
+ # React sovelluksen toimintaperiaatteita
  
 ### komponentit
 
@@ -127,7 +127,10 @@ const App = () => {
 }
 ```
 ### funktionaalinen ja luokkakomponentti
- Reactin best practice onkin käyttää funktioiden avulla määriteltyjä komponentteja aina kuin mahdollista.
+
+Reactin best practice onkin käyttää funktioiden avulla määriteltyjä komponentteja aina kuin mahdollista.
+Jos komponentti tarvitsee tilaa, on luokkasyntaksin käyttäminen välttämätöntä. Kannattaa kuitenkin muistaa, että Reactin filosofian mukaista on sijoittaa tila mahdollisimman ylös komponenttihierarkiaan, mielellään ainoastaan sovelluksen juurikomponenttiin. Näin tilallisten komponenttien potentiaalinen tarvekin on vähäisempi.
+
 Yllä käytetään funktionaalisia komponentteja, eli määrittelimme kaikki komponentit nuolifunktioiden avulla.Toinen tapa komponenttien määrittelyyn on käyttää luokkasyntaksia. Tällöin komponentti määritellään luokaksi, joka perii React.Component-luokan.
 
 ```class Hello extends React.Component {
@@ -191,3 +194,14 @@ class Hello extends React.Component {
   Nyt saa const {name, age} = this.props aikaan sen, että name saa arvon ‘Arto Hellas’ ja age arvon 35.
 
 ### Sivun uudelleenrenderöinti
+
+### Ehdollinen renderöinti
+
+### Tilallinen komponentti
+
+### Tilan vieminen alikomponenttiin propsien avulla
+
+### Tapahtumankäsittely
+
+### REAKT matskua
+
