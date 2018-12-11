@@ -56,6 +56,11 @@ const olio1 = {
   nimi: 'Arto Hellas',
   ika: 35,
   koulutus: 'Filosofian tohtori'
+  tervehdi: function () {
+    console.log('hello, my name is', this.nimi)
+  }
+}
+arto.tervehdi()  // tulostuu hello, my name is Arto Hellas
 }
 
 const olio3 = {
