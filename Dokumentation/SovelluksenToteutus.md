@@ -2,13 +2,19 @@
 
 ## Sovelluksen luonti ja käynnistys
 
+Asenna koneeseesi [Node.js](https://nodejs.org/en/) Noden (väh.5.3) mukana asentuu npm-työkalu (node packagemanager) jonka mukana asentuu komento npx, joka mahdollistaa create-react-app:in käytön asentamatta sitä erikseen. 
+
+Npm:n version saa selville komennolla npm -v.
+
 ```
 npx create-react-app "nimeämäsikansio"
 cd "nimeämäsikansio"
 npm start
 ````
+Sovellus käynnistyy oletusarvoisesti localhostin porttiin 3000, eli osoitteeseen http://localhost:3000 automaattisesti.
 
-asennetaan siihen redux komennolla
+
+asennetaan sovellukseen redux komennolla
 ```
 npm install redux --save
 ```
@@ -30,6 +36,7 @@ Määritellään käynnistykselle npm-skripti tiedostoon package.json
 ´npm start`           sovelluksen käynnistäminen
 ´npm run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
  ```
+
 ### Kirjautuminen
 
 salasanan kryptaus
@@ -81,3 +88,15 @@ Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, el
 ## palvelinta suorittava prosessin "tappaminen"
  Portin 3002 varaavan prosessin -id eli PID (esim. 8318) löytyy OSX:lla ja Linuxilla esim. komennolla lsof -i :3002.
  Prosessin saa tapettua komennolla KILL 8318 olettaen että PID on 8318 niin kuin kuvassa. Joskus prosessi on sitkeä eikä kuole ennen kuin se tapetaan komennolla KILL -9 8318.
+ 
+ # Sovelluksen toimintaperiaate
+ 
+###komponentit
+
+React päivittää/renderöi käyttöliittymän automaattisesti kun data muuttuu. React osaa päivittää käyttöliittymästä vain ne osat jotka liittyvät muuttuneeseen dataan Reactilla toteutettu käyttöliittymä muodostuu koostetuista komponenteista jotka kirjoitetaan isolla. Reactissa filosofiana onkin koostaa sovellus useista, pieneen asiaan keskittyvistä uudelleenkäytettävistä komponenteista.React ei käytä html- templateja vaan Javascriptia ja JSX:ää.  Elementin attribuuteissa sijaitseva Javascript-koodi sijoitetaan JSX-syntaksissa {}-merkkien sisään. Komponetteja kutsutaan <Komponentti/>
+
+ReactDOM.render(<App />, document.getElementById('root'))
+
+Komento renderöi komponentin sisällön tiedoston public/index.html määrittelemään div-elementtiin, jonka id:n arvona on ‘root’
+
+
