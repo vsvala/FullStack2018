@@ -102,14 +102,78 @@ class Hello extends React.Component {
  ```
   Nyt saa const {name, age} = this.props aikaan sen, että name saa arvon ‘Arto Hellas’ ja age arvon 35.
 
+### Tilallinen komponentti
+Komponentin tila määritellään this.state-objektilla. Komponentin tila alustetaan getInitialState-funktiossa. Myöhemmin tilaa voidaan muuttaa this.setState()-metodilla.ritä sijoittaa kaikki sovelluksen tilaan liittyvät muuttujat komponenttihierarkiassa mahdollisimman korkealle tasolle ja vain yhteen paikkaan juurielementtiin.
+
 ### Sivun uudelleenrenderöinti
 
-### Ehdollinen renderöinti
+**Luokkiin perustuvilla komponenteilla voi olla tila**, joka talletetaan muuttujaan state.Eli tila sisältää kentän counter, jonka arvo on 1. React-komponenttien tilaa, eli muuttujaa this.state ei saa päivittää suoraan, tilan päivitys on tehtävä aina funktion **setState avulla. Metodin kutsuminen päivittää tilan ja aiheuttaa komponentin uuden renderöinnin** (ellei sitä ole estetty myöhemmin esiteltävällä tavalla). Uudelleenrenderöinnin yhteydessä myös kaikki komponentin sisältämät alikomponentit renderöidää
+Muutetaan esimerkkisovelluksen komponentti App luokkaperustaiseksi:
+```
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      counter: 1
+    }}
+  render() {
+    return (
+      <div>{this.state.counter}</div>
+    )}}
 
-### Tilallinen komponentti
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+)
+```
+
+### Ehdollinen renderöinti
 
 ### Tilan vieminen alikomponenttiin propsien avulla
 
 ### Tapahtumankäsittely
+ Tapahtumankäsittelijät, eli funktiot, jotka on rekisteröity kutsuttavaksi tiettyjen tapahtumien eli eventien yhteydessä. Esim. käyttäjän interaktio sivun elementtien kanssa aiheuttaa joukon erinäisiä tapahtumia.
+ 
+ Reactissa funktion rekisteröiminen tapahtumankäsittelijäksi tapahtumalle click tapahtuu seuraavasti-Eli laitetaan button:in onClick-attribuutin arvoksi aaltosulkeissa oleva viite koodissa määriteltyyn funktioon.
+```
+const funktio = () => { /* koodi */ }
+//...
+<button onClick={funktio}>
+  plus
+</button>
+
+tai Tapahtumankäsittelijäfunktio voidaan määritellä suoraan onClick-määrittelyn yhteydessä:
+
+<button onClick={() => console.log('clicked')}>
+button onClick={() => this.setState({ counter: this.state.counter + 1 })}>
+  plus
+</button>
+```
+Mutta paremoi tapa määritellä ne omiin metodeihinsa. Viittaus: this.metodi 
+
+```
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      counter: 1
+    }}
+  kasvataYhdella() {
+    this.setState({ counter: this.state.counter + 1 })
+  }
+  nollaa() {
+    this.setState({ counter: 0 })
+  }
+  render() {
+    return (
+      <div>
+        <div>{this.state.counter}</div>
+        <div><button onClick={this.kasvataYhdella}>plus </button>
+          <button onClick={this.nollaa}>zero</button>
+        </div>
+      </div>
+    )}}
+   ```
+   
 
 ### REAKT matskua
