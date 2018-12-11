@@ -89,7 +89,7 @@ Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, el
  Portin 3002 varaavan prosessin -id eli PID (esim. 8318) löytyy OSX:lla ja Linuxilla esim. komennolla lsof -i :3002.
  Prosessin saa tapettua komennolla KILL 8318 olettaen että PID on 8318 niin kuin kuvassa. Joskus prosessi on sitkeä eikä kuole ennen kuin se tapetaan komennolla KILL -9 8318.
  
- # Sovelluksen toimintaperiaate
+ # React sovelluksen toimintaperiaate
  
 ### komponentit
 
@@ -126,3 +126,68 @@ const App = () => {
   )
 }
 ```
+### funktionaalinen ja luokkakomponentti
+ Reactin best practice onkin käyttää funktioiden avulla määriteltyjä komponentteja aina kuin mahdollista.
+Yllä käytetään funktionaalisia komponentteja, eli määrittelimme kaikki komponentit nuolifunktioiden avulla.Toinen tapa komponenttien määrittelyyn on käyttää luokkasyntaksia. Tällöin komponentti määritellään luokaksi, joka perii React.Component-luokan.
+
+```class Hello extends React.Component {
+  render() {
+    return (
+      <div>
+        <p>Hello {this.props.name}, you are {this.props.age} years old</p>
+      </div>
+    )
+  }
+}
+```
+Luokkakomponenttien tulee määritellä ainakin metodi render, joka palauttaa komponentin ulkoasun määrittelevät React-elementit eli käytännössä JSX:n.
+
+Luokkakomponentissa viitataan komponentin propseihin this-viitteen kautta.päästään nimeen ja ikään käsiksi luokkamuotoisen komponentin sisällä viittaamalla this.props.name ja this.props.age. Huomaa ero funktionaaliseen komponenttiin!
+<Hello name="Arto" age={36} />
+
+Luokkakomponenteille voidaan tarvittaessa määritellä muitakin metodeja ja “oliomuuttujia”, eli kenttiä.
+```
+class Hello extends React.Component {
+  bornYear() {
+    const yearNow = new Date().getFullYear()
+    return yearNow - this.props.age
+  }
+  render() {
+    return (
+      <div>
+        <p>
+          Hello {this.props.name}, you are {this.props.age} years old <br />
+          So you were probably born {this.bornYear()}
+        </p>
+      </div>
+    )}}
+```
+Metodia kutsutaan render:in sisältä käyttäen this-viitettä syntaksilla this.bornYear()
+
+###  destrukturointia.  
+ES6:n mukanaan tuomaa uutta piirre Javascriptissä, eli sijoittamisen yhteydessä tapahtuva destrukturointi.
+
+```
+Destrukturoinnin avulla voimme “kerätä” olion oliomuuttujien arvot suoraan omiin yksittäisiin muuttujiin:
+
+class Hello extends React.Component {
+  render() {
+    const {name, age} = this.props
+    const bornYear = () => new Date().getFullYear() - age
+
+    return (
+      <div>
+        <p>
+          Hello {name}, you are {age} years old <br />
+          So you were probably born {bornYear()}
+        </p>
+      </div>
+    )}}`
+    this.props = {
+  name: 'Arto Hellas',
+  age: 35
+}
+ ```
+  Nyt saa const {name, age} = this.props aikaan sen, että name saa arvon ‘Arto Hellas’ ja age arvon 35.
+
+### Sivun uudelleenrenderöinti
