@@ -120,8 +120,13 @@ Joudumme asentamaan myös babel-eslint-pluginin, jotta ESlint osaisi tulkita koo
 npm install babel-eslint --save-dev
 ja se tulee muistaa ottaa käyttöön konfiguraatiossa.
 
-# [Sovelluksen toteutus](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
+# [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
  
+# [JavaScript](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/JavaScript.md)
+
+# [REAKTin perusteita](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/REACTsovellus.md)
+
+
 # Testaus
  ### Yksikkötestaus
  jest
