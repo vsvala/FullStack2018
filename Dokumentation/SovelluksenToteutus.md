@@ -91,12 +91,38 @@ Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, el
  
  # Sovelluksen toimintaperiaate
  
-###komponentit
+### komponentit
 
-React päivittää/renderöi käyttöliittymän automaattisesti kun data muuttuu. React osaa päivittää käyttöliittymästä vain ne osat jotka liittyvät muuttuneeseen dataan Reactilla toteutettu käyttöliittymä muodostuu koostetuista komponenteista jotka kirjoitetaan isolla. Reactissa filosofiana onkin koostaa sovellus useista, pieneen asiaan keskittyvistä uudelleenkäytettävistä komponenteista.React ei käytä html- templateja vaan Javascriptia ja JSX:ää.  Elementin attribuuteissa sijaitseva Javascript-koodi sijoitetaan JSX-syntaksissa {}-merkkien sisään. Komponetteja kutsutaan <Komponentti/>
+React päivittää/renderöi käyttöliittymän automaattisesti kun data muuttuu. React osaa päivittää käyttöliittymästä vain ne osat jotka liittyvät muuttuneeseen dataan Reactilla toteutettu käyttöliittymä muodostuu koostetuista ***komponenteista jotka kirjoitetaan isolla**. Reactissa filosofiana onkin koostaa sovellus useista, pieneen asiaan keskittyvistä uudelleenkäytettävistä komponenteista.React ei käytä html- templateja vaan Javascriptia ja JSX:ää.  Elementin attribuuteissa sijaitseva Javascript-koodi sijoitetaan JSX-syntaksissa {}-merkkien sisään. Komponetteja kutsutaan <Komponentti/>
+
+Kannattaa myös pitää mielessä, että React-komponentin sisällön tulee (yleensä) sisältää yksi juurielementti. Eli div tagit elementtien ympärille. Komponentin App määrittely ilman uloimmaista div-elementtiä johtaisi virheilmoitukseen:JSX must be wrappedin an enclosing tag.
 
 ReactDOM.render(<App />, document.getElementById('root'))
 
 Komento renderöi komponentin sisällön tiedoston public/index.html määrittelemään div-elementtiin, jonka id:n arvona on ‘root’
 
+### tiedon välitys propsien avulla 
 
+
+Komponenteille on mahdollista välittää dataa propsien avulla.
+```
+const Hello = (props) => {
+  return (
+    <div>
+      <p>Hello {props.name}, you are {props.age} years old</p>
+    </div>
+  )
+}
+
+const App = () => {
+  const nimi = 'Pekka'
+  const ika = 10
+  return (
+    <div>
+      <h1>Greetings</h1>
+      <Hello name="Arto" age={26 + 10} />
+      <Hello name={nimi} age={ika} />
+    </div>
+  )
+}
+```
