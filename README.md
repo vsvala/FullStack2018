@@ -101,6 +101,12 @@ Async- ja await ovat ES7:n mukanaan tuoma uusi syntaksi, joka mahdollistaa promi
 Metodikutsu Note.find() palauttaa promisen, ja saamme itse operaation tuloksen rekisteröimällä promiselle tapahtumankäsittelijän metodilla then. Kaikki operaation suorituksen jälkeinen koodi kirjoitetaan tapahtumankäsittelijään. Jos haluaisimme tehdä peräkkäin useita asynkronisia funktiokutsuja joutuisimme tekemään kutsut tapahtumankäsittelijästä. 
 Ketjuttamalla promiseja tilanne pysyy jollain tavalla hallinnassa, callback-helvetin eli monien sisäkkäisten callbackien sijaan saadaan aikaan siistihkö then-kutsujen ketju.
 
+### Token perustainen autentikointi, kirjautuminen
+Asenna JWT [jsonwebtoken-kirjasto](https://github.com/auth0/node-jsonwebtoken), jonka avulla koodimme pystyy generoimaan [JSON web token](https://jwt.io/) -muotoisia tokeneja.Token on digitaalisesti allekirjoitettu käyttämällä salaisuutena ympäristömuuttujassa SECRET olevaa merkkijonoa. Digitaalinen allekirjoitus varmistaa sen, että ainoastaan salaisuuden tuntevilla on mahdollisuus generoida validi token. Ympäristömuuttujalle pitää muistaa asettaa arvo tiedostoon .env.
+
+Tokenin välittämiseen selaimesta backendiin käytämme ratkaisussamme Authorization-headeria. Tokenin lisäksi headerin avulla kerrotaan mistä autentikointiskeemasta on kyse. Skeeman ilmaiseminen kertoo näissä tapauksissa palvelimelle, miten mukana olevat kredentiaalit tulee tulkita.Käytetään Bearer-skeemaa.
+
+Käyttäjätunnuksia, salasanoja ja tokenautentikaatiota hyödyntäviä sovelluksia tulee aina käyttää salatun HTTPS-yhteyden yli.
 
 # Tietokanta
 
@@ -111,7 +117,10 @@ Tehtävissä on käytössä [MongoDB:tä](https://www.mongodb.com/) joka on ns. 
 Mongoosea voisi luonnehtia: object document mapper (ODM), ja sen avulla Javascript-olioiden tallettaminen mongon dokumenteiksi on suoraviivaista.
 asennus: npm install mongoose --save
 
+Liitoksen tekeminen suoritetaan mongoosen komennolla **populate**. Populaten yhteydessä on myös mahdollista rajata mitä kenttiä sisällytettävistä dokumenteista otetaan mukaan. 
 
+### [bcrypt-kirjasto:](https://github.com/kelektiv/node.bcrypt.js) salasanojen hashaamiseen
+Tietokantaan ei talleteta pyynnön mukana tulevaa salasanaa, vaan funktion bcrypt.hash avulla laskettu hash.
 
 
 ###  ESlint
