@@ -41,17 +41,36 @@ JSX:n avulla voi kirjoittaa HTML/XML-tyylistä koodia jossa on sekaisin html-ele
 ### Axios kirjasto, promiset
 Käytetään selaimen ja palvelimen väliseen kommunikaatioon. Axiosin metodi get palauttaa promisen,joka edustaa asynkronista operaatiota. Promise voi olla tilassa pendin, fulfilled/resolved, rejected. Axios-kirjasto osaa parsia pelvelimelta tulleen datan Javascript-taulukoksi.
 
+### Komponenttien lifecycle-metodit
+Reactin luokkien avulla määritellyillä komponenteilla voidaan määritellä joukko lifecycle-metodeita, eli metodeita, joita React kutsuu tietyssä komponentin “elinkaaren” vaiheessa. Yleinen tapa datan palvelimelta tapahtuvaan hakemiseen on suorittaa se metodissa **componentDidMount**. React kutsuu metodia sen jälkeen kun konstruktori on suoritettu ja render-metodi on suoritettu ensimmäistä kertaa.
+
+ ### DOM = Document Object Model 
+ Document Object Model eli DOM on ohjelmointirajapinta eli API, joka mahdollistaa selaimessa esitettävien web-sivuja vastaavien elementtipuiden muokkaamisen ohjelmallisesti.
+
 ### REST = Representational State Transfer -arkkitehtuurimalli
 on HTTP-protokollaan perustuva arkkitehtuurimalli ohjelmointirajapintojen toteuttamiseen. Se määrittelee, millaisilla operaatioilla palvelinten dataa pyydetään, lisätään ja käsitellään.Restin tärkeä määrittävä tekijä on tilattomuus.Toinen tärkeä osa on palvelin–asiakas-malli.Rest pohjaa vahvasti http-protokollan ominaisuuksiin. Http:n metodeja (get, post, put ja delete) sekä eri uri:ta käytetään kuvaamaan pyynnön luonnetta, jolloin itse pyynnön dataan ei tarvitse sisällyttää metatietoja. Jokaisella resurssilla on URL eli sen yksilöivä osoite.Erittäin yleinen konventio on muodostaa resurssien yksilöivät URLit liittäen resurssityypin nimi ja resurssin yksilöivä tunniste.
 
 Erittäin yleinen konventio on muodostaa resurssien yksilöivät URLit liittäen resurssityypin nimi ja resurssin yksilöivä tunniste.
 
+ ### HTML  Hypertext Markup Language
+ Html n avulla esitetään sivun rakenne ja sisältö = teksti ja kuvat. Htmlon kieli, jonka avulla WWW-selaimelle kerrotaan sivun millaisia osia WWW-dokumentti sisältää.
+
+ ### CSS = Cascading Style Sheets 
+ CSS on kieli, jonka avulla web-sovellusten ulkoasu määritellään
+
+BACKEND
 ### Node.js 
  [Node.js](https://nodejs.org/en/) on avoimen lähdekoodin alustariippumaton JavaScript runtime-ympäristö JavaScript-koodin suorittamiseen palvelimella. Node.js mahdollistaa koodin suorittamisen suoraan palvelimella, jonka jälkeen verkkosivu lähetetään käyttäjälle. Node.jspohjautuu Googlen Chrome V8 JavaScript-moottoriin. Selaimet eivät vielä osaa uusimpia Javascriptin ominaisuuksia ja siksi selainpuolen koodi täytyy kääntää eli transpiloida esim babel:illa. Backendin toteutusympäristönä käytetään kurssilla Node.js:ää Backendissä Nodea suoritetaan koodia suoraan ilman  transpilointivaihetta. Saat käynnistettyä interaktiivisen node-repl:in kirjoittamalla komentoriville node.
 
 ### Express-sovelluskehys
 Node.js:n [Express-sovelluskehys](https://expressjs.com/)
 Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmointirajapinnan tarjoama kirjasto.
+
+### [body-parser kirjasto HTTP POST-pyynnön käsittelyyn](https://github.com/expressjs/body-parser)
+middleware HTTP POST pyyntöjen käsittelyn apuri,middleware. Body-parserin toimintaperiaatteena on, että se ottaa pyynnön mukana olevan JSON-muotoisen datan, muuttaa sen Javascript-olioksi. Tapahtumankäsittelijäfunktio pääsee dataan käsiksi viittaamalla request.Body-parserin toimintaperiaatteena on, että se ottaa pyynnön mukana olevan JSON-muotoisen datan request-oliosta,muuttaa/parsii sen Javascript-olioksi ja sijoittaa request-olion kenttään body ennen kuin routen käsittelijää kutsutaan.
+
+### [nodemon](https://github.com/remy/nodemon) 
+sovelluskehitystyökalu jota käytetään sovelluksen Backendin automaattiseen uudelleenkäynnistykseen. 
 
 ### Redux kirjasto
 Tarjoaa standardin tavan sille miten ja missä sovelluksen tila pidetään sekä tavalle tehdä tilaan muutoksia. Sovelluksen tilan hallinta erotetaan kokonaan Reactin komponenttien ulkopuolisiin varastoihin eli storeihin. Storessa olevaa tilaa ei muuteta suoraan, vaan tapahtumien eli actionien avulla.
@@ -60,30 +79,28 @@ Koko sovelluksen tila talletetaan yhteen storen tallettamaan Javascript-objektii
 
  ### JSON = JavaScript Object Notation
  JSON-muotoinen “raakadata”, tiedostoformaatti
-
- ### DOM = Document Object Model 
- Document Object Model eli DOM on ohjelmointirajapinta eli API, joka mahdollistaa selaimessa esitettävien web-sivuja vastaavien elementtipuiden muokkaamisen ohjelmallisesti.
  
 ### NPM: Node Package Manager
 NPM: Node Package Manager on pakettien hallinta työkalu, joka mahdollistaa moduulien julkaisun muiden käyttöön. npm eli Javascript-projektien hallintaan liittyvästä, alunperin Node-ekosysteemistä kotoisin oleva työkalu. Nykyään lähes kaikki Javascript-projektit määritellään node “pakkausmanagerin” eli npm:n avulla. Myös create-react-app:in avulla generoidut projektit ovat npm-muotoisia projekteja. Varma tuntomerkki siitä on projektin juuressa oleva tiedosto package.json.
 
 ### Middlewaret
-Middlewaret ovat funktioita, joiden avulla voidaan käsitellä request- ja response-olioita.
+Middlewaret ovat funktioita, joiden avulla voidaan käsitellä request- ja response-olioita. Esim. body-parser.
 
 ### same origin policy ja CORS 
 Yleismaailmallisia periaatteita Web-sovellusten toiminnasta: websovelluksen selaimessa suoritettava Javascript-koodi saa oletusarvoisesti kommunikoida vain samassa originissa olevan palvelimen kanssa. Muista origineista tulevat pyynnöt voidaan salli käyttämällä Noden [cors-middlewarea](https://github.com/expressjs/cors).
-
-### Komponenttien lifecycle-metodit
-Reactin luokkien avulla määritellyillä komponenteilla voidaan määritellä joukko lifecycle-metodeita, eli metodeita, joita React kutsuu tietyssä komponentin “elinkaaren” vaiheessa. Yleinen tapa datan palvelimelta tapahtuvaan hakemiseen on suorittaa se metodissa **componentDidMount**. React kutsuu metodia sen jälkeen kun konstruktori on suoritettu ja render-metodi on suoritettu ensimmäistä kertaa.
-
- ### HTML  Hypertext Markup Language
- Html n avulla esitetään sivun rakenne ja sisältö = teksti ja kuvat. Htmlon kieli, jonka avulla WWW-selaimelle kerrotaan sivun millaisia osia WWW-dokumentti sisältää.
-
- ### CSS = Cascading Style Sheets 
- CSS on kieli, jonka avulla web-sovellusten ulkoasu määritellään
  
  ### Json- server
 json-server tallettaa kaiken datan palvelimella sijaitsevaan tiedostoon db.json. Todellisuudessa data tallennetaan johonkin tietokantaan. json-server on kuitenkin käyttökelpoinen apuväline, joka mahdollistaa palvelinpuolen toiminnallisuuden käyttämisen kehitysvaiheessa ilman tarvetta itse ohjelmoida mitään.
+
+### safe ja idempotent HTTP pyynnöt
+ GET:in ja HEAD:in tulisi olla safe.Safety siis tarkoittaa, että pyynnön suorittaminen ei saa aiheuttaa palvelimelle sivuvaikutuksia eli esim. muuttaa palvelimen tietokannan tilaa, pyynnön tulee ainoastaan palauttaa palvelimella olevaa dataa.HTTP-pyynnöistä muiden paitsi POST:in tulisi olla idempotentteja:Eli jos pyynnöllä on sivuvaikutuksia, lopputulos on sama suoritetaanko pyyntö yhden tai useamman kerran.HTTP pyyntötyypeistä POST on ainoa joka ei ole safe eikä idempotent.
+
+### async-await
+Async- ja await ovat ES7:n mukanaan tuoma uusi syntaksi, joka mahdollistaa promisen palauttavien asynkronisten funktioiden kutsumisen siten, että kirjoitettava koodi näyttää synkroniselta.ES7:ssa async ja await tuovat generaattoreiden tarjoaman toiminnallisuuden ymmärrettävästi ja syntaksin puolesta selkeällä tavalla koko Javascript-kansan ulottuville.Mistä tahansa kohtaa Javascript-koodia ei awaitia kuitenkaan pysty käyttämään. Awaitin käyttö onnistuu ainoastaan jos ollaan async-funktiossa.
+
+Metodikutsu Note.find() palauttaa promisen, ja saamme itse operaation tuloksen rekisteröimällä promiselle tapahtumankäsittelijän metodilla then. Kaikki operaation suorituksen jälkeinen koodi kirjoitetaan tapahtumankäsittelijään. Jos haluaisimme tehdä peräkkäin useita asynkronisia funktiokutsuja joutuisimme tekemään kutsut tapahtumankäsittelijästä. 
+Ketjuttamalla promiseja tilanne pysyy jollain tavalla hallinnassa, callback-helvetin eli monien sisäkkäisten callbackien sijaan saadaan aikaan siistihkö then-kutsujen ketju.
+
 
 # Tietokanta
 
@@ -94,13 +111,8 @@ Tehtävissä on käytössä [MongoDB:tä](https://www.mongodb.com/) joka on ns. 
 Mongoosea voisi luonnehtia: object document mapper (ODM), ja sen avulla Javascript-olioiden tallettaminen mongon dokumenteiksi on suoraviivaista.
 asennus: npm install mongoose --save
 
-# Aputyökaluja
 
-### [nodemon](https://github.com/remy/nodemon) 
-sovelluskehitystyökalu jota käytetään sovelluksen automaattiseen uudelleenkäynnistykseen. 
 
-### [body-parser kirjasto](https://github.com/expressjs/body-parser)
-middleware HTTP POST pyyntöjen käsittelyn apuri, Body-parserin toimintaperiaatteena on, että se ottaa pyynnön mukana olevan JSON-muotoisen datan, muuttaa sen Javascript-olioksi.
 
 ###  ESlint
 Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on [ESlint](https://eslint.org/)
