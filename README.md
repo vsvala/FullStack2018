@@ -29,6 +29,7 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 ### SPA = Single-page application
 Viimeisten vuosien aikana on noussut esiin tyyli tehdä web-sovellukset käyttäen Single-page application (SPA) -tyyliä, missä sovelluksille ei enää tehdä erillisiä, palvelimen sille lähettämiä sivuja, vaan sovellus koostuu ainoastaan yhdestä palvelimen lähettämästä HTML-sivusta, jonka sisältöä manipuloidaan selaimessa suoritettavalla Javascriptillä.
 
+FRONT:
 ### REACT = JavaScript kirjasto
 Komponentti pohjainen JavaScript-kirjasto web-käyttöliittymien tekoon. React päivittää/renderöi käyttöliittymän automaattisesti kun data muuttuu. React osaa päivittää käyttöliittymästä vain ne osat jotka liittyvät muuttuneeseen dataan
 Reactilla toteutettu käyttöliittymä muodostuu koostetuista komponenteista.  Reactissa filosofiana onkin koostaa sovellus useista, pieneen asiaan keskittyvistä uudelleenkäytettävistä komponenteista.React ei käytä html- templateja vaan Javascriptia ja JSX:ää.
@@ -37,14 +38,16 @@ Reactilla toteutettu käyttöliittymä muodostuu koostetuista komponenteista.  R
 JSX on hieman XML-kieleltä näyttävää Javascriptia, jossa jokainen tagi tulee sulkea. 
 JSX:n avulla voi kirjoittaa HTML/XML-tyylistä koodia jossa on sekaisin html-elementtejä ja React-komponentteja. Html-elementit kirjoitetaan pienillä kirjaimilla. React-komponenttien nimet aloitetaan kapiteeleilla. JSX transformoidaan tavalliseksi Javascript-koodiksi. Käännöksen hoitaa automaattisesti Babel. Elementin attribuuteissa sijaitseva Javascript-koodi sijoitetaan JSX-syntaksissa {}-merkkien sisään.
 
+### Axios kirjasto, promiset
+Käytetään selaimen ja palvelimen väliseen kommunikaatioon. Axiosin metodi get palauttaa promisen,joka edustaa asynkronista operaatiota. Promise voi olla tilassa pendin, fulfilled/resolved, rejected. Axios-kirjasto osaa parsia pelvelimelta tulleen datan Javascript-taulukoksi.
+
 ### REST = Representational State Transfer -arkkitehtuurimalli
-on HTTP-protokollaan perustuva arkkitehtuurimalli ohjelmointirajapintojen toteuttamiseen. Se määrittelee, millaisilla operaatioilla palvelinten dataa pyydetään, lisätään ja käsitellään.Restin tärkeä määrittävä tekijä on tilattomuus.Toinen tärkeä osa on palvelin–asiakas-malli.Rest pohjaa vahvasti http-protokollan ominaisuuksiin. Http:n metodeja (get, post, put ja delete) sekä eri uri:ta käytetään kuvaamaan pyynnön luonnetta, jolloin itse pyynnön dataan ei tarvitse sisällyttää metatietoja.  
+on HTTP-protokollaan perustuva arkkitehtuurimalli ohjelmointirajapintojen toteuttamiseen. Se määrittelee, millaisilla operaatioilla palvelinten dataa pyydetään, lisätään ja käsitellään.Restin tärkeä määrittävä tekijä on tilattomuus.Toinen tärkeä osa on palvelin–asiakas-malli.Rest pohjaa vahvasti http-protokollan ominaisuuksiin. Http:n metodeja (get, post, put ja delete) sekä eri uri:ta käytetään kuvaamaan pyynnön luonnetta, jolloin itse pyynnön dataan ei tarvitse sisällyttää metatietoja. Jokaisella resurssilla on URL eli sen yksilöivä osoite.Erittäin yleinen konventio on muodostaa resurssien yksilöivät URLit liittäen resurssityypin nimi ja resurssin yksilöivä tunniste.
+
+Erittäin yleinen konventio on muodostaa resurssien yksilöivät URLit liittäen resurssityypin nimi ja resurssin yksilöivä tunniste.
 
 ### Node.js 
- [Node.js](https://nodejs.org/en/) on avoimen lähdekoodin alustariippumaton JavaScript runtime-ympäristö JavaScript-koodin suorittamiseen palvelimella. Node.js mahdollistaa koodin suorittamisen suoraan palvelimella, jonka jälkeen verkkosivu lähetetään käyttäjälle. Node.jspohjautuu Googlen Chrome V8 JavaScript-moottoriin.
-
-### NPM: Node Package Manager
-NPM: Node Package Manager on pakettien hallinta työkalu, joka mahdollistaa moduulien julkaisun muiden käyttöön.
+ [Node.js](https://nodejs.org/en/) on avoimen lähdekoodin alustariippumaton JavaScript runtime-ympäristö JavaScript-koodin suorittamiseen palvelimella. Node.js mahdollistaa koodin suorittamisen suoraan palvelimella, jonka jälkeen verkkosivu lähetetään käyttäjälle. Node.jspohjautuu Googlen Chrome V8 JavaScript-moottoriin. Selaimet eivät vielä osaa uusimpia Javascriptin ominaisuuksia ja siksi selainpuolen koodi täytyy kääntää eli transpiloida esim babel:illa. Backendin toteutusympäristönä käytetään kurssilla Node.js:ää Backendissä Nodea suoritetaan koodia suoraan ilman  transpilointivaihetta. Saat käynnistettyä interaktiivisen node-repl:in kirjoittamalla komentoriville node.
 
 ### Express-sovelluskehys
 Node.js:n [Express-sovelluskehys](https://expressjs.com/)
@@ -60,6 +63,9 @@ Koko sovelluksen tila talletetaan yhteen storen tallettamaan Javascript-objektii
 
  ### DOM = Document Object Model 
  Document Object Model eli DOM on ohjelmointirajapinta eli API, joka mahdollistaa selaimessa esitettävien web-sivuja vastaavien elementtipuiden muokkaamisen ohjelmallisesti.
+ 
+### NPM: Node Package Manager
+NPM: Node Package Manager on pakettien hallinta työkalu, joka mahdollistaa moduulien julkaisun muiden käyttöön. npm eli Javascript-projektien hallintaan liittyvästä, alunperin Node-ekosysteemistä kotoisin oleva työkalu. Nykyään lähes kaikki Javascript-projektit määritellään node “pakkausmanagerin” eli npm:n avulla. Myös create-react-app:in avulla generoidut projektit ovat npm-muotoisia projekteja. Varma tuntomerkki siitä on projektin juuressa oleva tiedosto package.json.
 
 ### Middlewaret
 Middlewaret ovat funktioita, joiden avulla voidaan käsitellä request- ja response-olioita.
@@ -75,6 +81,9 @@ Reactin luokkien avulla määritellyillä komponenteilla voidaan määritellä j
 
  ### CSS = Cascading Style Sheets 
  CSS on kieli, jonka avulla web-sovellusten ulkoasu määritellään
+ 
+ ### Json- server
+json-server tallettaa kaiken datan palvelimella sijaitsevaan tiedostoon db.json. Todellisuudessa data tallennetaan johonkin tietokantaan. json-server on kuitenkin käyttökelpoinen apuväline, joka mahdollistaa palvelinpuolen toiminnallisuuden käyttämisen kehitysvaiheessa ilman tarvetta itse ohjelmoida mitään.
 
 # Tietokanta
 
