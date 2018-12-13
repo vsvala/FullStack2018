@@ -108,6 +108,13 @@ Tokenin välittämiseen selaimesta backendiin käytämme ratkaisussamme Authoriz
 
 Käyttäjätunnuksia, salasanoja ja tokenautentikaatiota hyödyntäviä sovelluksia tulee aina käyttää salatun HTTPS-yhteyden yli.
 
+### [bcrypt-kirjasto:](https://github.com/kelektiv/node.bcrypt.js) salasanojen hashaamiseen
+Tietokantaan ei talleteta pyynnön mukana tulevaa salasanaa, vaan funktion bcrypt.hash avulla laskettu hash.
+
+### [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Storage)
+Selaimessa oleva avain-arvo- eli key-value-periaatteella toimiva tietokanta. Storageen talletetut arvot säilyvät vaikka sivu uudelleenladattaisiin. Storage on ns. origin-kohtainen, eli jokaisella selaimella käytettävällä web-sovelluksella on oma storagensa. Koska storageen talletettavat arvot ovat merkkijonoja, emme voi tallettaa storageen suoraan Javascript-oliota, vaan ne on muutettava ensin JSON-muotoon metodilla JSON.stringify. Vastaavasti kun JSON-muotoinen olio luetaan local storagesta, on se parsittava takaisin Javascript-olioksi metodilla JSON.parse.
+
+
 # Tietokanta
 
 ### Mongo ja mlab
@@ -119,8 +126,7 @@ asennus: npm install mongoose --save
 
 Liitoksen tekeminen suoritetaan mongoosen komennolla **populate**. Populaten yhteydessä on myös mahdollista rajata mitä kenttiä sisällytettävistä dokumenteista otetaan mukaan. 
 
-### [bcrypt-kirjasto:](https://github.com/kelektiv/node.bcrypt.js) salasanojen hashaamiseen
-Tietokantaan ei talleteta pyynnön mukana tulevaa salasanaa, vaan funktion bcrypt.hash avulla laskettu hash.
+
 
 
 ###  ESlint
