@@ -79,6 +79,9 @@ Koko sovelluksen tila talletetaan yhteen storen tallettamaan Javascript-objektii
 
 React Redux -kirjaston määrittelemä funktio **connect** on paras ratkaisu siihen, miten Redux-store saadaan välitettyä React-componenteille. Muita kenoja this.props.store tai context.
 
+###  [redux-thunk-kirjasto](https://github.com/reduxjs/redux-thunk)
+ redux-thunk-kirjasto on ns. redux-middleware, joka mahdollistaa asynkronisten actionien luomisen.
+
  ### JSON = JavaScript Object Notation
  JSON-muotoinen “raakadata”, tiedostoformaatti
  
