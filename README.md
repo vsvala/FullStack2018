@@ -114,6 +114,8 @@ Tietokantaan ei talleteta pyynnön mukana tulevaa salasanaa, vaan funktion bcryp
 ### [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Storage)
 Selaimessa oleva avain-arvo- eli key-value-periaatteella toimiva tietokanta. Storageen talletetut arvot säilyvät vaikka sivu uudelleenladattaisiin. Storage on ns. origin-kohtainen, eli jokaisella selaimella käytettävällä web-sovelluksella on oma storagensa. Koska storageen talletettavat arvot ovat merkkijonoja, emme voi tallettaa storageen suoraan Javascript-oliota, vaan ne on muutettava ensin JSON-muotoon metodilla JSON.stringify. Vastaavasti kun JSON-muotoinen olio luetaan local storagesta, on se parsittava takaisin Javascript-olioksi metodilla JSON.parse.
 
+### propTypes kirjasto
+Sen avulla voidaan määritellä propsit joille on “pakko” antaa arvo.
 
 # Tietokanta
 
@@ -168,8 +170,8 @@ ja se tulee muistaa ottaa käyttöön konfiguraatiossa.
  jest
  
  ### API:n testaus
-API:n testaamisen käytetään Facebookin [Jest](https://jestjs.io/) supertest-kirjastoa. Frontin testauksessa käytetään PUN lisäksi AirBnB:n kehittämää [enzyme-kirjastoa](https://github.com/airbnb/enzyme).
-t
+API:n testaamisen käytetään Facebookin [Jest](https://jestjs.io/) supertest-kirjastoa. Frontin testauksessa käytetään lisäksi AirBnB:n kehittämää [enzyme-kirjastoa](https://github.com/airbnb/enzyme).
+
 Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä testejä. (“valekomponentilla” eli mockilla.mongo-mock.)
  
  Testien ajaminen konsolista
