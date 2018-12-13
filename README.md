@@ -77,6 +77,8 @@ Tarjoaa standardin tavan sille miten ja missä sovelluksen tila pidetään sekä
 
 Koko sovelluksen tila talletetaan yhteen storen tallettamaan Javascript-objektiin.Storen tilaa muutetaan actionien avulla. Actionit ovat olioita, joilla on vähintään actionin tyypin määrittelevä kenttä type.Actionien vaikutus sovelluksen tilaan määritellään reducerin avulla. Käytännössä reducer on funktio, joka saa parametrikseen olemassaolevan staten tilan sekä actionin ja palauttaa staten uuden tilan. Store käyttää reduceria käsitelläkseen actioneja, jotka dispatchataan eli “lähetetään” storelle sen dispatch-metodilla.
 
+React Redux -kirjaston määrittelemä funktio **connect** on paras ratkaisu siihen, miten Redux-store saadaan välitettyä React-componenteille. Muita kenoja this.props.store tai context.
+
  ### JSON = JavaScript Object Notation
  JSON-muotoinen “raakadata”, tiedostoformaatti
  
