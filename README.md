@@ -122,6 +122,12 @@ Selaimessa oleva avain-arvo- eli key-value-periaatteella toimiva tietokanta. St
 ### propTypes kirjasto
 Sen avulla voidaan määritellä propsit joille on “pakko” antaa arvo.
 
+### [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
+ Sen avulla Redux-storen tilaa ja sitä muuttavia actioneja on mahdollisuus seurata selaimen konsolista.Selaimen lisäosan lisäksi debugatessa tarvitaan kirjastoa [redux-devtools-extension](https://www.npmjs.com/package/redux-devtools-extension).
+
+### [React router](https://github.com/ReactTraining/react-router)
+Reactin valmis komponentti React router tarjoaa erinomaisen ratkaisun React-sovelluksen reititykseen ja navigaation hallintaan.Reititys, eli komponenttien ehdollinen, selaimen urliin perustuva renderöinti otetaan käyttöön sijoittamalla komponentteja Router-komponentin lapsiksi, eli Router-tagien sisälle. Kyseessä on **BrowserRouter**.Normaalisti selain lataa uuden sivun osoiterivillä olevan urlin muuttuessa. HTML5 history API:n avulla BrowserRouter kuitenkin mahdollistaa sen, että selaimen osoiterivillä olevaa urlia voidaan käyttää React-sovelluksen sisäiseen “reitittämiseen”, eli vaikka osoiterivillä oleva url muuttuu, sivun sisältöä manipuloidaan ainoastaan Javascriptillä ja selain ei lataa uutta sisältöä palvelimelta. Selaimen toiminta back- ja forward-toimintojen ja bookmarkien tekemisen suhteen on kuitenkin loogista, eli toimii kuten perinteisillä web-sivuilla. Selaimen urliin perustuen renderöitävät komponentit määritellään komponentin Route avulla. 
+
 # Tietokanta
 
 ### Mongo ja mlab
