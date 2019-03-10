@@ -26,6 +26,9 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa7 Blog](https://github.com/vsvala/FullStack2018/tree/master/osa7)**
 
+**[osa7 Bogi herokussa](https://limitless-crag-99090.herokuapp.com/)** Linkki Herokussa pyörivään sovellukseen
+
+
 
 # Käytettyjä komentoja
 front
