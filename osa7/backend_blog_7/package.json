@@ -1,0 +1,29 @@
+{
+  "name": "osa4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "watch": "cross-env NODE_ENV=development nodemon index.js",
+    "test": "cross-env NODE_ENV=test jest --verbose",
+    "lint": "eslint ."
+  },
+  "author": "Virva Svala",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.2"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "eslint": "^5.1.0",
+    "jest": "^23.4.0",
+    "nodemon": "^1.17.5",
+    "supertest": "^3.1.0"
+  }
+}

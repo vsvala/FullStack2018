@@ -1,0 +1,13 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkthbGxlIiwiaWQiOiI1YjUwNzE4OTJkZTBiZDI3NDE4ZDEzMGYiLCJpYXQiOjE1NDM0MjU4MzF9.VCZltQvUrdeGN-g6HZlxjoOmAjV66qrGNgwIoKKmtes
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkthIiwiaWQiOiI1YjUwYWZiNTBlZDk4ZTQ4YzhhZTM5MzQiLCJpYXQiOjE1MzIwMTQ1ODJ9.Qfv-LgIRljmPfrEVVeKheW_QQPrYSvlZ2VMnxb6a0IM
+
+{
+ "title": "Lahetetty VS Code REST clientilla ", 
+ "author":"Testaaja",
+ "url":"www.test",
+ "likes":"2",
+  "userId":"5b50afb50ed98e48c8ae3934"
+  //"5b5071892de0bd27418d130f"
+}

@@ -1,36 +1,39 @@
 import React from 'react'
-import { doteCreation } from '../reducers/anecdoteReducer'
-import { notiCreation } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
+import { createAnecdote } from './../reducers/anecdoteReducer'
+import { notify } from './../reducers/notificationReducer'
 
-class AnecdoteForm extends React.Component {
-  handleSubmit = (event) => {
+
+
+const AnecdoteForm = (props) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    const content = event.target.dote.value
-    //dispatchataan  eli lähetetään actioni storelle
-    //this.props.store.dispatch(
-    this.props.doteCreation(content) && notiCreation()
-
-    event.target.dote.value = ''
+    console.log('createAnecdote')
+    const content = event.target.anecdote.value
+    const writer = event.target.author.value
+    props.createAnecdote(content, writer) //&& notify(`anecdote ${content} created`, 5000)
+    props.notify(`anecdote ${content} created`, 5)
+    event.target.anecdote.value = ''
+    event.target.author.value = ''
   }
-  render() {
-    return (
+  ////render() {
+  return (
     // Uuden muistiinpanon sisältö saadaan suoraan lomakkeen syötekentästä,
     //johon kentän nimeämisen ansiosta päästään käsiksi tapahtumaolion kautta event.target.note.value
-      <div>
-        <h2>create new</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div><input name='dote'/></div>
-          <button>create</button>
-        </form>
-      </div>
-    )
-  }
+    <div>
+      <h2>create new</h2>
+      <form onSubmit={handleSubmit}>
+        <div><input name='anecdote'/></div>
+        <div><input name='author'/></div>
+        <button>create</button>
+      </form>
+    </div>
+  )
 }
+//}
 
 export default connect(
   null,
-  { doteCreation }
+  { createAnecdote, notify }
 )(AnecdoteForm)
-
-//export default AnecdoteForm

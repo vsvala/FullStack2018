@@ -1,19 +1,108 @@
 {
-  "posts": [
+  "anecdotes": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "content": "If it hurts, do it more often",
+      "id": "47145",
+      "votes": 26
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "content": "Adding manpower to a late software project makes it later!",
+      "id": "21149",
+      "votes": 74
+    },
+    {
+      "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
+      "id": "69581",
+      "votes": 11
+    },
+    {
+      "content": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+      "id": "36975",
+      "votes": 13
+    },
+    {
+      "content": "Premature optimization is the root of all evil.",
+      "id": "25170",
+      "votes": 7
+    },
+    {
+      "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+      "id": "98312",
+      "votes": 3
+    },
+    {
+      "content": "lol",
+      "votes": 3,
+      "id": "rpbzWfO"
+    },
+    {
+      "content": "uuuuuu",
+      "votes": 0,
+      "id": "2AyoryU"
+    },
+    {
+      "content": "anekdootti",
+      "votes": 0,
+      "id": "qk41OVA"
+    },
+    {
+      "content": "ane",
+      "votes": 0,
+      "id": "mzq5pvc"
+    },
+    {
+      "content": "uusdootti",
+      "author": "writer",
+      "votes": 0,
+      "id": "RpdOvtw"
+    },
+    {
+      "content": "Tämäpä toimii",
+      "author": "Viku",
+      "votes": 2,
+      "id": "zygIPSY"
+    },
+    {
+      "content": "uus",
+      "author": "writer",
+      "votes": 0,
+      "id": "YdLqi_1"
+    },
+    {
+      "content": "nnnnnnnnnnnnnnnnn",
+      "author": ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "votes": 0,
+      "id": "4EWrtj-"
+    },
+    {
+      "content": "uuus",
+      "author": "uuspäivitys",
+      "votes": 0,
+      "id": "_vxUKbY"
+    },
+    {
+      "content": "vvvvvvvvvvvvvv",
+      "author": "vvvvvvvvvvvvvv",
+      "votes": 5,
+      "id": "VmokFPY"
+    },
+    {
+      "content": "uusi ane",
+      "author": "new author..",
+      "votes": 4,
+      "id": "gmqnoGb"
+    },
+    {
+      "content": "jnlknl",
+      "author": "xaxa",
+      "votes": 0,
+      "id": "X5W3TtB"
+    },
+    {
+      "content": "zaza",
+      "author": "azaz",
+      "votes": 0,
+      "id": "p0bWuvp"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
