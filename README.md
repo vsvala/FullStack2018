@@ -26,6 +26,28 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa7 Blog](https://github.com/vsvala/FullStack2018/tree/master/osa7)**
 
+
+# Käytettyjä komentoja
+front
+
+```npm start```
+
+back
+
+```npm run watch```
+
+lintti
+
+```npm run lint```
+
+testit
+
+```CI=true npm tes```
+
+Testauskattavuus saadaan selville suorittamalla testit komennolla
+
+```CI=true npm test -- --coverage```
+
 # Käytetyt työkalut ja termit
 
 ### SPA = Single-page application
