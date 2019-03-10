@@ -24,6 +24,8 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa6 Anecdotes](https://github.com/vsvala/FullStack2018/tree/master/osa6)**
 
+**[osa7 Blog](https://github.com/vsvala/FullStack2018/tree/master/osa7)**
+
 # Käytetyt työkalut ja termit
 
 ### SPA = Single-page application
