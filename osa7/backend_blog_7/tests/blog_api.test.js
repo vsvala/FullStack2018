@@ -20,7 +20,7 @@ describe('when there is initially some notes saved', async () => {
     const blogsInDatabase=await blogsInDb()
 
     const response = await api
-      .get('/api/notes') // HTTP GET -pyynnön osoitteeseen api/notes 
+      .get('/api/notes') // HTTP GET -pyynnön osoitteeseen api/notes
       .expect(200) // varmistaa, että pyyntöön vastataan statuskoodilla 200 j
       .expect('Content-Type', /application\/json/) // varmistaa data palautetaan oikeassa muodossa
 
@@ -70,7 +70,7 @@ describe('when there is initially some notes saved', async () => {
         const response = await api
           .post('/api/users ')
           .send(bloggaaja)
-
+        console.log(response)
       } catch (error) {
         console.log(error)
       }

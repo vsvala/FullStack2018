@@ -98,19 +98,6 @@ blogsRouter.get('/:id', async (request, response) => {
   }
 })
 
-
-// app.get('/notes/:id', (request, response) => {
-//   const id = Number(request.params.id)
-//   const note = notes.find(note => note.id === id)
-
-//   if ( note ) {
-//     response.json(note)
-//   } else {
-//     response.status(404).end()
-//   }
-// })
-
-
 // muokkaus
 blogsRouter.put('/:id', (request, response) => {
   const body = request.body
