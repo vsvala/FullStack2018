@@ -4,6 +4,12 @@ Kurssilla tutustutaan Javascriptilla tapahtuvaan moderniin websovelluskehityksee
 
 Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suoritusympäristöjen hallintaa sekä NoSQL-tietokantoja(Mongodb).
 
+**[osa0 sekvenssikaavioiden piirtäminen](https://github.com/vsvala/FullStack2018/tree/master/osa0)**
+
+**[osa1 reactin alkeita](https://github.com/vsvala/Fullstack_phonebook_osa3)**
+
+**[osa2 tehtäviä](https://github.com/vsvala/FullStack2018)**
+
 **[osa3 Puhelinmuistio](https://github.com/vsvala/Fullstack_phonebook_osa3)**
 
 **[osa3 Puhelinmuistio heroku](https://limitless-island-73610.herokuapp.com)** Linkki sovelluksen nettiversioon Herokussa 
@@ -23,52 +29,104 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 ### SPA = Single-page application
 Viimeisten vuosien aikana on noussut esiin tyyli tehdä web-sovellukset käyttäen Single-page application (SPA) -tyyliä, missä sovelluksille ei enää tehdä erillisiä, palvelimen sille lähettämiä sivuja, vaan sovellus koostuu ainoastaan yhdestä palvelimen lähettämästä HTML-sivusta, jonka sisältöä manipuloidaan selaimessa suoritettavalla Javascriptillä.
 
+FRONT:
 ### REACT = JavaScript kirjasto
 Komponentti pohjainen JavaScript-kirjasto web-käyttöliittymien tekoon. React päivittää/renderöi käyttöliittymän automaattisesti kun data muuttuu. React osaa päivittää käyttöliittymästä vain ne osat jotka liittyvät muuttuneeseen dataan
-Reactilla toteutettu käyttöliittymä muodostuu koostetuista komponenteista. React ei käytä templateja vaan Javascriptia ja JSX:ää.
+Reactilla toteutettu käyttöliittymä muodostuu koostetuista komponenteista.  Reactissa filosofiana onkin koostaa sovellus useista, pieneen asiaan keskittyvistä uudelleenkäytettävistä komponenteista.React ei käytä html- templateja vaan Javascriptia ja JSX:ää.
 
 ### JSX
-JSX on hieman XML-kieleltä näyttävää Javascriptia
-JSX:n avulla voi kirjoittaa XML-tyylistä koodia jossa on sekaisin html-elementtejä ja React-komponentteja Html-elementit kirjoitetaan pienillä kirjaimilla. React-komponenttien nimet aloitetaan kapiteeleilla. JSX transformoidaan tavalliseksi Javascript-koodiksi. Elementin attribuuteissa sijaitseva Javascript-koodi sijoitetaan JSX-syntaksissa {}-merkkien sisään.
+JSX on hieman XML-kieleltä näyttävää Javascriptia, jossa jokainen tagi tulee sulkea. 
+JSX:n avulla voi kirjoittaa HTML/XML-tyylistä koodia jossa on sekaisin html-elementtejä ja React-komponentteja. Html-elementit kirjoitetaan pienillä kirjaimilla. React-komponenttien nimet aloitetaan kapiteeleilla. JSX transformoidaan tavalliseksi Javascript-koodiksi. Käännöksen hoitaa automaattisesti Babel. Elementin attribuuteissa sijaitseva Javascript-koodi sijoitetaan JSX-syntaksissa {}-merkkien sisään.
 
-### REST = Representational State Transfer -arkkitehtuurimalli
-on HTTP-protokollaan perustuva arkkitehtuurimalli ohjelmointirajapintojen toteuttamiseen. Se määrittelee, millaisilla operaatioilla palvelinten dataa pyydetään, lisätään ja käsitellään.Restin tärkeä määrittävä tekijä on tilattomuus.Toinen tärkeä osa on palvelin–asiakas-malli.Rest pohjaa vahvasti http-protokollan ominaisuuksiin. Http:n metodeja (get, post, put ja delete) sekä eri uri:ta käytetään kuvaamaan pyynnön luonnetta, jolloin itse pyynnön dataan ei tarvitse sisällyttää metatietoja.  
+### Axios kirjasto, promiset
+Käytetään selaimen ja palvelimen väliseen kommunikaatioon. Axiosin metodi get palauttaa promisen,joka edustaa asynkronista operaatiota. Promise voi olla tilassa pendin, fulfilled/resolved, rejected. Axios-kirjasto osaa parsia pelvelimelta tulleen datan Javascript-taulukoksi.
 
-### Node.js 
- [Node.js](https://nodejs.org/en/) on avoimen lähdekoodin alustariippumaton JavaScript runtime-ympäristö JavaScript-koodin suorittamiseen palvelimella. Node.js mahdollistaa koodin suorittamisen suoraan palvelimella, jonka jälkeen verkkosivu lähetetään käyttäjälle. Node.jspohjautuu Googlen Chrome V8 JavaScript-moottoriin.
-
-### NPM: Node Package Manager
-NPM: Node Package Manager on pakettien hallinta työkalu, joka mahdollistaa moduulien julkaisun muiden käyttöön.
-
-### Express-sovelluskehys
-Node.js:n [Express-sovelluskehys](https://expressjs.com/)
-Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmointirajapinnan tarjoama kirjasto.
-
-### Redux kirjasto
-Tarjoaa standardin tavan sille miten ja missä sovelluksen tila pidetään sekä tavalle tehdä tilaan muutoksia. Sovelluksen tilan hallinta erotetaan kokonaan Reactin komponenttien ulkopuolisiin varastoihin eli storeihin. Storessa olevaa tilaa ei muuteta suoraan, vaan tapahtumien eli actionien avulla.
-
-Koko sovelluksen tila talletetaan yhteen storen tallettamaan Javascript-objektiin.Storen tilaa muutetaan actionien avulla. Actionit ovat olioita, joilla on vähintään actionin tyypin määrittelevä kenttä type.Actionien vaikutus sovelluksen tilaan määritellään reducerin avulla. Käytännössä reducer on funktio, joka saa parametrikseen olemassaolevan staten tilan sekä actionin ja palauttaa staten uuden tilan. Store käyttää reduceria käsitelläkseen actioneja, jotka dispatchataan eli “lähetetään” storelle sen dispatch-metodilla.
-
- ### JSON = JavaScript Object Notation
- JSON-muotoinen “raakadata”, tiedostoformaatti
+### Komponenttien lifecycle-metodit
+Reactin luokkien avulla määritellyillä komponenteilla voidaan määritellä joukko lifecycle-metodeita, eli metodeita, joita React kutsuu tietyssä komponentin “elinkaaren” vaiheessa. Yleinen tapa datan palvelimelta tapahtuvaan hakemiseen on suorittaa se metodissa **componentDidMount**. React kutsuu metodia sen jälkeen kun konstruktori on suoritettu ja render-metodi on suoritettu ensimmäistä kertaa.
 
  ### DOM = Document Object Model 
  Document Object Model eli DOM on ohjelmointirajapinta eli API, joka mahdollistaa selaimessa esitettävien web-sivuja vastaavien elementtipuiden muokkaamisen ohjelmallisesti.
 
-### Middlewaret
-Middlewaret ovat funktioita, joiden avulla voidaan käsitellä request- ja response-olioita.
+### REST = Representational State Transfer -arkkitehtuurimalli
+on HTTP-protokollaan perustuva arkkitehtuurimalli ohjelmointirajapintojen toteuttamiseen. Se määrittelee, millaisilla operaatioilla palvelinten dataa pyydetään, lisätään ja käsitellään.Restin tärkeä määrittävä tekijä on tilattomuus.Toinen tärkeä osa on palvelin–asiakas-malli.Rest pohjaa vahvasti http-protokollan ominaisuuksiin. Http:n metodeja (get, post, put ja delete) sekä eri uri:ta käytetään kuvaamaan pyynnön luonnetta, jolloin itse pyynnön dataan ei tarvitse sisällyttää metatietoja. Jokaisella resurssilla on URL eli sen yksilöivä osoite.Erittäin yleinen konventio on muodostaa resurssien yksilöivät URLit liittäen resurssityypin nimi ja resurssin yksilöivä tunniste.
 
-### same origin policy ja CORS 
-Yleismaailmallisia periaatteita Web-sovellusten toiminnasta: websovelluksen selaimessa suoritettava Javascript-koodi saa oletusarvoisesti kommunikoida vain samassa originissa olevan palvelimen kanssa. Muista origineista tulevat pyynnöt voidaan salli käyttämällä Noden [cors-middlewarea](https://github.com/expressjs/cors).
-
-### Komponenttien lifecycle-metodit
-Reactin luokkien avulla määritellyillä komponenteilla voidaan määritellä joukko lifecycle-metodeita, eli metodeita, joita React kutsuu tietyssä komponentin “elinkaaren” vaiheessa. Yleinen tapa datan palvelimelta tapahtuvaan hakemiseen on suorittaa se metodissa **componentDidMount**. React kutsuu metodia sen jälkeen kun konstruktori on suoritettu ja render-metodi on suoritettu ensimmäistä kertaa.
+Erittäin yleinen konventio on muodostaa resurssien yksilöivät URLit liittäen resurssityypin nimi ja resurssin yksilöivä tunniste.
 
  ### HTML  Hypertext Markup Language
  Html n avulla esitetään sivun rakenne ja sisältö = teksti ja kuvat. Htmlon kieli, jonka avulla WWW-selaimelle kerrotaan sivun millaisia osia WWW-dokumentti sisältää.
 
  ### CSS = Cascading Style Sheets 
  CSS on kieli, jonka avulla web-sovellusten ulkoasu määritellään
+
+BACKEND
+### Node.js 
+ [Node.js](https://nodejs.org/en/) on avoimen lähdekoodin alustariippumaton JavaScript runtime-ympäristö JavaScript-koodin suorittamiseen palvelimella. Node.js mahdollistaa koodin suorittamisen suoraan palvelimella, jonka jälkeen verkkosivu lähetetään käyttäjälle. Node.jspohjautuu Googlen Chrome V8 JavaScript-moottoriin. Selaimet eivät vielä osaa uusimpia Javascriptin ominaisuuksia ja siksi selainpuolen koodi täytyy kääntää eli transpiloida esim babel:illa. Backendin toteutusympäristönä käytetään kurssilla Node.js:ää Backendissä Nodea suoritetaan koodia suoraan ilman  transpilointivaihetta. Saat käynnistettyä interaktiivisen node-repl:in kirjoittamalla komentoriville node.
+
+### Express-sovelluskehys
+Node.js:n [Express-sovelluskehys](https://expressjs.com/)
+Nodella tapahtuvaa web-sovellusten ohjelmointia helpottamaan kehitelty ohjelmointirajapinnan tarjoama kirjasto.
+
+### [body-parser kirjasto HTTP POST-pyynnön käsittelyyn](https://github.com/expressjs/body-parser)
+middleware HTTP POST pyyntöjen käsittelyn apuri,middleware. Body-parserin toimintaperiaatteena on, että se ottaa pyynnön mukana olevan JSON-muotoisen datan, muuttaa sen Javascript-olioksi. Tapahtumankäsittelijäfunktio pääsee dataan käsiksi viittaamalla request.Body-parserin toimintaperiaatteena on, että se ottaa pyynnön mukana olevan JSON-muotoisen datan request-oliosta,muuttaa/parsii sen Javascript-olioksi ja sijoittaa request-olion kenttään body ennen kuin routen käsittelijää kutsutaan.
+
+### [nodemon](https://github.com/remy/nodemon) 
+sovelluskehitystyökalu jota käytetään sovelluksen Backendin automaattiseen uudelleenkäynnistykseen. 
+
+### Redux kirjasto
+Tarjoaa standardin tavan sille miten ja missä sovelluksen tila pidetään sekä tavalle tehdä tilaan muutoksia. Sovelluksen tilan hallinta erotetaan kokonaan Reactin komponenttien ulkopuolisiin varastoihin eli storeihin. Storessa olevaa tilaa ei muuteta suoraan, vaan tapahtumien eli actionien avulla.
+
+Koko sovelluksen tila talletetaan yhteen storen tallettamaan Javascript-objektiin.Storen tilaa muutetaan actionien avulla. Actionit ovat olioita, joilla on vähintään actionin tyypin määrittelevä kenttä type.Actionien vaikutus sovelluksen tilaan määritellään reducerin avulla. Käytännössä reducer on funktio, joka saa parametrikseen olemassaolevan staten tilan sekä actionin ja palauttaa staten uuden tilan. Store käyttää reduceria käsitelläkseen actioneja, jotka dispatchataan eli “lähetetään” storelle sen dispatch-metodilla.
+
+React Redux -kirjaston määrittelemä funktio **connect** on paras ratkaisu siihen, miten Redux-store saadaan välitettyä React-componenteille. Muita kenoja this.props.store tai context.
+
+###  [redux-thunk-kirjasto](https://github.com/reduxjs/redux-thunk)
+ redux-thunk-kirjasto on ns. redux-middleware, joka mahdollistaa asynkronisten actionien luomisen.
+
+ ### JSON = JavaScript Object Notation
+ JSON-muotoinen “raakadata”, tiedostoformaatti
+ 
+### NPM: Node Package Manager
+NPM: Node Package Manager on pakettien hallinta työkalu, joka mahdollistaa moduulien julkaisun muiden käyttöön. npm eli Javascript-projektien hallintaan liittyvästä, alunperin Node-ekosysteemistä kotoisin oleva työkalu. Nykyään lähes kaikki Javascript-projektit määritellään node “pakkausmanagerin” eli npm:n avulla. Myös create-react-app:in avulla generoidut projektit ovat npm-muotoisia projekteja. Varma tuntomerkki siitä on projektin juuressa oleva tiedosto package.json.
+
+### Middlewaret
+Middlewaret ovat funktioita, joiden avulla voidaan käsitellä request- ja response-olioita. Esim. body-parser.
+
+### same origin policy ja CORS 
+Yleismaailmallisia periaatteita Web-sovellusten toiminnasta: websovelluksen selaimessa suoritettava Javascript-koodi saa oletusarvoisesti kommunikoida vain samassa originissa olevan palvelimen kanssa. Muista origineista tulevat pyynnöt voidaan salli käyttämällä Noden [cors-middlewarea](https://github.com/expressjs/cors).
+ 
+ ### Json- server
+json-server tallettaa kaiken datan palvelimella sijaitsevaan tiedostoon db.json. Todellisuudessa data tallennetaan johonkin tietokantaan. json-server on kuitenkin käyttökelpoinen apuväline, joka mahdollistaa palvelinpuolen toiminnallisuuden käyttämisen kehitysvaiheessa ilman tarvetta itse ohjelmoida mitään.
+
+### safe ja idempotent HTTP pyynnöt
+ GET:in ja HEAD:in tulisi olla safe.Safety siis tarkoittaa, että pyynnön suorittaminen ei saa aiheuttaa palvelimelle sivuvaikutuksia eli esim. muuttaa palvelimen tietokannan tilaa, pyynnön tulee ainoastaan palauttaa palvelimella olevaa dataa.HTTP-pyynnöistä muiden paitsi POST:in tulisi olla idempotentteja:Eli jos pyynnöllä on sivuvaikutuksia, lopputulos on sama suoritetaanko pyyntö yhden tai useamman kerran.HTTP pyyntötyypeistä POST on ainoa joka ei ole safe eikä idempotent.
+
+### async-await
+Async- ja await ovat ES7:n mukanaan tuoma uusi syntaksi, joka mahdollistaa promisen palauttavien asynkronisten funktioiden kutsumisen siten, että kirjoitettava koodi näyttää synkroniselta.ES7:ssa async ja await tuovat generaattoreiden tarjoaman toiminnallisuuden ymmärrettävästi ja syntaksin puolesta selkeällä tavalla koko Javascript-kansan ulottuville.Mistä tahansa kohtaa Javascript-koodia ei awaitia kuitenkaan pysty käyttämään. Awaitin käyttö onnistuu ainoastaan jos ollaan async-funktiossa.
+
+Metodikutsu Note.find() palauttaa promisen, ja saamme itse operaation tuloksen rekisteröimällä promiselle tapahtumankäsittelijän metodilla then. Kaikki operaation suorituksen jälkeinen koodi kirjoitetaan tapahtumankäsittelijään. Jos haluaisimme tehdä peräkkäin useita asynkronisia funktiokutsuja joutuisimme tekemään kutsut tapahtumankäsittelijästä. 
+Ketjuttamalla promiseja tilanne pysyy jollain tavalla hallinnassa, callback-helvetin eli monien sisäkkäisten callbackien sijaan saadaan aikaan siistihkö then-kutsujen ketju.
+
+### Token perustainen autentikointi, kirjautuminen
+Asenna JWT [jsonwebtoken-kirjasto](https://github.com/auth0/node-jsonwebtoken), jonka avulla koodimme pystyy generoimaan [JSON web token](https://jwt.io/) -muotoisia tokeneja.Token on digitaalisesti allekirjoitettu käyttämällä salaisuutena ympäristömuuttujassa SECRET olevaa merkkijonoa. Digitaalinen allekirjoitus varmistaa sen, että ainoastaan salaisuuden tuntevilla on mahdollisuus generoida validi token. Ympäristömuuttujalle pitää muistaa asettaa arvo tiedostoon .env.
+
+Tokenin välittämiseen selaimesta backendiin käytämme ratkaisussamme Authorization-headeria. Tokenin lisäksi headerin avulla kerrotaan mistä autentikointiskeemasta on kyse. Skeeman ilmaiseminen kertoo näissä tapauksissa palvelimelle, miten mukana olevat kredentiaalit tulee tulkita.Käytetään Bearer-skeemaa.
+
+Käyttäjätunnuksia, salasanoja ja tokenautentikaatiota hyödyntäviä sovelluksia tulee aina käyttää salatun HTTPS-yhteyden yli.
+
+### [bcrypt-kirjasto:](https://github.com/kelektiv/node.bcrypt.js) salasanojen hashaamiseen
+Tietokantaan ei talleteta pyynnön mukana tulevaa salasanaa, vaan funktion bcrypt.hash avulla laskettu hash.
+
+### [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Storage)
+Selaimessa oleva avain-arvo- eli key-value-periaatteella toimiva tietokanta. Storageen talletetut arvot säilyvät vaikka sivu uudelleenladattaisiin. Storage on ns. origin-kohtainen, eli jokaisella selaimella käytettävällä web-sovelluksella on oma storagensa. Koska storageen talletettavat arvot ovat merkkijonoja, emme voi tallettaa storageen suoraan Javascript-oliota, vaan ne on muutettava ensin JSON-muotoon metodilla JSON.stringify. Vastaavasti kun JSON-muotoinen olio luetaan local storagesta, on se parsittava takaisin Javascript-olioksi metodilla JSON.parse.
+
+### propTypes kirjasto
+Sen avulla voidaan määritellä propsit joille on “pakko” antaa arvo.
+
+### [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
+ Sen avulla Redux-storen tilaa ja sitä muuttavia actioneja on mahdollisuus seurata selaimen konsolista.Selaimen lisäosan lisäksi debugatessa tarvitaan kirjastoa [redux-devtools-extension](https://www.npmjs.com/package/redux-devtools-extension).
+
+### [React router](https://github.com/ReactTraining/react-router)
+Reactin valmis komponentti React router tarjoaa erinomaisen ratkaisun React-sovelluksen reititykseen ja navigaation hallintaan.Reititys, eli komponenttien ehdollinen, selaimen urliin perustuva renderöinti otetaan käyttöön sijoittamalla komponentteja Router-komponentin lapsiksi, eli Router-tagien sisälle. Kyseessä on **BrowserRouter**.Normaalisti selain lataa uuden sivun osoiterivillä olevan urlin muuttuessa. HTML5 history API:n avulla BrowserRouter kuitenkin mahdollistaa sen, että selaimen osoiterivillä olevaa urlia voidaan käyttää React-sovelluksen sisäiseen “reitittämiseen”, eli vaikka osoiterivillä oleva url muuttuu, sivun sisältöä manipuloidaan ainoastaan Javascriptillä ja selain ei lataa uutta sisältöä palvelimelta. Selaimen toiminta back- ja forward-toimintojen ja bookmarkien tekemisen suhteen on kuitenkin loogista, eli toimii kuten perinteisillä web-sivuilla. Selaimen urliin perustuen renderöitävät komponentit määritellään komponentin Route avulla. 
 
 # Tietokanta
 
@@ -79,13 +137,10 @@ Tehtävissä on käytössä [MongoDB:tä](https://www.mongodb.com/) joka on ns. 
 Mongoosea voisi luonnehtia: object document mapper (ODM), ja sen avulla Javascript-olioiden tallettaminen mongon dokumenteiksi on suoraviivaista.
 asennus: npm install mongoose --save
 
-# Aputyökaluja
+Liitoksen tekeminen suoritetaan mongoosen komennolla **populate**. Populaten yhteydessä on myös mahdollista rajata mitä kenttiä sisällytettävistä dokumenteista otetaan mukaan. 
 
-### [nodemon](https://github.com/remy/nodemon) 
-sovelluskehitystyökalu jota käytetään sovelluksen automaattiseen uudelleenkäynnistykseen. 
 
-### [body-parser kirjasto](https://github.com/expressjs/body-parser)
-middleware HTTP POST pyyntöjen käsittelyn apuri, Body-parserin toimintaperiaatteena on, että se ottaa pyynnön mukana olevan JSON-muotoisen datan, muuttaa sen Javascript-olioksi.
+
 
 ###  ESlint
 Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on [ESlint](https://eslint.org/)
@@ -114,97 +169,20 @@ Joudumme asentamaan myös babel-eslint-pluginin, jotta ESlint osaisi tulkita koo
 npm install babel-eslint --save-dev
 ja se tulee muistaa ottaa käyttöön konfiguraatiossa.
 
-# Käyttöohje
-
-## Sovelluksen luonti ja käynnistys
-
-```
-npx create-react-app "nimeämäsikansio"
-cd "nimeämäsikansio"
-npm start
-````
-
-asennetaan siihen redux komennolla
-```
-npm install redux --save
-```
-
-Projektin normaalit riippuvuudet määritellään package.json tiedostoon "dependencies" alle. Kehitysaikaiset rippuvuudet määritellään "devDependencies" alle. Käynnistys scriptit määritellään "script":in alle.
-
-Määritellään käynnistykselle npm-skripti tiedostoon package.json
-
- ``` 
-  // ..
-  "scripts": {
-    "start": "node index.js",
-    "watch": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  // ..
-  ´´´ 
+# [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
  
-´npm start`           sovelluksen käynnistäminen
-´npm run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
- ```
-### Kirjautuminen
+# [JavaScript](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/JavaScript.md)
 
-salasanan kryptaus
-Käytetään jsonwebtoken-kirjastoa, jonka avulla koodimme pystyy generoimaan JSON web token -muotoisia tokeneja.
- 
-### ympäristömuutujat
-Noden konventiona on määritellä projektin suoritusmoodi ympäristömuuttujan NODE_ENV avulla. 
- Asennetaan  dotenv-kirjasto ympäristömuuttujien määrittelyyn
-  `npm install dotenv --save`
- Sovelluksen juurihakemistoon tehdään sitten tiedosto nimeltään .env
-` MONGODB_URI=mongodb://fullstack:sekred@ds111078.mlab.com:11078/fullstact-notes-dev`
-Tiedosto .env **tulee heti gitignorata**
-Otetaan dotenv käyttöön seuraavasti:
-  `const mongoose = require('mongoose')
+# [REAKTin perusteita](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/REACTsovellus.md)
 
-if ( process.env.NODE_ENV !== 'production' ) {
-  require('dotenv').config()
-}
-const url = process.env.MONGODB_URI
-// ...
-module.exports = Note  `
-Nyt dotenvissä olevat ympäristömuuttujat otetaan käyttöön ainoastaan silloin kun sovellus ei ole production- eli tuotantomoodissa (kuten esim. Herokussa).
- 
-  Yleinen käytäntö on määritellä sovelluksille omat moodinsa myös sovelluskehitykseen ja testaukseen.
 
-Määritellään nyt tiedostossa package.json, että testejä suorittaessa sovelluksen NODE_ENV saa arvokseen test:
-`
-{
-  // ...
-  "scripts": {
-    "start": "NODE_ENV=production node index.js",
-    "watch": "NODE_ENV=development nodemon index.js",
-    "test": "NODE_ENV=test jest --verbose",
-    "lint": "eslint ."
-  },
-  // ...
-}
-`
-Samalla määriteltiin, että suoritettaessa sovellusta komennolla npm run watch eli nodemonin avulla, on sovelluksen moodi development. Jos sovellusta suoritetaan normaalisti Nodella, on moodiksi määritelty production.
-Eristetään sovelluksen ympäristökohtainen konfigurointi omaan tiedostoon utils/config.js sijoitettavaan moduuliin.
- 
-### sovellus herokuun
-
-### Lint koodin tyylintarkastus
-Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
-Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
-
-# Hyödyllisiä toimintoja
-## palvelinta suorittava prosessin "tappaminen"
- Portin 3002 varaavan prosessin -id eli PID (esim. 8318) löytyy OSX:lla ja Linuxilla esim. komennolla lsof -i :3002.
- Prosessin saa tapettua komennolla KILL 8318 olettaen että PID on 8318 niin kuin kuvassa. Joskus prosessi on sitkeä eikä kuole ennen kuin se tapetaan komennolla KILL -9 8318.
- 
 # Testaus
  ### Yksikkötestaus
  jest
  
  ### API:n testaus
-API:n testaamisen käytetään Facebookin [Jest](https://jestjs.io/) supertest-kirjastoa. Frontin testauksessa käytetään PUN lisäksi AirBnB:n kehittämää [enzyme-kirjastoa](https://github.com/airbnb/enzyme).
-t
+API:n testaamisen käytetään Facebookin [Jest](https://jestjs.io/) supertest-kirjastoa. Frontin testauksessa käytetään lisäksi AirBnB:n kehittämää [enzyme-kirjastoa](https://github.com/airbnb/enzyme).
+
 Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä testejä. (“valekomponentilla” eli mockilla.mongo-mock.)
  
  Testien ajaminen konsolista
