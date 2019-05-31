@@ -13,15 +13,22 @@ npm start
 ````
 Sovellus käynnistyy oletusarvoisesti localhostin porttiin 3000, eli osoitteeseen http://localhost:3000 automaattisesti.
 
-
+asennetaan sovellukseen axios-kirjasto selaimen ja palvelimen välisen kommunikoinnin  hoitamiseen
+```
+npm install axios --save
+```
 asennetaan sovellukseen redux komennolla
 ```
 npm install redux --save
 ```
+Asennetaan myös json-server projektin sovelluskehityksen aikaiseksi riippuvuudeksi komennolla
+```
+npm install json-server --save-dev
+```
 
 Projektin normaalit riippuvuudet määritellään package.json tiedostoon "dependencies" alle. Kehitysaikaiset rippuvuudet määritellään "devDependencies" alle. Käynnistys scriptit määritellään "script":in alle.
 
-Määritellään käynnistykselle npm-skripti tiedostoon package.json
+Määritellään käynnistykselle npm-skripti tiedostoon package.json ja json serverille käynnistys scripti
 
  ``` 
   // ..
@@ -29,6 +36,7 @@ Määritellään käynnistykselle npm-skripti tiedostoon package.json
     "start": "node index.js",
     "watch": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "json-server -p3001 db.json"
   },
   // ..
   ´´´ 
