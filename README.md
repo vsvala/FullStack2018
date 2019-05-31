@@ -51,6 +51,13 @@ Testauskattavuus saadaan selville suorittamalla testit komennolla
 
 ```CI=true npm test -- --coverage```
 
+
+json server
+
+```npm run server``
+
+
+
 # Käytetyt työkalut ja termit
 
 ### SPA = Single-page application
@@ -214,7 +221,7 @@ Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä tes
  
  Testien ajaminen konsolista
  ```
- CI=true npm tes
+ CI=true npm test
  ```
 Testauskattavuus saadaan selville suorittamalla testit komennolla
 ```
