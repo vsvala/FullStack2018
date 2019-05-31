@@ -58,6 +58,11 @@ npm install express --save
  ``` 
 npm install
  ```
+ Nodmon käynnistää automaattisesti sovelluksen aina kunsiihen tehdään muutoksia.
+ Asennetaan nodemon määrittelemällä se kehitysaikaiseksi riippuvuudeksi
+ ``` 
+npm install --save-dev nodemon
+ ```  
  
 ### Kirjautuminen
 
