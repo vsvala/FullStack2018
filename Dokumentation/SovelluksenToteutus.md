@@ -54,6 +54,10 @@ Otetaan käyttöön ohjelmointirajapinnan tarjoama kirjasto express määrittele
  ``` 
 npm install express --save
  ```
+ Jos aloitamme projektin koodaamisen toisella koneella, saamme haettua ajantasaiset, package.json:in määrittelyn kanssa yhteensopivat riippuvuudet komennolla
+ ``` 
+npm install
+ ```
  
 ### Kirjautuminen
 
