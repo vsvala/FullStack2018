@@ -44,7 +44,17 @@ Määritellään käynnistykselle npm-skripti tiedostoon package.json ja json se
 ´npm start`           sovelluksen käynnistäminen
 ´npm run watch`     sovelluksen automaattinen uudelleen käynnistäminen nodemonin avulla
  ```
+## Backendin luominen
 
+Mennään sopivaan hakemistoon ja luodaan projektimme runko komennolla npm init. Vastaillaan kysymyksiin sopivasti ja tuloksena on hakemiston juureen sijoitettu projektin tietoja kuvaava tiedosto package.json
+
+Luodaan sitten sovelluksen ensimmäinen versio, eli projektin juureen sijoitettava tiedosto index.js 
+
+Otetaan käyttöön ohjelmointirajapinnan tarjoama kirjasto express määrittelemällä se projektimme riippuvuudeksi komennolla
+ ``` 
+npm install express --save
+ ```
+ 
 ### Kirjautuminen
 
 salasanan kryptaus
