@@ -81,7 +81,7 @@ HUOM: älä suorita komentoa npm init. Se asentaa uuden version eslintistä joka
 
 
 Luodaan tiedosto .eslintrc.js ja kopioidaan sinne seuraava sisältö:
-
+```
 module.exports = {
     "env": {
         "browser": true,
@@ -131,7 +131,7 @@ module.exports = {
         "react/prop-types": 0
     }
 };
-
+```
 
 (HUOM!! tämä jää välistä katso yllä..Tiedoston voi generoida komennolla: 
 ```
@@ -141,10 +141,11 @@ ja vastailemalla sopivasti kysymyksiin)
 
 
 Jotta pääsemme eroon testeissä olevista turhista huomautuksista asennetaan eslint-jest-plugin
-
+```
 npm add --save-dev eslint-plugin-jest
-
+```
 Joudumme asentamaan myös babel-eslint-pluginin, jotta ESlint osaisi tulkita koodissa käyttämäämme class property -syntaksia. Pluginin asennus tapahtuu komennolla
-
+```
 npm install babel-eslint --save-dev
+```
 ja se tulee muistaa ottaa käyttöön konfiguraatiossa.
