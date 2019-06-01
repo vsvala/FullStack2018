@@ -28,7 +28,7 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa7 Bogi herokussa](https://limitless-crag-99090.herokuapp.com/)** Linkki Herokussa pyörivään sovellukseen
 
-
+# [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
 
 # Käytettyjä komentoja
 front
@@ -173,9 +173,6 @@ asennus: npm install mongoose --save
 
 Liitoksen tekeminen suoritetaan mongoosen komennolla **populate**. Populaten yhteydessä on myös mahdollista rajata mitä kenttiä sisällytettävistä dokumenteista otetaan mukaan. 
 
-
-
-# [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
  
 # [JavaScript](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/JavaScript.md)
 
