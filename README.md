@@ -175,8 +175,6 @@ Liitoksen tekeminen suoritetaan mongoosen komennolla **populate**. Populaten yht
 
 
 
-### [ESlint](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/lint.md)
-
 # [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
  
 # [JavaScript](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/JavaScript.md)
