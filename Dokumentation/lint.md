@@ -75,14 +75,75 @@ coverage
 
 **ESlint käyttöön frontendissa**
 
-Tiedoston voi generoida komennolla
+Create-react-app on asentanut projektille eslintin valmiiksi, joten ei tarvita muuta kun sopiva konfiguraatio tiedoston .eslintrc.js.
+
+HUOM: älä suorita komentoa npm init. Se asentaa uuden version eslintistä joka on epäsopiva create-react-app:in konfiguraatioiden kanssa!
+
+
+Luodaan tiedosto .eslintrc.js ja kopioidaan sinne seuraava sisältö:
+
+module.exports = {
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jest/globals": true
+    },
+    "extends": [ 
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react", "jest"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ],
+        "eqeqeq": "error",
+        "no-trailing-spaces": "error",
+        "object-curly-spacing": [
+            "error", "always"
+        ],
+        "arrow-spacing": [
+            "error", { "before": true, "after": true }
+        ],
+        "no-console": 0,
+        "react/prop-types": 0
+    }
+};
+
+
+(HUOM!! tämä jää välistä katso yllä..Tiedoston voi generoida komennolla: 
 ```
 npx eslint --init
 ```
-ja vastailemalla sopivasti kysymyksiin:
+ja vastailemalla sopivasti kysymyksiin)
+
+
 Jotta pääsemme eroon testeissä olevista turhista huomautuksista asennetaan eslint-jest-plugin
 
 npm add --save-dev eslint-plugin-jest
+
 Joudumme asentamaan myös babel-eslint-pluginin, jotta ESlint osaisi tulkita koodissa käyttämäämme class property -syntaksia. Pluginin asennus tapahtuu komennolla
 
 npm install babel-eslint --save-dev
