@@ -64,3 +64,11 @@ module.exports = {
 Esim tiedoston index.js tarkastus tapahtuu komennolla
 
 node_modules/.bin/eslint index.js
+
+
+Hakemiston build ja coverage sisältö jätetään huomioimatta linttauksessa lisäämällä .eslintignore tiedostoon seuraavat rivit:
+
+build
+coverage
+
+
