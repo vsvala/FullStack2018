@@ -64,10 +64,9 @@ npm install
 npm install --save-dev nodemon
  ```  
  
-### Kirjautuminen
+ ###  [ESlint](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/lint.md) koodin tyylintarkastus
+Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
 
-salasanan kryptaus
-Käytetään jsonwebtoken-kirjastoa, jonka avulla koodimme pystyy generoimaan JSON web token -muotoisia tokeneja.
  
 ### ympäristömuutujat
 Noden konventiona on määritellä projektin suoritusmoodi ympäristömuuttujan NODE_ENV avulla. 
@@ -107,9 +106,10 @@ Eristetään sovelluksen ympäristökohtainen konfigurointi omaan tiedostoon uti
  
 ### sovellus herokuun
 
-### Lint koodin tyylintarkastus
-Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
-Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
+### Kirjautuminen
+
+salasanan kryptaus
+Käytetään jsonwebtoken-kirjastoa, jonka avulla koodimme pystyy generoimaan JSON web token -muotoisia tokeneja.
 
 # Hyödyllisiä toimintoja
 ## palvelinta suorittava prosessin "tappaminen"
