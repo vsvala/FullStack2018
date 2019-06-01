@@ -63,6 +63,17 @@ npm install
  ``` 
 npm install --save-dev nodemon
  ```  
+Koska palvelin on localhostin portissa 3001 ja frontend localhostin portissa 3000, niiden origin ei ole sama.
+Voimme sallia muista origineista tulevat pyynnöt käyttämällä Noden cors-middlewarea.
+Asennetaan cors komennolla:
+ ``` 
+npm install cors --save
+ ``` 
+ Otetaan middleware käyttöön ja sallitaan kaikki origineista tulevat pyynnöt:
+ ``` 
+const cors = require('cors')
+app.use(cors())
+ ``` 
  
  ###  [ESlint](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/lint.md) koodin tyylintarkastus
 Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
