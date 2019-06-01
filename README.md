@@ -175,39 +175,13 @@ Liitoksen tekeminen suoritetaan mongoosen komennolla **populate**. Populaten yht
 
 
 
-
-###  ESlint
-Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on [ESlint](https://eslint.org/)
-**Asennetaan ESlint backendiin kehitysaikaiseksi riippuvuudeksi komennolla**
-```
-npm install eslint --save-dev
-```
-Tämän jälkeen voidaan muodostaa alustava ESlint-konfiguraatio komennolla. Vastaillaan kysymyksiin
-```
-node_modules/.bin/eslint --init
-```
-Konfiguraatiot tallentuvat tiedostoon .eslintrc.js:
-
-**ESlint käyttöön frontendissa**
-
-Tiedoston voi generoida komennolla
-```
-npx eslint --init
-```
-ja vastailemalla sopivasti kysymyksiin:
-Jotta pääsemme eroon testeissä olevista turhista huomautuksista asennetaan eslint-jest-plugin
-
-npm add --save-dev eslint-plugin-jest
-Joudumme asentamaan myös babel-eslint-pluginin, jotta ESlint osaisi tulkita koodissa käyttämäämme class property -syntaksia. Pluginin asennus tapahtuu komennolla
-
-npm install babel-eslint --save-dev
-ja se tulee muistaa ottaa käyttöön konfiguraatiossa.
+### [ESlint](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/lint.md)
 
 # [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
  
 # [JavaScript](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/JavaScript.md)
 
-# [REAKTin perusteita](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/REACTsovellus.md)
+# [REACT perusteita](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/REACTsovellus.md)
 
 
 # Testaus
