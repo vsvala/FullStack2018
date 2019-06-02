@@ -78,29 +78,60 @@ app.use(cors())
  ###  [ESlint](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/lint.md) koodin tyylintarkastus
 Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on ESlint.
 
+ # [MongoDB dokumenttitietokanta](https://www.mongodb.com/)
+ MongoDB:n voi asentaa omalle koneelle. Internetistä löytyy kuitenkin myös palveluna toimivia Mongoja, kuten matlab. Tämän hetken johtavin [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+
+
+## MongoDB Atlas
+
+Kun käyttäjätili on luotu ja kirjauduttu, Atlas kehoittaa luomaan klusterin:
+Valitaan AWS ja Frankfurt ja luodaan klusteri. HUOM älä jatka eteenpäin ennen kun klusteri on valmis!
+
+Luodaan security Database access välilehdeltä tietokantakäyttäjätunnus joka on siis eri tunnus kuin se, jonka avulla kirjaudutaan MongoDB Atlasiin:
+annetaan käyttäjälle luku- ja kirjoitustoikeus kaikkiin tietokantoihin
+Määritellään ip-osoitteet, joista tietokantaan pääsee käsiksi. Sallitaan yksinkertaisuuden vuoksi yhteydet kaikkialta:
+Otetaann tietokantayhteys valitsemalla Connect your application ja Short SRV connection string
+
+Näkymä kertoo MongoDB URI:n eli osoitteen, jonka avulla sovelluksemme käyttämä MongoDB-kirjasto saa yhteyden kantaan.
+
+Mongoosesta voisi käyttää luonnehdintaa object document mapper (ODM), ja sen avulla Javascript-olioiden tallettaminen mongon dokumenteiksi on suoraviivaista.
+
+Asennetaan [Mongoose-kirjasto](https://mongoosejs.com/index.html)
+``` 
+npm install mongoose --save
+``` 
  
 ### ympäristömuutujat
 Noden konventiona on määritellä projektin suoritusmoodi ympäristömuuttujan NODE_ENV avulla. 
  Asennetaan  dotenv-kirjasto ympäristömuuttujien määrittelyyn
-  `npm install dotenv --save`
- Sovelluksen juurihakemistoon tehdään sitten tiedosto nimeltään .env
+ ``` 
+ npm install dotenv --save
+ ``` 
+ Sovelluksen juurihakemistoon tehdään sitten tiedosto nimeltään .env  Tiedosto .env **tulee heti gitignorata**
 ` MONGODB_URI=mongodb://fullstack:sekred@ds111078.mlab.com:11078/fullstact-notes-dev`
-Tiedosto .env **tulee heti gitignorata**
+ ``` 
+MONGODB_URI=mongodb+srv://fullstack:sekred@cluster0-ostce.mongodb.net/note-app?retryWrites=true
+PORT=3001
+``` 
+Dotenvissä määritellyt ympäristömuuttujat otetaan koodissa käyttöön komennolla'. require('dotenv').config() ja niihin viitataan Nodessa kuten "normaaleihin" ympäristömuuttujiin syntaksilla: process.env.MONGODB_URI.
+
 Otetaan dotenv käyttöön seuraavasti:
-  `const mongoose = require('mongoose')
+ ``` 
+  `const mongoose = require('mongoose')  
 
 if ( process.env.NODE_ENV !== 'production' ) {
   require('dotenv').config()
 }
 const url = process.env.MONGODB_URI
 // ...
-module.exports = Note  `
+module.exports = Note  
+ ``` 
 Nyt dotenvissä olevat ympäristömuuttujat otetaan käyttöön ainoastaan silloin kun sovellus ei ole production- eli tuotantomoodissa (kuten esim. Herokussa).
  
   Yleinen käytäntö on määritellä sovelluksille omat moodinsa myös sovelluskehitykseen ja testaukseen.
 
 Määritellään nyt tiedostossa package.json, että testejä suorittaessa sovelluksen NODE_ENV saa arvokseen test:
-`
+``` 
 {
   // ...
   "scripts": {
@@ -111,11 +142,13 @@ Määritellään nyt tiedostossa package.json, että testejä suorittaessa sovel
   },
   // ...
 }
-`
+ ``` 
 Samalla määriteltiin, että suoritettaessa sovellusta komennolla npm run watch eli nodemonin avulla, on sovelluksen moodi development. Jos sovellusta suoritetaan normaalisti Nodella, on moodiksi määritelty production.
 Eristetään sovelluksen ympäristökohtainen konfigurointi omaan tiedostoon utils/config.js sijoitettavaan moduuliin.
  
+ 
 ### sovellus herokuun
+
 
 ### Kirjautuminen
 
