@@ -160,4 +160,16 @@ Käytetään jsonwebtoken-kirjastoa, jonka avulla koodimme pystyy generoimaan JS
  Portin 3002 varaavan prosessin -id eli PID (esim. 8318) löytyy OSX:lla ja Linuxilla esim. komennolla lsof -i :3002.
  Prosessin saa tapettua komennolla KILL 8318 olettaen että PID on 8318 niin kuin kuvassa. Joskus prosessi on sitkeä eikä kuole ennen kuin se tapetaan komennolla KILL -9 8318.
  
-
+## [Snippettien luominen](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_creating-your-own-snippets)
+console log snippet:
+``` 
+	 "Print to console": {
+	 	"scope": "javascript,typescript",
+	 	"prefix": "con",
+	 	"body": [
+	 		"console.log('$1')",
+	 		"$2"
+	 	],
+	 	"description": "Log output to console"
+	 }
+``` 
