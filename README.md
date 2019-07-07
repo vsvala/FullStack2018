@@ -12,8 +12,6 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa3 Puhelinmuistio](https://github.com/vsvala/Fullstack_phonebook_osa3)**
 
-**[osa3 Puhelinmuistio heroku](https://limitless-island-73610.herokuapp.com)** Linkki sovelluksen nettiversioon Herokussa 
-
 **[osa4 Blogi](https://github.com/vsvala/Fullstack_osa4_blogi/tree/master/osa4_backend-)**
 
 **[osa5 Blogi](https://github.com/vsvala/Fullstack_osa5)**
@@ -25,8 +23,6 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 **[osa6 Anecdotes](https://github.com/vsvala/FullStack2018/tree/master/osa6)**
 
 **[osa7 Blog](https://github.com/vsvala/FullStack2018/tree/master/osa7)**
-
-**[osa7 Bogi herokussa](https://limitless-crag-99090.herokuapp.com/)** Linkki Herokussa pyörivään sovellukseen
 
 # [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
 
