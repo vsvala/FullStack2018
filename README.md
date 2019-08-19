@@ -24,6 +24,9 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa7 Blog](https://github.com/vsvala/FullStack2018/tree/master/osa7)**
 
+**[osa8 GraphQL](https://github.com/vsvala/FullStack2018/tree/master/Fullstack_osa8)**
+
+
 # [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
 
 # Käytettyjä komentoja
