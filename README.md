@@ -12,8 +12,6 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa3 Puhelinmuistio](https://github.com/vsvala/Fullstack_phonebook_osa3)**
 
-**[osa3 Puhelinmuistio heroku](https://limitless-island-73610.herokuapp.com)** Linkki sovelluksen nettiversioon Herokussa 
-
 **[osa4 Blogi](https://github.com/vsvala/Fullstack_osa4_blogi/tree/master/osa4_backend-)**
 
 **[osa5 Blogi](https://github.com/vsvala/Fullstack_osa5)**
@@ -26,9 +24,7 @@ Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suorit
 
 **[osa7 Blog](https://github.com/vsvala/FullStack2018/tree/master/osa7)**
 
-**[osa7 Bogi herokussa](https://limitless-crag-99090.herokuapp.com/)** Linkki Herokussa pyörivään sovellukseen
-
-
+# [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
 
 # Käytettyjä komentoja
 front
@@ -50,6 +46,13 @@ testit
 Testauskattavuus saadaan selville suorittamalla testit komennolla
 
 ```CI=true npm test -- --coverage```
+
+
+json server
+
+```npm run server``
+
+
 
 # Käytetyt työkalut ja termit
 
@@ -166,41 +169,10 @@ asennus: npm install mongoose --save
 
 Liitoksen tekeminen suoritetaan mongoosen komennolla **populate**. Populaten yhteydessä on myös mahdollista rajata mitä kenttiä sisällytettävistä dokumenteista otetaan mukaan. 
 
-
-
-
-###  ESlint
-Javascript-maailmassa tämän hetken johtava työkalu staattiseen analyysiin, eli “linttaukseen” on [ESlint](https://eslint.org/)
-**Asennetaan ESlint backendiin kehitysaikaiseksi riippuvuudeksi komennolla**
-```
-npm install eslint --save-dev
-```
-Tämän jälkeen voidaan muodostaa alustava ESlint-konfiguraatio komennolla. Vastaillaan kysymyksiin
-```
-node_modules/.bin/eslint --init
-```
-Konfiguraatiot tallentuvat tiedostoon .eslintrc.js:
-
-**ESlint käyttöön frontendissa**
-
-Tiedoston voi generoida komennolla
-```
-npx eslint --init
-```
-ja vastailemalla sopivasti kysymyksiin:
-Jotta pääsemme eroon testeissä olevista turhista huomautuksista asennetaan eslint-jest-plugin
-
-npm add --save-dev eslint-plugin-jest
-Joudumme asentamaan myös babel-eslint-pluginin, jotta ESlint osaisi tulkita koodissa käyttämäämme class property -syntaksia. Pluginin asennus tapahtuu komennolla
-
-npm install babel-eslint --save-dev
-ja se tulee muistaa ottaa käyttöön konfiguraatiossa.
-
-# [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
  
 # [JavaScript](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/JavaScript.md)
 
-# [REAKTin perusteita](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/REACTsovellus.md)
+# [REACT perusteita](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/REACTsovellus.md)
 
 
 # Testaus
@@ -214,7 +186,7 @@ Integraatiotestit = useita sovelluksen komponentteja yhtäaikaa käyttäviä tes
  
  Testien ajaminen konsolista
  ```
- CI=true npm tes
+ CI=true npm test
  ```
 Testauskattavuus saadaan selville suorittamalla testit komennolla
 ```
