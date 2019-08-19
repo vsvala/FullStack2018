@@ -2,7 +2,7 @@ import React from 'react'
 import { createBlog } from '../../reducers/blogReducer'
 import { notify } from '../../reducers/notificationReducer'
 import { connect } from 'react-redux'
-import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
+import { FormGroup, FormControl, FormLabel, Button, Col } from 'react-bootstrap'
 
 
 //class BlogForm extends React.Component {
@@ -66,7 +66,7 @@ findBlog = () => {
 
       <form onSubmit={addBlog}>
 
-        <FormGroup>
+        <FormGroup  as={Col} md="8">
 
           <FormLabel>Title:</FormLabel>
           <FormControl

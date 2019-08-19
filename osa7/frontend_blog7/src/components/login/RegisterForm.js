@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createUser } from '../../reducers/userReducer'
 import { notify } from '../../reducers/notificationReducer'
-import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
+import { Form, FormGroup, FormControl, FormLabel, Button, Col } from 'react-bootstrap'
 
 const RegisterForm = ( { history, createUser, notify  }) => {
   //tapahtumankäsittelijä
@@ -31,8 +31,8 @@ const RegisterForm = ( { history, createUser, notify  }) => {
     <div>
       <h2>Register</h2>
 
-      <form onSubmit={handleSubmit}>
-        <FormGroup>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup as={Col} md="8">
           <FormLabel>username:</FormLabel>
 
           <FormControl
@@ -58,7 +58,7 @@ const RegisterForm = ( { history, createUser, notify  }) => {
           <br></br>
           <Button bsStyle="success" type="submit">Register user</Button>
         </FormGroup>
-      </form>
+      </Form>
     </div>
   )
 }

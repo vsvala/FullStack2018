@@ -58,7 +58,7 @@ export const login = (username, password) => {
       console.log(response,'login REDUCER response from back')
       dispatch({
         type: 'NOTIFY',
-        message:'login went wrong'
+        message:'Username or password is missing!'
       })
       setTimeout(() => {
         dispatch({
@@ -75,7 +75,7 @@ export const login = (username, password) => {
 
       dispatch({
         type: 'NOTIFY',
-        message:'Logged in succesfully!'
+        message:'Login successful!'
       })
 
       setTimeout(() => {

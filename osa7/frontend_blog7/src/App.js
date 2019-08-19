@@ -64,98 +64,102 @@ class App extends React.Component {
 
 
     return (
-      <div className="App container">
+      <div>
         <Router>
           <div>
-
+            {/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">*/}
 
             <Navbar inverse collapseOnSelect>
 
               <div style={menuStyle}>
                 <Navbar.Collapse>
+              
+                    <Navbar.Brand > <h2>Blog application</h2></Navbar.Brand>
+                    <Nav className="menuContainer">
+                      {/* <Menu /> */}
 
-                  <Nav>
-                    {/* <Menu /> */}
+                      <NavItem href="#">
+                        <Link to="/">home</Link> &nbsp;
 
-                    <NavItem href="#">
-                      <Link to="/">home</Link> &nbsp;
+                        <Link to="/blogs">blogs</Link> &nbsp;
 
-                      <Link to="/blogs">blogs</Link> &nbsp;
-
-                      {/*vain test niminen käyttäjä pääsee tarkastelemaan käyttäjälistausta..() name tilalla rooli user.role ===admin) */}
-                      {this.props.user && this.props.user.name === 'test'
-                        ? <Link to="/users">users</Link>
-                        : ''}
-
-
-                      {this.props.user
-                        ? <em></em>
-                        : <Link to="/register">register</Link>} &nbsp;
+                        {/*vain test niminen käyttäjä pääsee tarkastelemaan käyttäjälistausta..() name tilalla rooli user.role ===admin) */}
+                        {this.props.user && this.props.user.name === 'test'
+                          ? <Link to="/users">users</Link>
+                          : ''}
 
 
-                      {/* jos kirjautunut näyttää logout linkin muutoin login linkin */}
-                      {this.props.user
-                        ? <em>{this.props.user.name} logged in <input onClick={this.props.logout} type="button" value="logout" /> &nbsp; {console.log('thispropslname', this.props.user.username)}</em>
-                        : <Link to="/login">login {console.log('uuuuuuuu', this.props.user)}</Link>}
-                    </NavItem>
+                        {this.props.user
+                          ? <em></em>
+                          : <Link to="/register">register</Link>} &nbsp;
 
 
-                    {/* <p>{props.user.name} logged in <button type="button" onClick={logout}>logout</button> </p> */}
-                  </Nav>
-                </Navbar.Collapse> </div>
+                        {/* jos kirjautunut näyttää logout linkin muutoin login linkin */}
+                        {this.props.user
+                          ? <em>{this.props.user.name} logged in <input onClick={this.props.logout} type="button" value="logout" /> &nbsp; {console.log('thispropslname', this.props.user.username)}</em>
+                          : <Link to="/login">login {console.log('uuuuuuuu', this.props.user)}</Link>}
+                      </NavItem>
+
+
+                      {/* <p>{props.user.name} logged in <button type="button" onClick={logout}>logout</button> </p> */}
+                    </Nav>
+                
+                </Navbar.Collapse>
+              </div>
             </Navbar>
 
 
+            <div className="container">
+
+              {/* <h1>Blog application</h1> */}
+              <Notification />
+
+              {/* Works like a typical switch statement; it checks for matches and runs the first thing matching the requested path */}
+              <Switch>
+
+                <Route exact path="/" render={() => <Home />} />
+                {/* <Route  exact path="/blogs" render={() => <Bloglist />} /> poisto vaatii loggautuneen*/}
+                <Route exact path="/blogs" render={() =>
+                  this.props.user
+                    ? <BlogList />
+                    : <Redirect to="/login" />} />
 
 
-            <h1>Blog application</h1>
-            <Notification />
-
-            {/* Works like a typical switch statement; it checks for matches and runs the first thing matching the requested path */}
-            <Switch>
-
-              <Route exact path="/" render={() => <Home />} />
-              {/* <Route  exact path="/blogs" render={() => <Bloglist />} /> poisto vaatii loggautuneen*/}
-              <Route exact path="/blogs" render={() =>
-                this.props.user
-                  ? <BlogList />
-                  : <Redirect to="/login" />} />
+                <Route exact path='/blogs/:id' render={({ history, match }) =>
+                  <SingleBlog history={history} blog={blogById(match.params.id)} />} />
 
 
-              <Route exact path='/blogs/:id' render={({ history, match }) =>
-                <SingleBlog history={history} blog={blogById(match.params.id)} />} />
+                <Route exact path="/users" render={() =>
+                  this.props.user && this.props.user.name === 'test'
+                    ? <UserList />
+                    : <Redirect to="/login" />} />
+
+                <Route path="/register" render={({ history }) => <RegisterForm history={history} />} />
 
 
-              <Route exact path="/users" render={() =>
-                this.props.user && this.props.user.name === 'test'
-                  ? <UserList />
-                  : <Redirect to="/login" />} />
-
-              <Route path="/register" render={({ history }) => <RegisterForm history={history} />} />
+                <Route exact path='/users/:id' render={({ history, match }) =>
+                  this.props.user && this.props.user.name === 'test'
+                    ? <SingleUser history={history} klickedUser={userById(match.params.id)} />
+                    : <Redirect to="/login" />} />
 
 
-              <Route exact path='/users/:id' render={({ history, match }) =>
-                this.props.user && this.props.user.name === 'test'
-                  ? <SingleUser history={history} klickedUser={userById(match.params.id)} />
-                  : <Redirect to="/login" />} />
-
-
-              {/* <Route path="/logout" render={() =>
+                {/* <Route path="/logout" render={() =>
                 this.props.user
                   ? this.props.logout()
                   : <Redirect to="/login" />} /> */}
 
-              <Route path="/login" render={({ history }) =>
-                <LoginForm history={history} />} />
-              {/*    <Route exact path="/login" render={() => <LoginForm />} />
+                <Route path="/login" render={({ history }) =>
+                  <LoginForm history={history} />} />
+                {/*    <Route exact path="/login" render={() => <LoginForm />} />
           // Kirjautumisen yhteydessä funktiossa onSubmit kutsutaan history-olion metodia push. Käytetty komento history.push('/') saa aikaan sen,
           //     että selaimen osoiteriville tulee osoitteeksi / ja sovellus renderöi osoitetta vastaavan komponentin Home.
           huomautus..vatii login to see more...
           */}
-            </Switch>
-          </div>
+              </Switch>
+            </div> </div>
         </Router>
       </div>
+
     )
   }
 }

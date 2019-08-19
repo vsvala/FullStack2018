@@ -7,8 +7,12 @@ body {
     color: rgb(23, 141, 209);
     font-style: italic;
   }
+   h2 {
+    color: rgb(23, 141, 209);
+    font-style: italic;
+  }
   .person{
-    color: grey;
+    color: rgb(202, 202, 202);
     padding-top: 5px;
     font-size: 15px;
   }
@@ -22,7 +26,7 @@ body {
     margin-bottom: 10px;
   }
   
-  .notification {
+  .notify {
     color: black;
     border-color: green;
     font-size: 20px;
@@ -31,4 +35,14 @@ body {
     padding: 10px;
     margin-bottom: 10px;
   }
+  /* .menuContainer{
+     margin: 300 !important;
+  }
+    .nav{
+     margin: 300 !important;
+  }
+  .navbar.navbar-expand{
+     margin-left: 200  !important;
+  } */
+  
   

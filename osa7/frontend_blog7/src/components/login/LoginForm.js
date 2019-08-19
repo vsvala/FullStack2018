@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { login } from '../../reducers/loginReducer'
-import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
+import { Form, FormGroup, FormControl, FormLabel, Button, Col } from 'react-bootstrap'
 
 export const LoginForm = ({ history, login }) => {
   // lomakkeen käsittelijä  history
@@ -22,8 +22,8 @@ export const LoginForm = ({ history, login }) => {
     <div className='loginForm'>
       <h2>Login</h2>
 
-      <form onSubmit={handleSubmit}>
-        <FormGroup>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup as={Col} md="4">
           <FormLabel>username:</FormLabel>
 
           <FormControl
@@ -38,7 +38,7 @@ export const LoginForm = ({ history, login }) => {
           <br></br>
           <Button bsStyle="success" type="submit">login</Button>
         </FormGroup>
-      </form>
+      </Form>
 
     </div>
   )

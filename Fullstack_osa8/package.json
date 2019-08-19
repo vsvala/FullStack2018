@@ -1,0 +1,22 @@
+{
+  "name": "library-backend",
+  "version": "1.0.0",
+  "description": "osa8",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "osa8"
+  ],
+  "author": "Virva Svala",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "apollo-server": "^2.4.0",
+    "graphql": "^14.1.1",
+    "uuid": "^3.3.2"
+  }
+}
