@@ -85,10 +85,13 @@ const books = [
   },
 ]
 
+//skeemat,  Query, joka kertoo mitä kyselyjä API:iin voidaan tehdä.
 const typeDefs = gql`
 type Author {
   name: String!
   born:Int
+  id: ID!
+  bookCount:Int
 }
 
 type Book {
@@ -122,7 +125,7 @@ type Book {
     
     editAuthor(
       name: String!
-      setBornTo: Int
+      born: Int
     ): Author
 
   }
@@ -140,16 +143,23 @@ const resolvers = {
   //   return books.filter(b => b.genres.includes(args.genre))
   //  }return books.filter(b => b.author === args.author)
   // },
-    allAuthors: () => authors,
+    allAuthors: () => 
+      authors.map(author=>({
+        ...author,//this will spread all exixting value from author object
+        bookCount: books.filter(book=>book.author===author.name).length
+      })),
+
     findBook: (root, args) =>  
     books.find(b => b.author === args.author)
-
 },
 Book:{
   title:(root)=>root.title,
   author:(root)=>root.author
 
 },
+// Author: {
+//   bookCount: (root) => findBook,
+// },
 Mutation: {
   addBook: (root, args) => {
     if (books.find(b => b.title === args.title)) {
@@ -184,8 +194,8 @@ editAuthor: (root, args) => {
   if (!author) {
     return null
   }
-  if (args.setBornTo){
-  const updatedAuthor = { ...author, name: args.name, born: args.setBornTo  }
+  if (args.born){
+  const updatedAuthor = { ...author, name: args.name, born: args.born  }
   this.authors = authors.map(p => p.name === args.name ? updatedAuthor : p)
   return updatedAuthor
 } else{

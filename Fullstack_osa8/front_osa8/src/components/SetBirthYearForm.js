@@ -1,4 +1,11 @@
 import React, { useState } from 'react'
+//import Select from 'react-select';
+
+// const options = [
+//   { value: 'chocolate', label: 'Chocolate' },
+//   { value: 'strawberry', label: 'Strawberry' },
+//   { value: 'vanilla', label: 'Vanilla' },
+// ];
 
 
 const SetBirthYearForm = (props) => {
@@ -14,6 +21,7 @@ const SetBirthYearForm = (props) => {
   
       setName('')
       setBirth('')
+
     }
   
     return (

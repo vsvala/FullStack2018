@@ -23,6 +23,7 @@ const allAuthors = gql`
   allAuthors  {
     name
     born
+    bookCount
     id
   }
 }
