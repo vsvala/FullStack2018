@@ -1,29 +1,33 @@
-import React,  {useState } from 'react'
-import { gql } from 'apollo-boost'
-import { Query} from "react-apollo"//, ApolloConsumer, Mutation 
+import React from 'react'
+//import { gql } from 'apollo-boost'
+//import { Query} from "react-apollo"//, ApolloConsumer, Mutation 
+//import { useApolloClient } from 'react-apollo-hooks'
 
+// const allBooks = gql`
+// {
+//   allBooks  {
+//     title
+//     author
+//     published
+//     id
+//   }
+// }
+// `
 
-const allBooks = gql`
-{
-  allBooks  {
-    title
-    author
-    published
-    id
-  }
-}
-`
-const Books = ({ result }) => {
-//const Books = (props) => {
-//if (!props.show) {
-if (!result) {
+//const Books = ({ result }) => {
+const Books = (props) => {
+//const client = useApolloClient()
+
+if (!props.show) {
+  //if (!result) {
     return null
   }
 
- if (result.loading) {
+
+ if (props.result.loading) {
   return <div>loading...</div>
  }
-const books = result.data.allBooks 
+const books = props.result.data.allBooks 
  // const books = []
 
   return (

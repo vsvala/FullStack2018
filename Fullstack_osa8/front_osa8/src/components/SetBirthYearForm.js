@@ -1,16 +1,19 @@
+import React, { useState } from 'react'
+
+
 const SetBirthYearForm = (props) => {
     const [name, setName] = useState('')
-    const [phone, setPhone] = useState('')
+    const [born, setBirth] = useState('')
   
     const submit = async (e) => {
       e.preventDefault()
   
-      await props.editNumber({
-        variables: { name, phone }
+      await props.editYear({
+        variables: { name, born }
       })
   
       setName('')
-      setPhone('')
+      setBirth('')
     }
   
     return (
@@ -23,14 +26,14 @@ const SetBirthYearForm = (props) => {
             />
           </div>
           <div>
-            phone <input
-              value={phone}
-              onChange={({ target }) => setPhone(target.value)}
+            birthyear <input
+              value={born}
+              onChange={({ target }) => setBirth(target.value)}
             />
           </div>
-          <button type='submit'>change number</button>
-        </form>
-      </div>
+          <button type='submit'>change year</button>
+        </form> 
+    </div>
     )
   }
   export default SetBirthYearForm
