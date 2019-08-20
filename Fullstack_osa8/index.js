@@ -2,7 +2,7 @@ const { ApolloServer, gql } = require('apollo-server')
 const uuid = require('uuid/v1')
 
 
-const authors = [
+let authors = [
   {
     name: 'Robert Martin',
     id: "afa51ab0-344d-11e9-a414-719c6709cf3e",
@@ -33,7 +33,7 @@ const authors = [
  * Yksinkertaisuuden vuoksi tallennamme kuitenkin kirjan yhteyteen tekijän nimen
 */
 
-const books = [
+let books = [
   {
     title: 'Clean Code',
     published: 2008,
@@ -160,13 +160,13 @@ Mutation: {
       })
     }
     if (books.find(b => b.author !== args.author)) {
-      const author = { ...args, id: uuid() }
-      this.authors = authors.concat(author)
+      const author = { name:args.author, id: uuid() }
+      authors = authors.concat(author)
       console.log('addAuthor')  
      // return author   
       }
     const book = { ...args, id: uuid() }
-    this.books = books.concat(book)
+   books = books.concat(book)
     return book
 },
 
@@ -177,7 +177,7 @@ addAuthor: (root, args) => {
     })
   }
   const author = { ...args, id: uuid() }
-  this.authors = authors.concat(author)
+ authors = authors.concat(author)
   return author  
 },
 
@@ -188,11 +188,11 @@ editAuthor: (root, args) => {
   }
   if (args.born){
   const updatedAuthor = { ...author, name: args.name, born: args.born  }
-  this.authors = authors.map(p => p.name === args.name ? updatedAuthor : p)
+  authors = authors.map(p => p.name === args.name ? updatedAuthor : p)
   return updatedAuthor
 } else{
   const updatedAuthor = { ...author, name: args.name, born: null  }
- this. authors = authors.map(p => p.name === args.name ? updatedAuthor : p)
+  authors = authors.map(p => p.name === args.name ? updatedAuthor : p)
   return updatedAuthor
 
 }
@@ -239,7 +239,7 @@ server.listen().then(({ url }) => {
 
 //8,7 editingAuthor 
 // mutation {
-//   editAuthor(name: ""Martin Fowler", born: 1200) {
+//   editAuthor(name: "Reijo Mäki", setBornTo: 1958) {
 //     name
 //     born
 //   }
