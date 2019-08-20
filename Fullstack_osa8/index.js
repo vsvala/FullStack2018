@@ -106,7 +106,7 @@ type Book {
   type Query {
     bookCount: Int!
     authorCount: Int!
-    allBooks: [Book!]!
+    allBooks(author: String, genre: String): [Book!]!
     allAuthors: [Author!]!
     findBook(genre:String!): [Book]
   }
@@ -130,36 +130,28 @@ type Book {
 
   }
 `  
-//    allBooks(author: String, genre: String): [Book!]!
 // allBooks: [Book!]!
  //findBook(author: String!, genre:String!): [Book]
+
 const resolvers = {
+
   Query: {
     bookCount: () => books.length,
     authorCount: () => authors.length,
-    allBooks: () => books,
-  //   allBooks: (root, args) => {
-  // if (args.genre) {
-  //   return books.filter(b => b.genres.includes(args.genre))
-  //  }return books.filter(b => b.author === args.author)
-  // },
+   // allBooks: () => books, 
+    
+     allBooks: (root, args) => {  
+     if (args.genre) {
+      return books.filter(b => b.genres.includes(args.genre))
+    } return books.filter(b => b.author === args.author)},
+    
     allAuthors: () => 
-      authors.map(author=>({
-        ...author,//this will spread all exixting value from author object
-        bookCount: books.filter(book=>book.author===author.name).length
-      })),
+    authors.map(author=>({
+     ...author,//this will spread all existing values from author object
+    bookCount: books.filter(book=>book.author===author.name).length
+  }))
+ },
 
-    findBook: (root, args) =>  
-    books.find(b => b.author === args.author)
-},
-Book:{
-  title:(root)=>root.title,
-  author:(root)=>root.author
-
-},
-// Author: {
-//   bookCount: (root) => findBook,
-// },
 Mutation: {
   addBook: (root, args) => {
     if (books.find(b => b.title === args.title)) {
@@ -217,7 +209,20 @@ server.listen().then(({ url }) => {
   console.log(`Server ready at ${url}`)
 })
 
+//8.4 Author's books
+//query {
+//   allBooks(author: "Robert Martin") {
+//     title
+//   }
+// }
 
+//genre's books
+// query {
+//   allBooks(genre: "refactoring") {
+//     title
+//     author
+//   }
+// }
 
 //8,6 addingBook
 // mutation {
@@ -234,7 +239,7 @@ server.listen().then(({ url }) => {
 
 //8,7 editingAuthor 
 // mutation {
-//   editAuthor(name: "Reijo Mäki", setBornTo: 1958) {
+//   editAuthor(name: ""Martin Fowler", born: 1200) {
 //     name
 //     born
 //   }
