@@ -1,5 +1,21 @@
-const { ApolloServer, gql } = require('apollo-server')
+const { ApolloServer, UserInputError, gql } = require('apollo-server')
 const uuid = require('uuid/v1')
+const mongoose = require('mongoose')
+
+mongoose.set('useFindAndModify', false)
+
+const MONGODB_URI = 'mongodb+srv://graphql:graphql@cluster0-b2hdh.mongodb.net/test?retryWrites=true&w=majority'
+
+
+console.log('connecting to', MONGODB_URI)
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
+  .then(() => {
+    console.log('connected to MongoDB')
+  })
+  .catch((error) => {
+    console.log('error connection to MongoDB:', error.message)
+  })
 
 
 let authors = [
@@ -96,10 +112,11 @@ type Author {
 
 type Book {
   title: String! 
-  published: Int!
-  author: String!  
+  author: Author!    
+  published: Int!  
+  genres:[String] 
   id: ID!
-  genres:[String]  
+ 
 
 }
 
@@ -114,8 +131,8 @@ type Book {
   type Mutation {
     addBook(
       title: String!
+      author: String!  
       published: Int!
-      author: String!
       genres: [String]
     ): Book
 
@@ -143,7 +160,10 @@ const resolvers = {
      allBooks: (root, args) => {  
      if (args.genre) {
       return books.filter(b => b.genres.includes(args.genre))
-    } return books.filter(b => b.author === args.author)},
+    }
+    if (args.author) { return books.filter(b => b.author === args.author)}
+    return books
+  },
     
     allAuthors: () => 
     authors.map(author=>({
@@ -153,20 +173,36 @@ const resolvers = {
  },
 
 Mutation: {
-  addBook: (root, args) => {
+  addBook: async(root, args) => {
     if (books.find(b => b.title === args.title)) {
       throw new UserInputError('Title must be unique', {
         invalidArgs: args.title,
       })
     }
     if (books.find(b => b.author !== args.author)) {
-      const author = { name:args.author, id: uuid() }
-      authors = authors.concat(author)
+      const author = new Author({ name:args.author, id: uuid() })   
+      //authors = authors.concat(author)
       console.log('addAuthor')  
-     // return author   
+     // return author  
+      try {
+        await author.save()
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args,
+        })
       }
-    const book = { ...args, id: uuid() }
-   books = books.concat(book)
+     //? return Author
+  
+      }
+    const book = new book({ ...args, id: uuid() })
+  // books = books.concat(book)
+  try {
+    await book.save()
+  } catch (error) {
+    throw new UserInputError(error.message, {
+      invalidArgs: args,
+    })
+  }
     return book
 },
 
@@ -180,6 +216,8 @@ addAuthor: (root, args) => {
  authors = authors.concat(author)
   return author  
 },
+
+
 
 editAuthor: (root, args) => {
   const author = authors.find(a => a.name === args.name)
