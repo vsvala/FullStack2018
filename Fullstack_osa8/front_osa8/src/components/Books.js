@@ -1,18 +1,6 @@
 import React from 'react'
-//import { gql } from 'apollo-boost'
 //import { Query} from "react-apollo"//, ApolloConsumer, Mutation 
-//import { useApolloClient } from 'react-apollo-hooks'
-
-// const allBooks = gql`
-// {
-//   allBooks  {
-//     title
-//     author
-//     published
-//     id
-//   }
-// }
-// `
+//import { useApolloClient } from 'react-apollo-hooks'`
 
 //const Books = ({ result }) => {
 const Books = (props) => {

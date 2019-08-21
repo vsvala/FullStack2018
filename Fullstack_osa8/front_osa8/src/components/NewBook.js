@@ -13,9 +13,9 @@ const NewBook = (props) => {
 
   const submit = async (e) => {
     e.preventDefault()
-    // await props.addUser({
-    //     variables: { name, phone, street, city }
-    //   })
+   await props.addBook({
+      variables: { title, author, published, genres }
+      })
     console.log('add book...')
 
     setTitle('')
@@ -53,7 +53,7 @@ const NewBook = (props) => {
           <input
             type='number'
             value={published}
-            onChange={({ target }) => setPublished(target.value)}
+            onChange={({ target }) => setPublished(parseInt(target.value))}
           />
         </div>
         <div>
@@ -64,10 +64,11 @@ const NewBook = (props) => {
           <button onClick={addGenre} type="button">add genre</button>
         </div>
         <div>
-          genres: {genres.join(' ')}
+         genres: {genres.join(' ')}
         </div>
         <button type='submit'>create book</button>
       </form>
+
     </div>
   )
 }

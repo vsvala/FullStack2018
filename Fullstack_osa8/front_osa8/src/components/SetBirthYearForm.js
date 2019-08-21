@@ -36,7 +36,7 @@ const SetBirthYearForm = (props) => {
           <div>
             birthyear <input
               value={born}
-              onChange={({ target }) => setBirth(target.value)}
+              onChange={({ target }) => setBirth(parseInt(target.value))}
             />
           </div>
           <button type='submit'>change year</button>

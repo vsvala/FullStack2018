@@ -4,45 +4,45 @@ const BookForm = (props) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [published, setPublished] = useState('')
-  const [genre, setGenre] = useState('')
+  const [genres, setGenres] = useState('')
   
   const submit = async (e) => {
     e.preventDefault()
-     await props.addUser({ 
-       variables: { title, author, published, genre } 
+     await props.addBook({ 
+       variables: { title, author, published, genres } 
     })
 
     setTitle('')
     setAuthor('')
     setPublished('')
-    setGenre('')
+    setGenres('')
   }
 
   return (
     <div>
       <form onSubmit={submit}>
         <div>
-          name <input
+          title <input
             value={title}
             onChange={({ target }) => setTitle(target.value)}
           />
         </div>
         <div>
-          phone <input
+          author <input
             value={author}
             onChange={({ target }) => setAuthor(target.value)}
           />
         </div>
         <div>
-          street <input
+          published <input
             value={published}
-            onChange={({ target }) => setPublished(target.value)}
+            onChange={({ target }) => setPublished(parseInt(target.value))}
           />
         </div>
         <div>
-          city <input
-            value={genre}
-            onChange={({ target }) => setGenre(target.value)}
+          genres <input
+            value={genres}
+            onChange={({ target }) => setGenres(target.value)}
           />
         </div>
         <button type='submit'>add!</button>
