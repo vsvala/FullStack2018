@@ -99,8 +99,7 @@ type Token {
     ): Token
   }
 `  
-//normally hide this to .env
-const JWT_SECRET = 'secret'
+
 //bookCount:Int
 // bookCount:String!
 // allBooks: [Book!]!
