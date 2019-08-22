@@ -38,8 +38,8 @@ const Authors = (props) => {
           )}
         </tbody>
       </table>
-    <h2>Set birth year </h2>
-    <SetBirthYearForm editYear={props.editYear} /> 
+  <h2>Set birth year </h2>
+    <SetBirthYearForm addYear={props.addYear} /> 
     </div>
   )
 }

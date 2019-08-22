@@ -10,7 +10,7 @@ const ALL_BOOKS = gql`
 {
   allBooks  {
     title
-    author
+    author{name}
     published
     id
   }
@@ -26,9 +26,15 @@ const ALL_AUTHORS = gql`
   }
 }
 `
-
+//    bookCount
 const CREATE_BOOK = gql`
-mutation addBook($title: String!, $author: String!, $published: Int!, $genres:[String]) {
+mutation 
+createBook(
+  $title: String!, 
+  $author: String!, 
+  $published: Int!, 
+  $genres:[String]
+  ){
   addBook(
     title: $title,
     author: $author,
@@ -36,20 +42,20 @@ mutation addBook($title: String!, $author: String!, $published: Int!, $genres:[S
     genres: $genres
   ) {
     title
-    author
+    author{name}
     published
     genres
-    id   
+    id
   }
 }
 ` 
 
-const EDIT_AUTHOR = gql`
-mutation editAuthor($name: String!, $born: Int!) {
-  editAuthor(name: $name, born: $born)  {
+const ADD_YEAR = gql`
+mutation addYear($name: String!, $born: Int!) {
+  addYear(name: $name, born: $born)  {
+    id  
     name
     born
-    id
   }
 }
 `
@@ -67,9 +73,12 @@ const App = () => {
   const authors = useQuery(ALL_AUTHORS)
   const [createBook] = useMutation(CREATE_BOOK, {
    onError: handleError,
-   refetchQueries: [{ query: ALL_BOOKS }]
+   refetchQueries: [{ query: ALL_BOOKS },{ query: ALL_AUTHORS }]
     })
-  const [editAuthor] = useMutation(EDIT_AUTHOR)
+  const [addYear] = useMutation(ADD_YEAR,{
+    onError: handleError,
+    refetchQueries: [{ query: ALL_AUTHORS }] 
+  })
  
 
   return (
@@ -83,6 +92,7 @@ const App = () => {
       <Authors
         show={page === 'authors'} 
         result={authors}   
+        addYear={addYear}
       />
       <Books 
         show={page === 'books'}
@@ -91,7 +101,7 @@ const App = () => {
       <NewBook
         show={page === 'add'}
         addBook={createBook}
-        editYear={editAuthor}
+
       />
 
       {errorMessage &&
@@ -99,11 +109,9 @@ const App = () => {
           {errorMessage}
         </div>
       }
-{/*    
-       <h2>Set birth year </h2>
-       <SetBirthYearForm editYear={editAuthor} /> */}
-
-
+  {/* <h2>Set birth year </h2>
+    <SetBirthYearForm editYear={editYear} />  */}
+ 
 </div>
 
   )

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { renderPlaygroundPage } from '@apollographql/graphql-playground-html/dist/render-playground-page';
 //import Select from 'react-select';
 
 // const options = [
@@ -11,11 +12,12 @@ import React, { useState } from 'react'
 const SetBirthYearForm = (props) => {
     const [name, setName] = useState('')
     const [born, setBirth] = useState('')
-  
-    const submit = async (e) => {
+   
+
+    const submit = async(e) => {
       e.preventDefault()
   
-      await props.editYear({
+      await props.addYear({
         variables: { name, born }
       })
   
