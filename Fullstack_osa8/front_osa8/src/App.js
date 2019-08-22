@@ -3,9 +3,10 @@ import { gql } from 'apollo-boost'
 import Authors from './components/Authors'
 import Books from './components/Books'
 import NewBook from './components/NewBook'
-//import SetBirthYearForm from './components/SetBirthYearForm'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import LoginForm from './components/LoginForm'
 
+//import SetBirthYearForm from './components/SetBirthYearForm'
+import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
 
 const ALL_BOOKS = gql`
 {
@@ -60,7 +61,17 @@ mutation addYear($name: String!, $born: Int!) {
   }
 }
 `
+const LOGIN = gql`
+  mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password)  {
+      value
+    }
+  }
+  `
+
 const App = () => { 
+  const client = useApolloClient()
+  const [token, setToken] = useState(null)
   const [page, setPage] = useState('authors')
   const [errorMessage, setErrorMessage] = useState(null)
   const handleError = (error) => {
@@ -80,14 +91,42 @@ const App = () => {
     onError: handleError,
     refetchQueries: [{ query: ALL_AUTHORS }] 
   })
- 
-
+  const [login] = useMutation(LOGIN, {
+    onError: handleError
+  })
+  const errorNotification = () => errorMessage &&
+  <div style={{ color: 'red' }}>
+    {errorMessage}
+  </div>
+if (!token) {
+  return (
+    <div>
+      {errorNotification()}
+      <LoginForm
+        login={login}
+        setToken={(token) => setToken(token)}
+      />
+    </div>
+  )
+}
+const logout = () => {
+  setToken(null)
+  localStorage.clear()
+  client.resetStore()
+}
   return (
  <div>
       <div>
         <button onClick={() => setPage('authors')}>authors</button>
         <button onClick={() => setPage('books')}>books</button>
+        {token !== null &&
         <button onClick={() => setPage('add')}>add book</button>
+        }
+        {/* {token=== null ?
+         <button onClick={() => setPage('login')}>login</button>: 
+        <button onClick={logout}>logout</button>
+        }   */}
+        <button onClick={logout}>logout</button>
       </div>
 
       <Authors
@@ -104,12 +143,22 @@ const App = () => {
         addBook={createBook}
 
       />
+       {/* <LoginForm
+        show={page === 'login'}
+        login={login}
+        setToken={(token) => setToken( `bearer ${token}`)}
+      />  */}
+      {/* const setToken = newToken => {
+      token = `bearer ${newToken}` */}
+
+
 
       {errorMessage &&
         <div style={{ color: 'red' }}>
           {errorMessage}
         </div>
       }
+     
   {/* <h2>Set birth year </h2>
     <SetBirthYearForm editYear={editYear} />  */}
  

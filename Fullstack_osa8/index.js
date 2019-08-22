@@ -110,7 +110,8 @@ type Token {
 const resolvers = {
 
   Query: {
-    me: (root, args, context) => {return context.currentUser},
+    me: (root, args, context) => {
+      return context.currentUser},
     bookCount: () => Book.collection.countDocuments(),
     authorCount: () =>  Author.collection.countDocuments(),
     allBooks: (root, args) => { 
@@ -141,11 +142,16 @@ Author:{
 // },
 
 Mutation: {
-  addBook: async(root, args) => {
+  addBook: async(root, args, context) => {
     let author=await Author.findOne({name:args.author})
-    const currentUser = context.currentUser
-    if (!currentUser)throw new AuthenticationError("not authenticated")
+    console.log('author', author)
     
+   let currentUser = context.currentUser
+    console.log('dddddddddddr', currentUser)
+
+    if (!currentUser){
+      throw new AuthenticationError("not authenticated")
+    }
 
     try {
    if (!author) {
@@ -172,7 +178,7 @@ Mutation: {
     return book
 },
 //editAuthor
-addYear: async(root, args) => {
+addYear: async(root, args, context) => {
  const author = await Author.findOne({name:args.name})
  const currentUser = context.currentUser
 
@@ -227,12 +233,15 @@ const server = new ApolloServer({
   resolvers,
   context: async({ req }) => {
     const auth = req ? req.headers.authorization : null
-
+    console.log('authooooooooooooooooooooooooooooooo',auth)
+    
     if (auth && auth.toLowerCase().startsWith('bearer ')) {
       const decodedToken = jwt.verify( auth.substring(7), JWT_SECRET)
+      console.log('detokeeeeeeeeeeeeeeeee',decodedToken)
       const currentUser = await User.findById(decodedToken.id)
-      return { currentUser }    
-    }
+      console.log('cuuuuuuuuuuuu',currentUser) 
+      return  { currentUser } 
+    }  
   }
 })
 
