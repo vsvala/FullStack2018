@@ -140,7 +140,7 @@ Author:{
 // },
 
 Mutation: {
-  addBook: async(root, args) => {
+  addBook: async(root, args, context) => {
     let author=await Author.findOne({name:args.author})
     const currentUser = context.currentUser
     if (!currentUser)throw new AuthenticationError("not authenticated")
@@ -171,7 +171,7 @@ Mutation: {
     return book
 },
 //editAuthor
-addYear: async(root, args) => {
+addYear: async(root, args, context) => {
  const author = await Author.findOne({name:args.name})
  const currentUser = context.currentUser
 
