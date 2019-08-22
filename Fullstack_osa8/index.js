@@ -3,7 +3,11 @@ const uuid = require('uuid/v1')
 const mongoose = require('mongoose')
 const Author = require('./models/author')
 const Book = require('./models/book')
-//const jwt =require("jsonwebtoken")
+const User = require('./models/user')
+const jwt =require("jsonwebtoken")
+
+//normally hide this to .env
+const JWT_SECRET = 'secret'
 
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
@@ -14,6 +18,7 @@ if ( process.argv.length<3 ) {
 }
 const password = process.argv[2]
 
+//normally hide this to .env
 const MONGODB_URI = `mongodb+srv://graphql:graphql@cluster0-b2hdh.mongodb.net/test?retryWrites=true&w=majority`
 
 
@@ -62,6 +67,7 @@ type Token {
     allBooks(author:String, genre: String): [Book!]!
     allAuthors: [Author!]!
     findBook(genre:String!): [Book]
+    findUser(username:String!):User
     me: User
   }
   
@@ -93,6 +99,8 @@ type Token {
     ): Token
   }
 `  
+//normally hide this to .env
+const JWT_SECRET = 'secret'
 //bookCount:Int
 // bookCount:String!
 // allBooks: [Book!]!
@@ -102,6 +110,7 @@ type Token {
 const resolvers = {
 
   Query: {
+    me: (root, args, context) => {return context.currentUser},
     bookCount: () => Book.collection.countDocuments(),
     authorCount: () =>  Author.collection.countDocuments(),
     allBooks: (root, args) => { 
@@ -134,6 +143,9 @@ Author:{
 Mutation: {
   addBook: async(root, args) => {
     let author=await Author.findOne({name:args.author})
+    const currentUser = context.currentUser
+    if (!currentUser)throw new AuthenticationError("not authenticated")
+    
 
     try {
    if (!author) {
@@ -159,17 +171,20 @@ Mutation: {
   }
     return book
 },
-
-
+//editAuthor
 addYear: async(root, args) => {
-
  const author = await Author.findOne({name:args.name})
+ const currentUser = context.currentUser
+
+ if (!currentUser) {
+   throw new AuthenticationError("not authenticated")
+ }
  if (!author) {
   return null
    }
    if (args.born){ 
    author.born=args.born
- 
+
  try {
  author.save()
 } catch (error) {
@@ -178,12 +193,48 @@ addYear: async(root, args) => {
 }
 return author
 }
+},
+
+createUser: (root, args) => {
+  const user = new User({ username: args.username, favoriteGenre:args.favoriteGenre })
+
+  return user.save()
+    .catch(error => {
+      throw new UserInputError(error.message, {
+        invalidArgs: args,
+      })
+    })
+},
+login: async (root, args) => {
+  const user = await User.findOne({ username: args.username })
+
+  if ( !user || args.password !== 'secret' ) {
+    throw new UserInputError("wrong credentials")
+  }
+
+  const userForToken = {
+    username: user.username,
+    favoriteGenre: user.favoriteGenre,
+    id: user._id,
+  }
+
+  return { value: jwt.sign(userForToken, JWT_SECRET) }
 }
 }
  }
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: async({ req }) => {
+    const auth = req ? req.headers.authorization : null
+
+    if (auth && auth.toLowerCase().startsWith('bearer ')) {
+      const decodedToken = jwt.verify( auth.substring(7), JWT_SECRET)
+      const currentUser = await User.findById(decodedToken.id)
+      return { currentUser }
+      
+    }
+  }
 })
 
 server.listen().then(({ url }) => {
@@ -217,6 +268,9 @@ server.listen().then(({ url }) => {
 //     author
 //   }
 // }
+//HTTP-HEADERS
+// "Authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFub3RoZXIiLCJpZCI6IjVkNWU2MDU5ZWRhOWIxN2ZkMzAzMDJiMyIsImlhdCI6MTU2NjQ2NzU1MH0.Vv1BJAG2MZQV3KhiuFkaGm6Z8bxQBdDorTpXxBRty5Y"
+// }
 
 //8,7 editingAuthor 
 // mutation {
@@ -225,3 +279,16 @@ server.listen().then(({ url }) => {
 //     born
 //   }
 // }
+//HTTP-HEADERS
+// "Authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFub3RoZXIiLCJpZCI6IjVkNWU2MDU5ZWRhOWIxN2ZkMzAzMDJiMyIsImlhdCI6MTU2NjQ2NzU1MH0.Vv1BJAG2MZQV3KhiuFkaGm6Z8bxQBdDorTpXxBRty5Y"
+// }
+
+// mutation {
+//   login(
+//       username: "Another",
+//       password:"secret"
+//     ) {
+//       value
+      
+//     }
+//   }
