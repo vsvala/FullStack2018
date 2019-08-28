@@ -15,6 +15,7 @@ const LoginForm = (props) => {
       const token = result.data.login.value
       props.setToken(token)
       localStorage.setItem('books-user-token', token)
+     // props.setPage('authors')
     }
   }
 

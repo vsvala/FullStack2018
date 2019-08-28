@@ -4,20 +4,24 @@ import Authors from './components/Authors'
 import Books from './components/Books'
 import NewBook from './components/NewBook'
 import LoginForm from './components/LoginForm'
+import Recommend from './components/Recommend'
 
 //import SetBirthYearForm from './components/SetBirthYearForm'
 import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
 
 const ALL_BOOKS = gql`
-{
-  allBooks  {
+  query filteredBooks($genre: String) {
+  allBooks(genre:$genre){
     title
     author{name}
     published
+    genres
     id
   }
 }
 `
+
+
 const ALL_AUTHORS = gql`
 {
   allAuthors  {
@@ -28,7 +32,14 @@ const ALL_AUTHORS = gql`
   }
 }
 `
-//    bookCount
+const USER = gql`
+{
+  me {
+    username
+    favoriteGenre
+  }
+}
+`
 const CREATE_BOOK = gql`
 mutation 
 createBook(
@@ -70,7 +81,7 @@ const LOGIN = gql`
   `
 
 const App = () => { 
-  const client = useApolloClient()
+
   const [token, setToken] = useState(null)
   const [page, setPage] = useState('authors')
   const [errorMessage, setErrorMessage] = useState(null)
@@ -80,17 +91,22 @@ const App = () => {
       setErrorMessage(null)
     }, 10000)
   }
-
+  const client = useApolloClient()
+  
   const books = useQuery(ALL_BOOKS)
   const authors = useQuery(ALL_AUTHORS)
+  const user = useQuery(USER)
+ 
   const [createBook] = useMutation(CREATE_BOOK, {
    onError: handleError,
    refetchQueries: [{ query: ALL_BOOKS },{ query: ALL_AUTHORS }]
     })
+
   const [addYear] = useMutation(ADD_YEAR,{
     onError: handleError,
     refetchQueries: [{ query: ALL_AUTHORS }] 
   })
+
   const [login] = useMutation(LOGIN, {
     onError: handleError
   })
@@ -122,34 +138,44 @@ const logout = () => {
         {token !== null &&
         <button onClick={() => setPage('add')}>add book</button>
         }
+         {token !== null &&
+        <button onClick={() => setPage('recommend')}>recommend</button>
+        }
         {/* {token=== null ?
          <button onClick={() => setPage('login')}>login</button>: 
-        <button onClick={logout}>logout</button>
-        }   */}
-        <button onClick={logout}>logout</button>
-      </div>
+       */}
+      {token !== null &&
+       <button onClick={() => logout()}>logout</button>}
 
+     {token === null &&
+          <button onClick={() => setPage('login')}>login</button>
+     }
+  </div>
       <Authors
         show={page === 'authors'} 
         result={authors}   
         addYear={addYear}
       />
-      <Books 
+     <Books 
         show={page === 'books'}
-        result={books} 
+        books={books} 
+        ALL_BOOKS={ALL_BOOKS}
       />
       <NewBook
         show={page === 'add'}
         addBook={createBook}
-
       />
-       {/* <LoginForm
+      <Recommend
+        show={page === 'recommend'}
+        user={user}
+        ALL_BOOKS={ALL_BOOKS}
+      /> 
+      {/* <LoginForm
         show={page === 'login'}
+        setPage={setPage}
         login={login}
-        setToken={(token) => setToken( `bearer ${token}`)}
-      />  */}
-      {/* const setToken = newToken => {
-      token = `bearer ${newToken}` */}
+        setToken={(token) => setToken(token)}
+      />   */}
 
 
 

@@ -67,7 +67,6 @@ type Token {
     allBooks(author:String, genre: String): [Book!]!
     allAuthors: [Author!]!
     findBook(genre:String!): [Book]
-    findUser(username:String!):User
     me: User
   }
   
@@ -110,8 +109,6 @@ type Token {
 const resolvers = {
 
   Query: {
-    me: (root, args, context) => {
-      return context.currentUser},
     bookCount: () => Book.collection.countDocuments(),
     authorCount: () =>  Author.collection.countDocuments(),
     allBooks: (root, args) => { 
@@ -122,8 +119,13 @@ const resolvers = {
      },
     allAuthors: () => {
     return Author.find({}) 
+},  
+   me: (root, args, context) => {
+  return context.currentUser
 }
  },
+
+
 //  Author:{
 //    bookCount:parent=>{
 //    return Book.collection.countDocuments({author:parent})
@@ -232,11 +234,11 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async({ req }) => {
-    const auth = req ? req.headers.authorization : null
+    const authorization = req ? req.headers.authorization : null
     console.log('authooooooooooooooooooooooooooooooo',auth)
     
-    if (auth && auth.toLowerCase().startsWith('bearer ')) {
-      const decodedToken = jwt.verify( auth.substring(7), JWT_SECRET)
+    if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+      const decodedToken = jwt.verify( authorization.substring(7), JWT_SECRET)
       console.log('detokeeeeeeeeeeeeeeeee',decodedToken)
       const currentUser = await User.findById(decodedToken.id)
       console.log('cuuuuuuuuuuuu',currentUser) 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 const BookForm = (props) => {
-  const [title, setTitle] = useState('')
+ 
   const [author, setAuthor] = useState('')
   const [published, setPublished] = useState('')
   const [genres, setGenres] = useState('')
@@ -12,6 +12,7 @@ const BookForm = (props) => {
        variables: { title, author, published, genres } 
     })
 
+    const [title, setTitle] = useState('')
     setTitle('')
     setAuthor('')
     setPublished('')
