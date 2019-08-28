@@ -5,7 +5,8 @@ const Author = require('./models/author')
 const Book = require('./models/book')
 const User = require('./models/user')
 const jwt =require("jsonwebtoken")
-
+const { PubSub } = require('apollo-server')
+const pubsub = new PubSub()
 //normally hide this to .env
 const JWT_SECRET = 'secret'
 
@@ -60,6 +61,10 @@ type User {
 type Token {
   value: String!
 }
+
+type Subscription {
+  bookAdded: Book!
+}  
 
   type Query {
     bookCount: Int!
@@ -143,6 +148,8 @@ Author:{
 // }
 // },
 
+
+
 Mutation: {
   addBook: async(root, args, context) => {
     let author=await Author.findOne({name:args.author})
@@ -164,6 +171,7 @@ Mutation: {
      throw new UserInputError(error.message, 
       { invalidArgs: args,})
      }
+     //let book= new Book({ ...args })
   let book = new Book({
      title: args.title,
      published: args.published,
@@ -177,8 +185,11 @@ Mutation: {
     throw new UserInputError(error.message, {
       invalidArgs: args,})
   }
+  pubsub.publish('BOOK_ADDED', { bookAdded: book })
     return book
 },
+
+
 //editAuthor
 addYear: async(root, args, context) => {
  const author = await Author.findOne({name:args.name})
@@ -227,8 +238,13 @@ login: async (root, args) => {
   }
 
   return { value: jwt.sign(userForToken, JWT_SECRET) }
-}
-}
+},
+},
+Subscription: {
+  bookAdded: {
+    subscribe: () => pubsub.asyncIterator(['BOOK_ADDED'])
+  },
+},
  }
 const server = new ApolloServer({
   typeDefs,
@@ -246,10 +262,13 @@ const server = new ApolloServer({
     }  
   }
 })
-
-server.listen().then(({ url }) => {
+server.listen().then(({ url, subscriptionsUrl }) => {
   console.log(`Server ready at ${url}`)
+  console.log(`Subscriptions ready at ${subscriptionsUrl}`)
 })
+// server.listen().then(({ url }) => {
+//   console.log(`Server ready at ${url}`)
+// })
 
 //8.4 Author's books
 //query {

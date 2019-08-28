@@ -7,7 +7,7 @@ import LoginForm from './components/LoginForm'
 import Recommend from './components/Recommend'
 
 //import SetBirthYearForm from './components/SetBirthYearForm'
-import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
+import { useQuery, useMutation,useSubscription, useApolloClient } from '@apollo/react-hooks'
 
 const ALL_BOOKS = gql`
   query filteredBooks($genre: String) {
@@ -79,28 +79,74 @@ const LOGIN = gql`
     }
   }
   `
+  const BOOK_ADDED = gql`
+  subscription {
+    bookAdded {
+        title
+        author{name}
+        published
+        genres
+        id
+      }
+    }
+    `
 
 const App = () => { 
 
   const [token, setToken] = useState(null)
   const [page, setPage] = useState('authors')
   const [errorMessage, setErrorMessage] = useState(null)
+  
+  const notify = (message) => {
+    setErrorMessage(message)
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 10000)
+  }
+  
   const handleError = (error) => {
     setErrorMessage(error.graphQLErrors[0].message)
     setTimeout(() => {
       setErrorMessage(null)
     }, 10000)
   }
+
   const client = useApolloClient()
   
   const books = useQuery(ALL_BOOKS)
   const authors = useQuery(ALL_AUTHORS)
   const user = useQuery(USER)
  
+  const updateCacheWith = (addedBook) => {
+    const includedIn = (set, object) =>
+      set.map(p => p.id).includes(object.id)  
+     
+      const dataInStore = client.readQuery({ query: ALL_BOOKS })
+      if (!includedIn(dataInStore.allBooks, addedBook)) {
+        dataInStore.allBooks.push(addedBook)
+        client.writeQuery({
+          query: ALL_BOOKS,
+          data: dataInStore
+        })
+      }   
+    }
+
+  useSubscription(BOOK_ADDED, {
+    onSubscriptionData: ({ subscriptionData }) => {
+      const addedBook= subscriptionData.data.bookAdded
+      notify(`${addedBook.title} added, BRAVO!`)
+      updateCacheWith(addedBook)
+      console.log(subscriptionData)
+    }
+  })
+
   const [createBook] = useMutation(CREATE_BOOK, {
    onError: handleError,
-   refetchQueries: [{ query: ALL_BOOKS },{ query: ALL_AUTHORS }]
-    })
+   update: (store, response) => {
+  updateCacheWith(response.data.createBook)
+  //  refetchQueries: [{ query: ALL_BOOKS },{ query: ALL_AUTHORS }]
+   }   
+})
 
   const [addYear] = useMutation(ADD_YEAR,{
     onError: handleError,
@@ -110,10 +156,17 @@ const App = () => {
   const [login] = useMutation(LOGIN, {
     onError: handleError
   })
-  const errorNotification = () => errorMessage &&
-  <div style={{ color: 'red' }}>
-    {errorMessage}
-  </div>
+
+const logout = () => {
+  setToken(null)
+  localStorage.clear()
+  client.resetStore()
+}
+
+const errorNotification = () => errorMessage &&
+<div style={{ color: 'red' }}>
+  {errorMessage}
+</div>
 
 if (!token) {
   return (
@@ -126,13 +179,10 @@ if (!token) {
     </div>
   )
 }
-const logout = () => {
-  setToken(null)
-  localStorage.clear()
-  client.resetStore()
-}
+
   return (
  <div>
+       {errorNotification()}
       <div>
         <button onClick={() => setPage('authors')}>authors</button>
         <button onClick={() => setPage('books')}>books</button>
@@ -177,18 +227,10 @@ const logout = () => {
         login={login}
         setToken={(token) => setToken(token)}
       />   */}
-
-
-
-      {errorMessage &&
-        <div style={{ color: 'red' }}>
-          {errorMessage}
-        </div>
-      }
      
   {/* <h2>Set birth year </h2>
     <SetBirthYearForm editYear={editYear} />  */}
- 
+
 </div>
 
   )
