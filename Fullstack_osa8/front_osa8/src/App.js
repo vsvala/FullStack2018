@@ -114,6 +114,7 @@ const App = () => {
   <div style={{ color: 'red' }}>
     {errorMessage}
   </div>
+
 if (!token) {
   return (
     <div>
@@ -147,9 +148,9 @@ const logout = () => {
       {token !== null &&
        <button onClick={() => logout()}>logout</button>}
 
-     {token === null &&
+     {/* {token === null &&
           <button onClick={() => setPage('login')}>login</button>
-     }
+     } */}
   </div>
       <Authors
         show={page === 'authors'} 
