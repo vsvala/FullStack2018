@@ -175,6 +175,7 @@ if (!token) {
       <LoginForm
         login={login}
         setToken={(token) => setToken(token)}
+        setPage={setPage}
       />
     </div>
   )
@@ -219,6 +220,7 @@ if (!token) {
       <Recommend
         show={page === 'recommend'}
         user={user}
+        USER={USER}
         ALL_BOOKS={ALL_BOOKS}
       /> 
       {/* <LoginForm

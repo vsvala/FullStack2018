@@ -37,6 +37,11 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
 
 //skeemat,  Query, joka kertoo mitä kyselyjä API:iin voidaan tehdä.
 const typeDefs = gql`
+type User {
+  username: String!
+  favoriteGenre: String!
+  id: ID!
+}
 type Author {
   name: String!
   born:Int
@@ -52,18 +57,9 @@ type Book {
   id: ID!
 }
 
-type User {
-  username: String!
-  favoriteGenre: String!
-  id: ID!
-}
 
 type Token {
   value: String!
-}
-
-type Subscription {
-  bookAdded: Book!
 }  
 
   type Query {
@@ -72,6 +68,7 @@ type Subscription {
     allBooks(author:String, genre: String): [Book!]!
     allAuthors: [Author!]!
     findBook(genre:String!): [Book]
+    allUsers: [User]!
     me: User
   }
   
@@ -101,7 +98,12 @@ type Subscription {
       username: String!
       password: String!
     ): Token
+    }
+
+  type Subscription {
+   bookAdded: Book!
   }
+
 `  
 //normally hide this to .env
 //const JWT_SECRET = 'secret'
@@ -114,6 +116,10 @@ type Subscription {
 const resolvers = {
 
   Query: {
+    // bookCount: async () => {
+    //   const books = await Book.find({})
+    //   return books.length
+    // },
     bookCount: () => Book.collection.countDocuments(),
     authorCount: () =>  Author.collection.countDocuments(),
     allBooks: (root, args) => { 
@@ -124,13 +130,17 @@ const resolvers = {
      },
     allAuthors: () => {
     return Author.find({}) 
-},  
-   me: (root, args, context) => {
-  return context.currentUser
-}
- },
+    },  
+    allUsers: () => {return User.find({}) 
+    }, 
+    me:(root, args, context) => {
+      return context.currentUser
+    }
+    },
 
-
+    // Author: {
+    //   bookCount: (root) => root.books.length
+    // },
 //  Author:{
 //    bookCount:parent=>{
 //    return Book.collection.countDocuments({author:parent})
