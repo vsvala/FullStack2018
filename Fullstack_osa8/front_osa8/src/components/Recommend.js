@@ -28,12 +28,6 @@ const Recommend = (props) => {
    fetchUser()
    console.log('inituser',user)
   }, [])
-
-//   setGenres()
-// },props.books)
-//  const user=props.user
-//  console.log('props.user.data.allUSer ',user)
-// console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkk',props.user)//.favoriteGenre
  
 useEffect(() => {
   if(user!==null){
@@ -49,6 +43,8 @@ useEffect(() => {
   console.log('initbooks',books)
  }}, [user])
 
+ //  const user=props.user
+// console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkk',props.user)//.favoriteGenr
   // const setGenres = async () => {
   //   const gen = await client.query({
   //      query: props.USER,

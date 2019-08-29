@@ -138,19 +138,19 @@ const resolvers = {
     }
     },
 
-    // Author: {
-    //   bookCount: (root) => root.books.length
-    // },
+    Author: {
+      bookCount: (root) => root.books.length
+    },
 //  Author:{
 //    bookCount:parent=>{
 //    return Book.collection.countDocuments({author:parent})
 //  }
 // },
-Author:{
+/* Author:{
   bookCount:(root)=>{
    return Book.find({author:{$eq:root.id}}).countDocuments()
 }
-},
+}, */
 // Book:{
 //   author:async(root)=>{
 //     let author=await Author.findOne({name:root.author.name})
@@ -174,14 +174,14 @@ Mutation: {
 
     try {
    if (!author) {
-   author = new Author({ name:args.author}) 
+   author = await new Author({ name:args.author}) 
     await author.save()
    }
     } catch (error) {
      throw new UserInputError(error.message, 
       { invalidArgs: args,})
      }
-     //let book= new Book({ ...args })
+     //let book= new Book({ ...args, author:author })
   let book = new Book({
      title: args.title,
      published: args.published,
@@ -189,12 +189,15 @@ Mutation: {
      author: author
     })
   try {
-    await book.save()
+    await book.save()   
+    author.books = author.books.concat(book)
+    author.save()
    //const populateBook=await Book.findOne({title:args.title}).populate('author, {name:1}')
   } catch (error) {
     throw new UserInputError(error.message, {
       invalidArgs: args,})
   }
+  
   pubsub.publish('BOOK_ADDED', { bookAdded: book })
     return book
 },

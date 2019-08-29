@@ -13,10 +13,11 @@ if (!props.show) {
  }
  const client = useApolloClient()
 const [books, setBooks] = useState(props.books.data.allBooks) //aluksi kaikki
+console.log('bookdataAllBooks',props.books.data.allBooks)
+
 const [genres, setGenres] = useState([])
 const [genre, setGenre] = useState('all')
 //setBooks(props.result.data.allBooks)
-
 
 props.books.data.allBooks.forEach(book=>{book.genres.forEach(g=>{
   if(!genres.includes(g))setGenres(genres.concat(g)) //asettaa genreihin kirjojen genret

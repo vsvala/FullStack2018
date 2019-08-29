@@ -9,16 +9,25 @@ import Recommend from './components/Recommend'
 //import SetBirthYearForm from './components/SetBirthYearForm'
 import { useQuery, useMutation,useSubscription, useApolloClient } from '@apollo/react-hooks'
 
-const ALL_BOOKS = gql`
-  query filteredBooks($genre: String) {
-  allBooks(genre:$genre){
+const BOOK_DETAILS = gql`
+  fragment BookDetails on Book {
     title
-    author{name}
+    author {
+      name
+    }
     published
     genres
     id
   }
+`
+
+const ALL_BOOKS = gql`
+  query filteredBooks($genre: String) {
+  allBooks(genre:$genre){
+    ...BookDetails
+  }
 }
+${BOOK_DETAILS}
 `
 
 
@@ -54,13 +63,10 @@ createBook(
     published: $published,
     genres: $genres
   ) {
-    title
-    author{name}
-    published
-    genres
-    id
+    ...BookDetails
   }
 }
+${BOOK_DETAILS}
 ` 
 
 const ADD_YEAR = gql`
@@ -82,13 +88,10 @@ const LOGIN = gql`
   const BOOK_ADDED = gql`
   subscription {
     bookAdded {
-        title
-        author{name}
-        published
-        genres
-        id
+      ...BookDetails
       }
-    }
+    }     
+    ${BOOK_DETAILS}
     `
 
 const App = () => { 
@@ -135,16 +138,18 @@ const App = () => {
     onSubscriptionData: ({ subscriptionData }) => {
       const addedBook= subscriptionData.data.bookAdded
       notify(`${addedBook.title} added, BRAVO!`)
+      window.alert(`${addedBook.title} added`)
       updateCacheWith(addedBook)
       console.log(subscriptionData)
     }
   })
 
   const [createBook] = useMutation(CREATE_BOOK, {
-   onError: handleError,
+   onError: handleError,  
+   refetchQueries: [{ query: ALL_BOOKS },{ query: ALL_AUTHORS }],
    update: (store, response) => {
   updateCacheWith(response.data.createBook)
-  //  refetchQueries: [{ query: ALL_BOOKS },{ query: ALL_AUTHORS }]
+
    }   
 })
 
