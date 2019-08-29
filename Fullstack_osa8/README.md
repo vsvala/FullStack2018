@@ -1,4 +1,4 @@
-Courses tasks are found from branches
+Kurssin tehtävät löytyvät eri brancheistä
 
 b React ja GraphQL      
 
