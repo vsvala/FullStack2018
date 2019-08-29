@@ -121,6 +121,7 @@ if (!token) {
       {errorNotification()}
       <LoginForm
         login={login}
+        setPage={setPage}
         setToken={(token) => setToken(token)}
       />
     </div>
@@ -170,6 +171,7 @@ const logout = () => {
         show={page === 'recommend'}
         user={user}
         ALL_BOOKS={ALL_BOOKS}
+        USER={USER}
       /> 
       {/* <LoginForm
         show={page === 'login'}
