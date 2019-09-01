@@ -57,6 +57,8 @@ mutation editYear($name: String!, $born: String!) {
 `
 const App = () => { 
   const [page, setPage] = useState('authors')
+
+  
   const [errorMessage, setErrorMessage] = useState(null)
   const handleError = (error) => {
     setErrorMessage(error.graphQLErrors[0].message)
@@ -85,6 +87,7 @@ const App = () => {
       <Authors
         show={page === 'authors'} 
         result={result2}   
+        editYear={editYear}   
       />
       <Books 
         show={page === 'books'}
@@ -139,13 +142,9 @@ const App = () => {
          /> }
       </Mutation>    */}
 
-     <h2>create new</h2>
-      {/* <BookForm addBook={addBook} /> */}
-
-       <h2>Set birth year </h2>
-       <SetBirthYearForm editYear={editYear} />
-
-
+      {/* <h2>Set birth year </h2>
+    <SetBirthYearForm editYear={props.editYear} />  */}
+ 
 </div>
 
   )

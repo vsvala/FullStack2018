@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 //import { useApolloClient } from 'react-apollo-hooks'
 //import SetBirthYearForm from './SetBirthYearForm'
+import Select from 'react-select'
 
+//const Authors = ({result}) => {
 const Authors = (props) => {
 // const client = useApolloClient()
-//const Authors = ({result}) => {
   if (!props.show) {
    // if (!result) {
     return null
@@ -12,8 +13,29 @@ const Authors = (props) => {
   if (props.result.loading) {
     return <div>loading...</div>
    }
+   const [born, setBirth] = useState('')
+   const [name, setName] = useState('')
+
   const authors = props.result.data.allAuthors 
-  //const authors = []
+
+  const options = []
+  authors.forEach(a => {
+    const auth = {value: a.name, label: a.name}
+    options.push(auth)
+  })
+
+  const submit = async (e) => {
+    e.preventDefault()
+
+    await props.editYear({
+      variables: { name, born }
+    })
+
+    setBirth('')
+    setName('')
+
+  }
+
 
   return (
     <div>
@@ -40,6 +62,28 @@ const Authors = (props) => {
       </table>
       {/* <h2>Set birth year </h2>
     <SetBirthYearForm editYear={props.editYear} />  */}
+     
+      <h2>Set birth year </h2>
+       <div>
+        <form onSubmit={submit}> 
+  
+      <div>
+          <Select
+            value={name.value}
+            onChange={( name ) => setName(name.value)}
+            options={options}
+        />
+      </div>
+          <div>
+            birthyear <input
+              value={born}
+              onChange={({ target }) => setBirth(target.value)}
+            />
+          </div>
+          <button type='submit'>change year</button>
+        </form> 
+    </div>
+
     </div>
   )
 }

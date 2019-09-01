@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-//import Select from 'react-select';
-
-// const options = [
-//   { value: 'chocolate', label: 'Chocolate' },
-//   { value: 'strawberry', label: 'Strawberry' },
-//   { value: 'vanilla', label: 'Vanilla' },
-// ];
 
 
 const SetBirthYearForm = (props) => {
     const [name, setName] = useState('')
     const [born, setBirth] = useState('')
+  
+    if (!props.show) {
+       return null
+     }
+     if (props.result.loading) {
+       return <div>loading...</div>
+      }
   
     const submit = async (e) => {
       e.preventDefault()
