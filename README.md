@@ -1,5 +1,59 @@
 # FullStack2018
 
+## 📚 Course Overview
+
+The course is structured into multiple parts covering the full lifecycle of modern web application development.
+
+---
+
+## 🌐 Fundamentals & React
+- Web application fundamentals  
+- React basics (components, state, hooks)  
+- Advanced React patterns and state management  
+
+---
+
+## 🔄 Client–Server Communication
+- REST API integration  
+- HTTP requests and asynchronous data handling  
+- Frontend–backend communication patterns  
+
+---
+
+## 🖥️ Backend Development
+- Node.js & Express  
+- REST API design  
+- Middleware architecture  
+- Error handling and backend structure  
+
+---
+
+## 🗄️ Databases
+- MongoDB and relational database concepts  
+- Data modeling and persistence  
+- CRUD operations with backend services  
+
+---
+
+## 🧪 Testing
+- Unit and integration testing  
+- Jest and React Testing Library  
+- Backend API testing  
+
+---
+
+## ⚙️ Advanced Frontend Architecture
+- State management (Redux)  
+- React Router  
+- Custom hooks and reusable logic  
+
+---
+
+## 🔌 GraphQL APIs
+- GraphQL basics and schema design  
+- Queries and mutations  
+- Comparison with REST APIs  
+
 Kurssilla tutustutaan Javascriptilla tapahtuvaan moderniin websovelluskehitykseen. Pääpaino on React-kirjaston avulla toteutettavissa single page -sovelluksissa, ja niitä tukevissa Node.js:llä toteutetuissa REST-rajapinnoissa.
 
 Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suoritusympäristöjen hallintaa sekä NoSQL-tietokantoja(Mongodb).
