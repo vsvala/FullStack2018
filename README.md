@@ -1,5 +1,32 @@
 # FullStack2018
 
+
+Kurssilla tutustutaan Javascriptilla tapahtuvaan moderniin websovelluskehitykseen. Pääpaino on React-kirjaston avulla toteutettavissa single page -sovelluksissa, ja niitä tukevissa Node.js:llä toteutetuissa REST-rajapinnoissa.
+
+Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suoritusympäristöjen hallintaa sekä NoSQL-tietokantoja(Mongodb).
+
+**[osa0 sekvenssikaavioiden piirtäminen](https://github.com/vsvala/FullStack2018/tree/master/osa0)**
+
+**[osa1 reactin alkeita](https://github.com/vsvala/Fullstack_phonebook_osa3)**
+
+**[osa2 tehtäviä](https://github.com/vsvala/FullStack2018)**
+
+**[osa3 Puhelinmuistio](https://github.com/vsvala/Fullstack_phonebook_osa3)**
+
+**[osa4 Blogi](https://github.com/vsvala/Fullstack_osa4_blogi/tree/master/osa4_backend-)**
+
+**[osa5 Blogi](https://github.com/vsvala/Fullstack_osa5)**
+
+**[osa5 Redux_Unicafe](https://github.com/vsvala/FullStack2018/tree/master/Redux-Unicafe_osa5)**
+
+**[osa5 Redux_Anecdotes](https://github.com/vsvala/FullStack2018/tree/master/Redux-anecdotes_osa5/redux-anecdotes)**
+
+**[osa6 Anecdotes](https://github.com/vsvala/FullStack2018/tree/master/osa6)**
+
+**[osa7 Blog](https://github.com/vsvala/FullStack2018/tree/master/osa7)**
+
+**[osa8 GraphQL](https://github.com/vsvala/FullStack2018/tree/master/Fullstack_osa8)**
+
 ## 📚 Course Overview
 
 The course is structured into multiple parts covering the full lifecycle of modern web application development.
@@ -53,35 +80,8 @@ The course is structured into multiple parts covering the full lifecycle of mode
 - GraphQL basics and schema design  
 - Queries and mutations  
 - Comparison with REST APIs  
-
-Kurssilla tutustutaan Javascriptilla tapahtuvaan moderniin websovelluskehitykseen. Pääpaino on React-kirjaston avulla toteutettavissa single page -sovelluksissa, ja niitä tukevissa Node.js:llä toteutetuissa REST-rajapinnoissa.
-
-Kurssilla käsitellään myös sovellusten testaamista, konfigurointia ja suoritusympäristöjen hallintaa sekä NoSQL-tietokantoja(Mongodb).
-
-**[osa0 sekvenssikaavioiden piirtäminen](https://github.com/vsvala/FullStack2018/tree/master/osa0)**
-
-**[osa1 reactin alkeita](https://github.com/vsvala/Fullstack_phonebook_osa3)**
-
-**[osa2 tehtäviä](https://github.com/vsvala/FullStack2018)**
-
-**[osa3 Puhelinmuistio](https://github.com/vsvala/Fullstack_phonebook_osa3)**
-
-**[osa4 Blogi](https://github.com/vsvala/Fullstack_osa4_blogi/tree/master/osa4_backend-)**
-
-**[osa5 Blogi](https://github.com/vsvala/Fullstack_osa5)**
-
-**[osa5 Redux_Unicafe](https://github.com/vsvala/FullStack2018/tree/master/Redux-Unicafe_osa5)**
-
-**[osa5 Redux_Anecdotes](https://github.com/vsvala/FullStack2018/tree/master/Redux-anecdotes_osa5/redux-anecdotes)**
-
-**[osa6 Anecdotes](https://github.com/vsvala/FullStack2018/tree/master/osa6)**
-
-**[osa7 Blog](https://github.com/vsvala/FullStack2018/tree/master/osa7)**
-
-**[osa8 GraphQL](https://github.com/vsvala/FullStack2018/tree/master/Fullstack_osa8)**
-
-
 # [Sovelluksen pystytys](https://github.com/vsvala/FullStack2018/blob/master/Dokumentation/SovelluksenToteutus.md)
+
 
 # Käytettyjä komentoja
 front
